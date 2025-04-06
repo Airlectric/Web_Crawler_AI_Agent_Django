@@ -1,0 +1,239 @@
+import requests
+import logging
+import json
+import os
+from dotenv import load_dotenv  
+from google import genai 
+
+logger = logging.getLogger(__name__)
+
+load_dotenv()
+
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+
+def extract_info_with_llm(data: dict):
+    """Use OpenRouter API as primary and Google Gemini as backup to extract structured data."""
+    print("Extracting information with LLM...")
+
+    # Verify API keys
+    if not OPENROUTER_API_KEY:
+        print("Error: OPENROUTER_API_KEY is not set")
+        return {"error": "OPENROUTER_API_KEY is not set"}
+    if not GOOGLE_API_KEY:
+        print("Warning: GOOGLE_API_KEY is not set; Google Gemini backup will not work")
+
+    pre_extracted = ""
+    for key, value in data.items():
+        if key != 'raw_content':
+            if isinstance(value, dict):
+                value_str = ', '.join([f"{k}: {v}" for k, v in value.items() if v])
+                pre_extracted += f"- {key}: {value_str}\n"
+            elif isinstance(value, list):
+                pre_extracted += f"- {key}: {', '.join(value)}\n"
+            else:
+                pre_extracted += f"- {key}: {value}\n"
+
+    raw_content = data.get('raw_content', '')[:2000]
+    logger.info(f"Pre-extracted content:{pre_extracted}")
+    logger.info(f"Raw content:{raw_content}")
+    
+
+    prompt = f"""
+**TOP PRIORITY**: If the information in both the pre-extracted data and raw content is not closely related to science and engineering university research labs, research, or potential startups, you MUST return a JSON object with all fields blank or empty. This is critical to maintain data integrity and prevent the inclusion of irrelevant or speculative information.
+
+You are an expert data extractor. You are given pre-extracted data and raw content from a webpage. Your task is to produce a JSON object that exactly follows the schema below.
+
+### Task:
+Create a JSON object with the following fields:
+- **"university"**: Use the pre-extracted value if it identifies a university; otherwise, infer from raw content if a university is mentioned (e.g., "at MIT" or "University of X") or strongly implied (e.g., "MIT research" suggests MIT).
+- **"location"**: Object with "country" and "city". Use pre-extracted values if available; otherwise, infer from raw content (e.g., "located in New York, USA") or deduce from the university (e.g., MIT → Cambridge, USA).
+- **"website"**: Use the pre-extracted URL; if missing, infer a likely main website from raw content (e.g., URLs ending in .edu or .org) or deduce from the university (e.g., MIT → "mit.edu").
+- **"edurank"**: Object with "url" (EduRank URL) and "score". Fill if EduRank is mentioned; otherwise, leave empty unless context strongly suggests a ranking source.
+- **"department"**: Object with "name", "url", "teams" (object with "urls" and "members" arrays), and "focus". Use pre-extracted values or infer from raw content if a department, teams, or focus area (e.g., "AI Lab" or "machine learning") is suggested.
+- **"publications"**: Object with "google_scholar_url", "other_url", and "contents" (array of publication details). Use pre-extracted values or extract from raw content if URLs or publication titles are present or implied.
+- **"related"**: Include related entities (e.g., collaborating institutions) if mentioned or reasonably inferred from context.
+- **"point_of_contact"**: Object with "name", "first_name", "last_name", "title", "bio_url", "linked_in", "google_scholar_url", "email", and "phone_number". Use pre-extracted values or infer from raw content if a person’s details (e.g., "Dr. John Doe, jdoe@university.edu") are present or suggested.
+- **"scopes"**: Array of research scopes (e.g., "AI", "robotics"). Use pre-extracted values or identify from raw content based on mentioned or implied research areas.
+- **"research_abstract"**: Provide a concise summary (5-6 sentences) of research activities based on raw content, even if briefly mentioned, or infer from context if research is implied.
+- **"lab_equipment"**: Object with "overview" (short description) and "list" (array of equipment). List equipment mentioned in raw content (e.g., "microscopes") or infer plausible equipment based on research context (e.g., "AI research" might suggest "computing clusters").
+
+### Instructions:
+- Prioritize pre-extracted values unless they are incomplete, then supplement with raw content and your knowledge.
+- Infer plausible values for fields when direct evidence is missing but context supports it (e.g., university location, website, or research focus).
+- Use your reasoning to fill fields where reasonable, but avoid entirely speculative or unrelated data.
+
+### Schema (all fields must be present, with correct types):
+{{
+    "id": 0,  
+    "university": "",
+    "location": {{
+        "country": "",
+        "city": ""
+    }},
+    "website": "",
+    "edurank": {{
+        "url": "",
+        "score": ""
+    }},
+    "department": {{
+        "name": "",
+        "url": "",
+        "teams": {{
+            "urls": [],
+            "members": []
+        }},
+        "focus": ""
+    }},
+    "publications": {{
+        "google_scholar_url": "",
+        "other_url": "",
+        "contents": []
+    }},
+    "related": "",
+    "point_of_contact": {{
+        "name": "",
+        "first_name": "",
+        "last_name": "",
+        "title": "",
+        "bio_url": "",
+        "linked_in": "",
+        "google_scholar_url": "",
+        "email": "",
+        "phone_number": ""
+    }},
+    "scopes": [],
+    "research_abstract": "",
+    "lab_equipment": {{
+        "overview": "",
+        "list": []
+    }}
+}}
+
+### Detailed Example:
+Below is an example output if the webpage were clearly about Stanford University's Robotics Department. Use this strictly as a format reference ONLY; do not infer extra details.
+{{
+    "id": 1,
+    "university": "Stanford University",
+    "location": {{
+        "country": "USA",
+        "city": "Stanford"
+    }},
+    "website": "https://www.stanford.edu",
+    "edurank": {{
+        "url": "https://www.edurank.org/institution/stanford-university",
+        "score": "98.5"
+    }},
+    "department": {{
+        "name": "Robotics Department",
+        "url": "https://robotics.stanford.edu",
+        "teams": {{
+            "urls": ["https://robotics.stanford.edu/team1", "https://robotics.stanford.edu/team2"],
+            "members": ["Dr. Alice Smith", "Dr. Bob Johnson"]
+        }},
+        "focus": "Autonomous systems and machine learning in robotics"
+    }},
+    "publications": {{
+        "google_scholar_url": "https://scholar.google.com/citations?user=abcdefg",
+        "other_url": "https://www.stanford.edu/research/publications",
+        "contents": ["Paper on autonomous navigation", "Research on robot perception"]
+    }},
+    "related": "Collaborations with MIT and Carnegie Mellon University",
+    "point_of_contact": {{
+        "name": "Dr. Emily Davis",
+        "first_name": "Emily",
+        "last_name": "Davis",
+        "title": "Head of Robotics Department",
+        "bio_url": "https://robotics.stanford.edu/emily-davis",
+        "linked_in": "https://www.linkedin.com/in/emilydavis",
+        "google_scholar_url": "https://scholar.google.com/citations?user=hijklmn",
+        "email": "emily.davis@stanford.edu",
+        "phone_number": "+1-650-555-1234"
+    }},
+    "scopes": ["Robotics", "Autonomous Systems", "Machine Learning"],
+    "research_abstract": "The Robotics Department at Stanford University leads research in autonomous systems and robotics.",
+    "lab_equipment": {{
+        "overview": "Equipped with advanced robotics labs including autonomous vehicles and simulation systems.",
+        "list": ["Autonomous vehicles", "Robotic arms", "Simulation systems"]
+    }}
+}}
+
+### Pre-extracted Data:
+{pre_extracted}
+
+### Raw Content from the Webpage:
+{raw_content}
+
+### Output:
+Return a valid JSON object that strictly follows the schema above.  
+**REMINDER**: If the information in both the pre-extracted data and raw content is not closely related to science and engineering university research labs, research, or potential startups, you MUST return a JSON object with all fields blank or empty.
+"""
+
+    # Step 1: Try OpenRouter API (Primary)
+    API_URL = 'https://openrouter.ai/api/v1/chat/completions'
+    headers = {
+        'Authorization': f'Bearer {OPENROUTER_API_KEY}',
+        'Content-Type': 'application/json'
+    }
+    request_data = {
+        "model": "deepseek/deepseek-chat:free",
+        "messages": [{"role": "user", "content": prompt}]
+    }
+
+    try:
+        response = requests.post(API_URL, json=request_data, headers=headers)
+        response.raise_for_status()
+        response_json = response.json()
+        # print("OpenRouter API Response:", json.dumps(response_json, indent=2))
+
+        if 'choices' not in response_json:
+            print("Error: 'choices' key not found in OpenRouter API response")
+            raise ValueError("Missing 'choices' key")
+        
+        completion_text = response_json['choices'][0]['message']['content']
+        start, end = completion_text.find('{'), completion_text.rfind('}')
+        if start == -1 or end == -1:
+            print("No JSON object found in OpenRouter completion text")
+            raise ValueError("No JSON found")
+        
+        json_str = completion_text[start:end + 1]
+        extracted_data = json.loads(json_str)
+        print("Successfully extracted data with OpenRouter LLM")
+        return extracted_data
+
+    except requests.exceptions.HTTPError as e:
+        print(f"HTTP Error with OpenRouter: {e}")
+        if response.status_code != 429:  
+            return {"error": f"OpenRouter HTTP Error: {str(e)}"}
+
+    except Exception as e:
+        print(f"Error with OpenRouter: {e}")
+
+    # Step 2: Fallback to Google Gemini if OpenRouter fails
+    if GOOGLE_API_KEY:
+        print("Falling back to Google Gemini 2.0 Flash...")
+        try:
+            client = genai.Client(api_key=GOOGLE_API_KEY)
+            response = client.models.generate_content(
+                model="gemini-2.0-flash",
+                contents=[{"parts": [{"text": prompt}]}]
+            )
+            completion_text = response.text
+            print("Google Gemini Response:", completion_text)
+
+            start, end = completion_text.find('{'), completion_text.rfind('}')
+            if start == -1 or end == -1:
+                print("No JSON object found in Google Gemini response")
+                return {"error": "No JSON object found in Google Gemini response", "response": completion_text}
+            
+            json_str = completion_text[start:end + 1]
+            extracted_data = json.loads(json_str)
+            print("Successfully extracted data with Google Gemini LLM")
+            return extracted_data
+
+        except Exception as e:
+            print(f"Error with Google Gemini: {e}")
+            return {"error": f"Google Gemini Error: {str(e)}"}
+    else:
+        print("No Google API key available for fallback")
+        return {"error": "OpenRouter rate limit exceeded and no Google API key provided"}

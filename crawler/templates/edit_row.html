@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2><i class="fas fa-edit"></i> Edit Row</h2>
+    <form method="post" class="mt-3">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">University</label>
+            <input type="text" name="university" value="{{ entity.university }}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Location (JSON)</label>
+            <textarea name="location" class="form-control">{{ entity.get_json_field.location|json_script:"location"|safe }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Website</label>
+            <input type="text" name="website" value="{{ entity.website }}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Edurank (JSON)</label>
+            <textarea name="edurank" class="form-control">{{ entity.get_json_field.edurank|json_script:"edurank"|safe }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Department (JSON)</label>
+            <textarea name="department" class="form-control">{{ entity.get_json_field.department|json_script:"department"|safe }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Publications (JSON)</label>
+            <textarea name="publications" class="form-control">{{ entity.get_json_field.publications|json_script:"publications"|safe }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Related</label>
+            <input type="text" name="related" value="{{ entity.related }}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Point of Contact (JSON)</label>
+            <textarea name="point_of_contact" class="form-control">{{ entity.get_json_field.point_of_contact|json_script:"point_of_contact"|safe }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Scopes (JSON)</label>
+            <textarea name="scopes" class="form-control">{{ entity.get_json_field.scopes|json_script:"scopes"|safe }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Research Abstract</label>
+            <textarea name="research_abstract" class="form-control">{{ entity.research_abstract }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Lab Equipment (JSON)</label>
+            <textarea name="lab_equipment" class="form-control">{{ entity.get_json_field.lab_equipment|json_script:"lab_equipment"|safe }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
+        <a href="{% url 'database' %}" class="btn btn-secondary"><i class="fas fa-times"></i> Cancel</a>
+    </form>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2><i class="fas fa-cog"></i> Configure Parameters</h2>
+    <form method="post" class="mt-3">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">REQUEST_TIMEOUT</label>
+            <input type="number" name="REQUEST_TIMEOUT" value="{{ config.REQUEST_TIMEOUT }}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">MAX_WORKERS</label>
+            <input type="number" name="MAX_WORKERS" value="{{ config.MAX_WORKERS }}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">MAX_DEPTH</label>
+            <input type="number" name="MAX_DEPTH" value="{{ config.MAX_DEPTH }}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">MAX_URLS</label>
+            <input type="number" name="MAX_URLS" value="{{ config.MAX_URLS }}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">TIMEOUT_SECONDS</label>
+            <input type="number" name="TIMEOUT_SECONDS" value="{{ config.TIMEOUT_SECONDS }}" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
+    </form>
+{% endblock %}
