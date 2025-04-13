@@ -1,4 +1,3 @@
-# crawler/views.py
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -10,7 +9,11 @@ from .models import Entity
 from utils.helpers import generate_urls, load_seed_urls, load_config, save_config
 from utils.database import create_db
 from utils.workflow import State, app
-from utils.scheduler import run_workflow, crawler_running 
+from utils.scheduler import run_workflow
+from utils.state import crawler_running_event, crawler_thread
+from django.shortcuts import redirect
+from django.contrib import messages
+
 
 logger = logging.getLogger(__name__)
 
@@ -19,15 +22,13 @@ DATA_DIR = os.path.join(BASE_DIR, 'data')
 CONFIG_PATH = os.path.join(BASE_DIR, 'config.json')
 LOG_FILE = os.path.join(BASE_DIR, 'crawler.log')
 
-# Global flag to control crawler execution
-crawler_running = False
-crawler_thread = None
-
 def index(request):
     return render(request, 'index.html')
 
+
 def parameters(request):
     if request.method == 'POST':
+        print("POST received:", request.POST)  # Debug
         config = {
             "REQUEST_TIMEOUT": int(request.POST.get('REQUEST_TIMEOUT')),
             "MAX_WORKERS": int(request.POST.get('MAX_WORKERS')),
@@ -39,6 +40,7 @@ def parameters(request):
         return redirect('parameters')
     config = load_config()
     return render(request, 'parameters.html', {'config': config})
+
 
 def files(request):
     if request.method == 'POST':
@@ -86,36 +88,86 @@ def edit_row(request, id):
         return redirect('database')
     return render(request, 'edit_row.html', {'entity': entity})
 
+
 @csrf_exempt
 def delete_row(request, id):
     if request.method == 'POST':
         Entity.objects.get(id=id).delete()
-        return JsonResponse({'status': 'success'})
-    return JsonResponse({'status': 'error'})
+        messages.success(request, f'Successfully deleted row {id}')
+        return redirect('database')  
+    messages.error(request, 'Invalid request method')
+    return redirect('database')
+
+@csrf_exempt
+def delete_all(request):
+    if request.method == 'POST':
+        count, _ = Entity.objects.all().delete()
+        messages.success(request, f'Deleted all {count} entries')
+        return redirect('database')
+    messages.error(request, 'POST required')
+    return redirect('database')
+
+@csrf_exempt
+def delete_selected(request):
+    if request.method == 'POST':
+        try:
+            payload = json.loads(request.body)
+            ids = payload.get('ids', [])
+        except (ValueError, TypeError):
+            ids = request.POST.getlist('ids')
+        
+        if not ids:
+            messages.error(request, 'No items selected')
+            return redirect('database')
+        
+        count, _ = Entity.objects.filter(id__in=ids).delete()
+        messages.success(request, f'Deleted {count} selected items')
+        return redirect('database')
+    
+    messages.error(request, 'Invalid request method')
+    return redirect('database')
+
 
 def run_crawler(request):
-    global crawler_running, crawler_thread
-    if crawler_running:
+    if crawler_running_event.is_set():
+        logger.info("Crawler already running, rejecting new request")
         return JsonResponse({'status': 'already_running', 'message': 'Crawler is already running'})
     
     logger.info("Starting crawler...")
+    crawler_running_event.set()  # Set the event to True
     logger.info("Crawler execution started")
-    crawler_running = True
+    
+    # Start the workflow in a new thread
+    global crawler_thread
     crawler_thread = threading.Thread(target=run_workflow_with_stop, daemon=True)
     crawler_thread.start()
+    logger.info("Crawler thread started")
+    
     return JsonResponse({'status': 'started'})
 
+def get_crawler_state(request):
+    is_running = crawler_running_event.is_set()
+    return JsonResponse({'is_running': is_running})
+
 def stop_crawler(request):
-    global crawler_running, crawler_thread
-    if not crawler_running:
+    logger.info(f"Before stop: crawler_running_event.is_set() = {crawler_running_event.is_set()}")
+    if not crawler_running_event.is_set():
+        logger.info("No crawler running to stop")
         return JsonResponse({'status': 'not_running', 'message': 'No crawler is running'})
     
-    crawler_running = False
+    logger.info("Stopping crawler...")
+    crawler_running_event.clear()
+    logger.info(f"After clear: crawler_running_event.is_set() = {crawler_running_event.is_set()}")
+
+    global crawler_thread
     if crawler_thread:
-        crawler_thread.join(timeout=5)  # Wait up to 5 seconds for thread to stop
-        crawler_thread = None
+        crawler_thread.join(timeout=5)
+        if crawler_thread.is_alive():
+            logger.warning("Crawler thread did not stop within 5 seconds")
+        crawler_thread = None  # Reset the thread reference
     logger.info("Crawler stopped by user")
     return JsonResponse({'status': 'stopped'})
+
 
 def get_logs(request):
     try:
@@ -131,9 +183,10 @@ def get_logs(request):
 
 # Wrapper for run_workflow to check stop flag
 def run_workflow_with_stop():
-    global crawler_running
     try:
+        logger.info("Starting run_workflow_with_stop")
         run_workflow()
     finally:
-        crawler_running = False
-        logger.info("Crawler execution completed")
+        logger.info("Cleaning up: Clearing crawler_running_event")
+        crawler_running_event.clear()
+        logger.info("Crawler execution completed or stopped")

@@ -1,28 +1,145 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2><i class="fas fa-cog"></i> Configure Parameters</h2>
-    <form method="post" class="mt-3">
-        {% csrf_token %}
-        <div class="mb-3">
-            <label class="form-label">REQUEST_TIMEOUT</label>
-            <input type="number" name="REQUEST_TIMEOUT" value="{{ config.REQUEST_TIMEOUT }}" class="form-control">
+<div class="container-fluid min-vh-100 glass-background">
+    <div class="container py-5">
+        <div class="glass-panel mb-5">
+            <h2 class="glass-title"><i class="fas fa-cog"></i> Crawler Configuration</h2>
+            <p class="lead text-white">Optimize crawling performance parameters</p>
         </div>
-        <div class="mb-3">
-            <label class="form-label">MAX_WORKERS</label>
-            <input type="number" name="MAX_WORKERS" value="{{ config.MAX_WORKERS }}" class="form-control">
+
+        <div class="glass-panel config-console">
+            <form method="post" class="glass-form" >
+                {% csrf_token %}
+                <div class="row g-4">
+                    <!-- Timeout Settings -->
+                    <div class="col-md-6 mb-4">
+                        <div class="parameter-card">
+                            <label class="param-label">REQUEST TIMEOUT (ms)</label>
+                            <input type="number" name="REQUEST_TIMEOUT" value="{{ config.REQUEST_TIMEOUT }}"
+                                class="form-control glass-input">
+                        </div>
+                    </div>
+
+                    <!-- Concurrency Settings -->
+                    <div class="col-md-6 mb-4">
+                        <div class="parameter-card">
+                            <label class="param-label">MAX WORKERS</label>
+                            <input type="number" name="MAX_WORKERS" value="{{ config.MAX_WORKERS }}"
+                                class="form-control glass-input">
+                        </div>
+                    </div>
+
+                    <!-- Depth Control -->
+                    <div class="col-md-6 mb-4">
+                        <div class="parameter-card">
+                            <label class="param-label">MAX DEPTH</label>
+                            <input type="number" name="MAX_DEPTH" value="{{ config.MAX_DEPTH }}"
+                                class="form-control glass-input">
+                        </div>
+                    </div>
+
+                    <!-- URL Limits -->
+                    <div class="col-md-6 mb-4">
+                        <div class="parameter-card">
+                            <label class="param-label">MAX URLS</label>
+                            <input type="number" name="MAX_URLS" value="{{ config.MAX_URLS }}"
+                                class="form-control glass-input">
+                        </div>
+                    </div>
+
+                    <!-- Session Settings -->
+                    <div class="col-12 mb-4">
+                        <div class="parameter-card">
+                            <label class="param-label">TIMEOUT (seconds)</label>
+                            <input type="number" name="TIMEOUT_SECONDS" value="{{ config.TIMEOUT_SECONDS }}"
+                                class="form-control glass-input">
+                        </div>
+                    </div>
+
+                    <!-- Save Button -->
+                    <div class="col-12 text-center mt-4">
+                        <button type="submit" class="btn btn-glow glass-button">
+                            <i class="fas fa-cloud-upload-alt"></i> Apply Configuration
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="mb-3">
-            <label class="form-label">MAX_DEPTH</label>
-            <input type="number" name="MAX_DEPTH" value="{{ config.MAX_DEPTH }}" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label class="form-label">MAX_URLS</label>
-            <input type="number" name="MAX_URLS" value="{{ config.MAX_URLS }}" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label class="form-label">TIMEOUT_SECONDS</label>
-            <input type="number" name="TIMEOUT_SECONDS" value="{{ config.TIMEOUT_SECONDS }}" class="form-control">
-        </div>
-        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
-    </form>
+    </div>
+</div>
+
+<style>
+    .glass-background {
+        background: rgba(16, 18, 27, 0.6);
+        backdrop-filter: blur(20px);
+    }
+
+    .glass-panel {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 2rem;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    }
+
+    .glass-title {
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    .text-white {
+        color: rgba(255, 255, 255, 0.8) !important;
+    }
+
+    .config-console {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+    }
+
+    .form-card {
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 10px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .form-label {
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+    }
+
+    .glass-input {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.9);
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .glass-input:focus {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.3);
+        box-shadow: none;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .glass-button {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.9);
+        padding: 0.75rem 2rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .glass-button:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-1px);
+    }
+</style>
 {% endblock %}

@@ -2,153 +2,349 @@
 {% load static %}
 
 {% block content %}
-    <div class="container text-center mt-5">
-        <h1 class="mb-4"><i class="fas fa-robot"></i> Labs & Startups Crawler</h1>
-        <p class="lead">Welcome to the crawler management interface. Use the options below to configure and run the crawler.</p>
-        <div class="row mt-5">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-cog"></i> Parameters</h5>
-                        <p class="card-text">Configure crawling parameters.</p>
-                        <a href="{% url 'parameters' %}" class="btn btn-primary">Go to Parameters</a>
-                    </div>
+    <div class="container-fluid min-vh-100 bg-galaxy">
+        <div class="container pt-5">
+            <div class="text-center mb-5">
+                <div class="hero-header">
+                    <i class="fas fa-robot neon-icon bounce"></i>
+                    <i class="fas fa-vial neon-icon bounce"></i>
+                    <i class="fas fa-dna neon-icon bounce"></i>
+                    <i class="fas fa-atom neon-icon bounce"></i>
+                    <h1 class="neon-text">Labs & Startups Crawler</h1>
+                    <p class="lead text-light">Intelligent Web Crawling Interface</p>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-file-alt"></i> Files</h5>
-                        <p class="card-text">Manage input and output files.</p>
-                        <a href="{% url 'files' %}" class="btn btn-primary">Go to Files</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-database"></i> Database</h5>
-                        <p class="card-text">View and edit crawled data.</p>
-                        <a href="{% url 'database' %}" class="btn btn-primary">Go to Database</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="mt-4">
-            <button id="run-crawler-btn" class="btn btn-success btn-lg"><i class="fas fa-play"></i> Run Crawler Now</button>
-            <button id="stop-crawler-btn" class="btn btn-danger btn-lg" style="display: none;"><i class="fas fa-stop"></i> Stop Crawler</button>
-        </div>
 
-        <!-- Progress Indicator and Logs -->
-        <div id="crawler-progress" class="mt-4" style="display: none;">
-            <div class="spinner-border text-success" role="status">
-                <span class="visually-hidden">Crawling in progress...</span>
+            <!-- Action Cards -->
+            <div class="row gy-4 justify-content-center">
+                <div class="col-lg-3 col-md-6">
+                    <div class="card glass-card hover-transform">
+                        <div class="card-body text-center">
+                            <div class="icon-circle bg-primary">
+                                <i class="fas fa-cog fa-2x"></i>
+                            </div>
+                            <h3 class="card-title mt-3 text-light">Parameters</h3>
+                            <p class="card-text">Configure crawling</p>
+                            <a href="{% url 'parameters' %}" class="btn btn-ghost">Configure</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card glass-card hover-transform">
+                        <div class="card-body text-center">
+                            <div class="icon-circle bg-info">
+                                <i class="fas fa-file-import fa-2x"></i>
+                            </div>
+                            <h3 class="card-title mt-3 text-light">Files</h3>
+                            <p class="card-text ">Manage input/output files</p>
+                            <a href="{% url 'files' %}" class="btn btn-ghost">Manage</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card glass-card hover-transform">
+                        <div class="card-body text-center">
+                            <div class="icon-circle bg-success">
+                                <i class="fas fa-database fa-2x"></i>
+                            </div>
+                            <h3 class="card-title mt-3 text-light">Database</h3>
+                            <p class="card-text">Explore collected data</p>
+                            <a href="{% url 'database' %}" class="btn btn-ghost">Explore</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p class="mt-2">Crawling in progress... Please wait.</p>
+
+            <!-- Control Center -->
+            <div class="text-center mt-5">
+                <button id="run-crawler-btn" class="btn btn-success btn-glow pulse">
+                    <i class="fas fa-play-circle"></i> Launch Crawler
+                </button>
+                <button id="stop-crawler-btn" class="btn btn-danger btn-glow" style="display: none;">
+                    <i class="fas fa-stop-circle"></i> Emergency Stop
+                </button>
+            </div>
+
+            <!-- Animated Logs Display -->
+            <div class="log-container mt-5">
+                <div class="log-header">
+                    <i class="fas fa-stream"></i> Live Crawler Feed
+                    <div class="log-controls">
+                        <span class="log-badge pulse">LIVE</span>
+                    </div>
+                </div>
+                <div id="crawler-logs" class="log-body">
+                    <div class="log-track">
+                        <div class="log-entry info-entry">
+                            <i class="fas fa-info-circle"></i>
+                            <span class="log-message">System ready for initialization</span>
+                            <span class="log-time">{{ current_time }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="crawler-logs" class="mt-4" style="max-height: 300px; overflow-y: auto; display: none;">
-            <h5><i class="fas fa-terminal"></i> Crawler Logs</h5>
-            <ul id="log-list" class="list-group"></ul>
-        </div>
+        <div id="particles-js"></div>
     </div>
 
+    <style>
+        .bg-galaxy {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .hover-transform:hover {
+            transform: translateY(-10px) rotateZ(2deg);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .neon-text {
+            color: #4ecca3;
+            text-shadow: 0 0 10px #4ecca3;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        .btn-glow {
+            box-shadow: 0 0 15px rgba(78, 204, 163, 0.5);
+            transition: all 0.3s ease;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+        }
+
+        .btn-glow:hover {
+            filter: brightness(1.1);
+            transform: scale(1.05);
+        }
+
+        .log-container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .log-header {
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            color: #4ecca3;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .log-track {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 20px;
+            min-height: 200px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .log-entry {
+            background: linear-gradient(90deg, rgba(78, 204, 163, 0.1), transparent);
+            padding: 12px;
+            border-radius: 8px;
+            animation: slideIn 0.5s ease forwards;
+            opacity: 0;
+            transform: translateX(100%);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: white;
+        }
+
+        .log-entry i {
+            width: 25px;
+            text-align: center;
+        }
+
+        .log-time {
+            margin-left: auto;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .neon-icon {
+            color: #4ecca3;
+            text-shadow: 0 0 15px #4ecca3;
+            font-size: 4rem;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #4ecca3;
+            border-radius: 4px;
+        }
+    </style>
+
     <script>
+        // Initialize Particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80 },
+                color: { value: '#4ecca3' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5 },
+                size: { value: 3 },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false,
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'repulse' },
+                    onclick: { enable: true, mode: 'push' },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+
+        // Log Management
+        function addLogEntry(message, type = 'info') {
+            const icons = {
+                info: 'info-circle',
+                warning: 'exclamation-triangle',
+                error: 'radiation',
+                success: 'check-circle'
+            };
+            
+            const logEntry = document.createElement('div');
+            logEntry.className = `log-entry ${type}-entry`;
+            logEntry.innerHTML = `
+                <i class="fas fa-${icons[type]}"></i>
+                <span class="log-message">${message}</span>
+                <span class="log-time">${new Date().toLocaleTimeString()}</span>
+            `;
+
+            const logTrack = document.querySelector('.log-track');
+            logTrack.appendChild(logEntry);
+            
+            // Auto-scroll and auto-remove
+            setTimeout(() => logTrack.scrollTop = logTrack.scrollHeight, 100);
+            setTimeout(() => {
+                logEntry.style.transform = 'translateX(-100%)';
+                logEntry.style.opacity = '0';
+                setTimeout(() => logEntry.remove(), 500);
+            }, 10000);
+        }
+
+        // Crawler Control Logic
+        let crawlerInterval;
         const runBtn = document.getElementById('run-crawler-btn');
         const stopBtn = document.getElementById('stop-crawler-btn');
-        const progressDiv = document.getElementById('crawler-progress');
-        const logsDiv = document.getElementById('crawler-logs');
-        const logList = document.getElementById('log-list');
-        let logInterval;
 
-        runBtn.addEventListener('click', function() {
-            // Show progress, logs, and stop button
-            progressDiv.style.display = 'block';
-            logsDiv.style.display = 'block';
-            runBtn.style.display = 'none';
-            stopBtn.style.display = 'inline-block';
-            logList.innerHTML = '<li class="list-group-item"><i class="fas fa-comment"></i> Starting crawler...</li>';
+        function updateCrawlerStatus() {
+            fetch("{% url 'get_crawler_state' %}")
+                .then(response => response.json())
+                .then(data => {
+                    if (data.is_running) {
+                        runBtn.style.display = 'none';
+                        stopBtn.style.display = 'inline-block';
+                        startLogPolling();
+                    } else {
+                        stopBtn.style.display = 'none';
+                        runBtn.style.display = 'inline-block';
+                        if (crawlerInterval) clearInterval(crawlerInterval);
+                    }
+                });
+        }
 
-            // Start the crawler
-            fetch("{% url 'run_crawler' %}", { method: 'GET' })
-                .then(response => {
-                    if (!response.ok) throw new Error('Crawler request failed');
-                    return response.json();
-                })
+        function startLogPolling() {
+            crawlerInterval = setInterval(() => {
+                fetch("{% url 'get_logs' %}")
+                    .then(response => response.json())
+                    .then(data => {
+                        data.logs.forEach(log => {
+                            const type = log.includes('ERROR') ? 'error' : 
+                                       log.includes('WARNING') ? 'warning' : 
+                                       log.includes('SUCCESS') ? 'success' : 'info';
+                            addLogEntry(log, type);
+                        });
+                    });
+            }, 1500);
+        }
+
+        // Event Listeners
+        runBtn.addEventListener('click', () => {
+            addLogEntry('Initializing crawler system...', 'info');
+            fetch("{% url 'run_crawler' %}")
+                .then(response => response.json())
                 .then(data => {
                     if (data.status === 'started') {
-                        // Poll logs every second
-                        logInterval = setInterval(() => {
-                            fetch("{% url 'get_logs' %}")
-                                .then(response => response.json())
-                                .then(data => {
-                                    logList.innerHTML = ''; // Clear and rebuild list
-                                    data.logs.forEach(log => {
-                                        const li = document.createElement('li');
-                                        li.className = 'list-group-item';
-                                        if (log.includes('INFO')) {
-                                            li.className += ' list-group-item-info';
-                                            li.innerHTML = '<i class="fas fa-info-circle"></i> ' + log;
-                                        } else if (log.includes('WARNING')) {
-                                            li.className += ' list-group-item-warning';
-                                            li.innerHTML = '<i class="fas fa-exclamation-triangle"></i> ' + log;
-                                        } else if (log.includes('ERROR')) {
-                                            li.className += ' list-group-item-danger';
-                                            li.innerHTML = '<i class="fas fa-times-circle"></i> ' + log;
-                                        } else {
-                                            li.innerHTML = '<i class="fas fa-comment"></i> ' + log;
-                                        }
-                                        logList.appendChild(li);
-                                    });
-
-                                    // Check for completion or stop
-                                    if (data.logs.some(log => log.includes('Crawler execution completed') || log.includes('Crawler stopped'))) {
-                                        clearInterval(logInterval);
-                                        progressDiv.style.display = 'none';
-                                        runBtn.style.display = 'inline-block';
-                                        stopBtn.style.display = 'none';
-                                        setTimeout(() => window.location.href = "{% url 'database' %}", 1000);
-                                    }
-                                })
-                                .catch(error => console.error('Error fetching logs:', error));
-                        }, 1000);
-                    } else if (data.status === 'already_running') {
-                        logList.innerHTML = '<li class="list-group-item list-group-item-warning"><i class="fas fa-exclamation-triangle"></i> Crawler is already running</li>';
-                        progressDiv.style.display = 'none';
-                        runBtn.style.display = 'inline-block';
-                        stopBtn.style.display = 'none';
+                        addLogEntry('Crawler launched successfully', 'success');
+                        updateCrawlerStatus();
                     }
-                })
-                .catch(error => {
-                    console.error('Error starting crawler:', error);
-                    progressDiv.style.display = 'none';
-                    runBtn.style.display = 'inline-block';
-                    stopBtn.style.display = 'none';
-                    logList.innerHTML = '<li class="list-group-item list-group-item-danger"><i class="fas fa-times-circle"></i> Error starting crawler</li>';
                 });
         });
 
-        stopBtn.addEventListener('click', function() {
-            fetch("{% url 'stop_crawler' %}", { method: 'GET' })
-                .then(response => {
-                    if (!response.ok) throw new Error('Stop request failed');
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.status === 'stopped') {
-                        clearInterval(logInterval);
-                        progressDiv.style.display = 'none';
-                        runBtn.style.display = 'inline-block';
-                        stopBtn.style.display = 'none';
-                        logList.innerHTML += '<li class="list-group-item list-group-item-warning"><i class="fas fa-exclamation-triangle"></i> Crawler stopped by user</li>';
-                        setTimeout(() => window.location.href = "{% url 'database' %}", 1000);
-                    } else if (data.status === 'not_running') {
-                        logList.innerHTML += '<li class="list-group-item list-group-item-warning"><i class="fas fa-exclamation-triangle"></i> No crawler is running</li>';
-                    }
-                })
-                .catch(error => {
-                    console.error('Error stopping crawler:', error);
-                    logList.innerHTML += '<li class="list-group-item list-group-item-danger"><i class="fas fa-times-circle"></i> Error stopping crawler</li>';
+        stopBtn.addEventListener('click', () => {
+            addLogEntry('Initiating emergency stop procedure...', 'warning');
+            fetch("{% url 'stop_crawler' %}")
+                .then(() => {
+                    addLogEntry('Crawler system halted', 'error');
+                    updateCrawlerStatus();
                 });
         });
+
+        // Initial status check
+        updateCrawlerStatus();
     </script>
 {% endblock %}

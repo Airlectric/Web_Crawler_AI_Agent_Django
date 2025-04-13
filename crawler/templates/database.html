@@ -2,189 +2,243 @@
 {% load static %}
 {% load json_extras %}
 {% block content %}
-  <h2 class="mb-4"><i class="fas fa-database"></i> Database Overview</h2>
-  
-  {% if entities %}
+<div class="container-fluid">
+  {% if messages %}
+  <div class="mt-3">
+    {% for message in messages %}
+    <div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %} alert-dismissible fade show">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="fas fa-database"></i> Database Overview</h2>
+    <form method="post" action="{% url 'delete_all' %}" class="d-inline">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Delete ALL records?')">
+        <i class="fas fa-trash-alt"></i> Delete All
+      </button>
+    </form>
+  </div>
+
+  <form method="post" action="{% url 'delete_selected' %}" id="bulkForm">
+    {% csrf_token %}
     <div class="accordion" id="entitiesAccordion">
       {% for entity in entities %}
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="heading{{ entity.id }}">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ entity.id }}" aria-expanded="false" aria-controls="collapse{{ entity.id }}">
-              <i class="fas fa-info-circle me-2"></i> {{ entity.university|default:"[No University]" }} &mdash; <small>{{ entity.url }}</small>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <div class="d-flex align-items-center w-100">
+            <div class="form-check mx-2">
+              <input class="form-check-input" type="checkbox" name="ids" value="{{ entity.id }}">
+            </div>
+            <button class="accordion-button collapsed flex-grow-1" type="button" 
+                    data-bs-toggle="collapse" data-bs-target="#collapse{{ entity.id }}">
+              <i class="fas fa-info-circle me-2"></i> 
+              {{ entity.university|default:"[No University]" }} &mdash; 
+              <small class="ms-2 text-muted">{{ entity.url|truncatechars:40 }}</small>
             </button>
-          </h2>
-          <div id="collapse{{ entity.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ entity.id }}" data-bs-parent="#entitiesAccordion">
-            <div class="accordion-body">
-              <table class="table table-bordered table-sm">
-                <tbody>
-                  <tr>
-                    <th scope="row"><i class="fas fa-id-badge"></i> ID</th>
-                    <td>{{ entity.id }}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><i class="fas fa-link"></i> URL</th>
-                    <td><a href="{{ entity.url }}" target="_blank">{{ entity.url }}</a></td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><i class="fas fa-university"></i> University</th>
-                    <td>{{ entity.university|default:"N/A" }}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><i class="fas fa-map-marker-alt"></i> Location</th>
-                    <td>
-                      {% with loc=entity|get_json_field:"location" %}
-                        {% if loc %}
-                          Country: {{ loc.country|default:"N/A" }}, City: {{ loc.city|default:"N/A" }}
-                        {% else %}
-                          N/A
-                        {% endif %}
-                      {% endwith %}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><i class="fas fa-globe"></i> Website</th>
-                    <td>
-                      {% if entity.website %}
-                        <a href="{{ entity.website }}" target="_blank">{{ entity.website }}</a>
+          </div>
+        </h2>
+        <div id="collapse{{ entity.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ entity.id }}" data-bs-parent="#entitiesAccordion">
+          <div class="accordion-body">
+            <table class="table table-bordered table-sm">
+              <tbody>
+                <tr>
+                  <th scope="row"><i class="fas fa-id-badge"></i> ID</th>
+                  <td>{{ entity.id }}</td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="fas fa-link"></i> URL</th>
+                  <td><a href="{{ entity.url }}" target="_blank">{{ entity.url }}</a></td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="fas fa-university"></i> University</th>
+                  <td>{{ entity.university|default:"N/A" }}</td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="fas fa-map-marker-alt"></i> Location</th>
+                  <td>
+                    {% with loc=entity|get_json_field:"location" %}
+                      {% if loc %}
+                        Country: {{ loc.country|default:"N/A" }}, City: {{ loc.city|default:"N/A" }}
                       {% else %}
                         N/A
                       {% endif %}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><i class="fas fa-chart-line"></i> EduRank</th>
-                    <td>
-                      {% with ed=entity|get_json_field:"edurank" %}
-                        {% if ed %}
-                          URL: <a href="{{ ed.url }}" target="_blank">{{ ed.url }}</a><br>
-                          Score: {{ ed.score|default:"N/A" }}
+                    {% endwith %}
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="fas fa-globe"></i> Website</th>
+                  <td>
+                    {% if entity.website %}
+                      <a href="{{ entity.website }}" target="_blank">{{ entity.website }}</a>
+                    {% else %}
+                      N/A
+                    {% endif %}
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="fas fa-chart-line"></i> EduRank</th>
+                  <td>
+                    {% with ed=entity|get_json_field:"edurank" %}
+                      {% if ed %}
+                        URL: <a href="{{ ed.url }}" target="_blank">{{ ed.url }}</a><br>
+                        Score: {{ ed.score|default:"N/A" }}
+                      {% else %}
+                        N/A
+                      {% endif %}
+                    {% endwith %}
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="fas fa-building"></i> Department</th>
+                  <td>
+                    {% with dep=entity|get_json_field:"department" %}
+                      {% if dep %}
+                        Name: {{ dep.name|default:"N/A" }}<br>
+                        URL: <a href="{{ dep.url }}" target="_blank">{{ dep.url }}</a><br>
+                        Focus: {{ dep.focus|default:"N/A" }}<br>
+                        <strong>Teams:</strong>
+                        {% if dep.teams %}
+                          URLs: {{ dep.teams.urls|join:", " }}<br>
+                          Members: {{ dep.teams.members|join:", " }}
                         {% else %}
                           N/A
                         {% endif %}
-                      {% endwith %}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><i class="fas fa-building"></i> Department</th>
-                    <td>
-                      {% with dep=entity|get_json_field:"department" %}
-                        {% if dep %}
-                          Name: {{ dep.name|default:"N/A" }}<br>
-                          URL: <a href="{{ dep.url }}" target="_blank">{{ dep.url }}</a><br>
-                          Focus: {{ dep.focus|default:"N/A" }}<br>
-                          <strong>Teams:</strong>
-                          {% if dep.teams %}
-                            URLs: {{ dep.teams.urls|join:", " }}<br>
-                            Members: {{ dep.teams.members|join:", " }}
-                          {% else %}
-                            N/A
-                          {% endif %}
-                        {% else %}
-                          N/A
-                        {% endif %}
-                      {% endwith %}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><i class="fas fa-book-open"></i> Publications</th>
-                    <td>
-                      {% with pubs=entity|get_json_field:"publications" %}
-                        {% if pubs %}
-                          Google Scholar: <a href="{{ pubs.google_scholar_url }}" target="_blank">{{ pubs.google_scholar_url }}</a><br>
-                          Other URL: <a href="{{ pubs.other_url }}" target="_blank">{{ pubs.other_url }}</a><br>
-                          Contents: {{ pubs.contents|join:", " }}
-                        {% else %}
-                          N/A
-                        {% endif %}
-                      {% endwith %}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><i class="fas fa-link"></i> Related</th>
-                    <td>{{ entity.related|default:"N/A" }}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><i class="fas fa-address-book"></i> Point of Contact</th>
-                    <td>
-                      {% with poc=entity|get_json_field:"point_of_contact" %}
-                        {% if poc %}
-                          Name: {{ poc.name|default:"N/A" }}<br>
-                          First Name: {{ poc.first_name|default:"N/A" }}<br>
-                          Last Name: {{ poc.last_name|default:"N/A" }}<br>
-                          Title: {{ poc.title|default:"N/A" }}<br>
-                          Bio: <a href="{{ poc.bio_url }}" target="_blank">Profile</a><br>
-                          LinkedIn: <a href="{{ poc.linked_in }}" target="_blank">LinkedIn</a><br>
-                          Google Scholar: <a href="{{ poc.google_scholar_url }}" target="_blank">Scholar</a><br>
-                          Email: {{ poc.email|default:"N/A" }}<br>
-                          Phone: {{ poc.phone_number|default:"N/A" }}
-                        {% else %}
-                          N/A
-                        {% endif %}
-                      {% endwith %}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><i class="fas fa-tags"></i> Scopes</th>
-                    <td>
-                      {% with scopes=entity|get_json_field:"scopes" %}
-                        {% if scopes %}
-                          {{ scopes|join:", " }}
-                        {% else %}
-                          N/A
-                        {% endif %}
-                      {% endwith %}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><i class="fas fa-file-alt"></i> Research Abstract</th>
-                    <td>{{ entity.research_abstract|default:"N/A" }}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><i class="fas fa-microscope"></i> Lab Equipment</th>
-                    <td>
-                      {% with equip=entity|get_json_field:"lab_equipment" %}
-                        {% if equip %}
-                          Overview: {{ equip.overview|default:"N/A" }}<br>
-                          List: {{ equip.list|join:", " }}
-                        {% else %}
-                          N/A
-                        {% endif %}
-                      {% endwith %}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><i class="fas fa-clock"></i> Timestamp</th>
-                    <td>{{ entity.timestamp }}</td>
-                  </tr>
-                </tbody>
-              </table>
-              <div class="text-end">
-                <a href="{% url 'edit_row' entity.id %}" class="btn btn-sm btn-warning me-2"><i class="fas fa-edit"></i> Edit</a>
-                <button onclick="deleteRow({{ entity.id }})" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
-              </div>
+                      {% else %}
+                        N/A
+                      {% endif %}
+                    {% endwith %}
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="fas fa-book-open"></i> Publications</th>
+                  <td>
+                    {% with pubs=entity|get_json_field:"publications" %}
+                      {% if pubs %}
+                        Google Scholar: <a href="{{ pubs.google_scholar_url }}" target="_blank">{{ pubs.google_scholar_url }}</a><br>
+                        Other URL: <a href="{{ pubs.other_url }}" target="_blank">{{ pubs.other_url }}</a><br>
+                        Contents: {{ pubs.contents|join:", " }}
+                      {% else %}
+                        N/A
+                      {% endif %}
+                    {% endwith %}
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="fas fa-link"></i> Related</th>
+                  <td>{{ entity.related|default:"N/A" }}</td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="fas fa-address-book"></i> Point of Contact</th>
+                  <td>
+                    {% with poc=entity|get_json_field:"point_of_contact" %}
+                      {% if poc %}
+                        Name: {{ poc.name|default:"N/A" }}<br>
+                        First Name: {{ poc.first_name|default:"N/A" }}<br>
+                        Last Name: {{ poc.last_name|default:"N/A" }}<br>
+                        Title: {{ poc.title|default:"N/A" }}<br>
+                        Bio: <a href="{{ poc.bio_url }}" target="_blank">Profile</a><br>
+                        LinkedIn: <a href="{{ poc.linked_in }}" target="_blank">LinkedIn</a><br>
+                        Google Scholar: <a href="{{ poc.google_scholar_url }}" target="_blank">Scholar</a><br>
+                        Email: {{ poc.email|default:"N/A" }}<br>
+                        Phone: {{ poc.phone_number|default:"N/A" }}
+                      {% else %}
+                        N/A
+                      {% endif %}
+                    {% endwith %}
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="fas fa-tags"></i> Scopes</th>
+                  <td>
+                    {% with scopes=entity|get_json_field:"scopes" %}
+                      {% if scopes %}
+                        {{ scopes|join:", " }}
+                      {% else %}
+                        N/A
+                      {% endif %}
+                    {% endwith %}
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="fas fa-file-alt"></i> Research Abstract</th>
+                  <td>{{ entity.research_abstract|default:"N/A" }}</td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="fas fa-microscope"></i> Lab Equipment</th>
+                  <td>
+                    {% with equip=entity|get_json_field:"lab_equipment" %}
+                      {% if equip %}
+                        Overview: {{ equip.overview|default:"N/A" }}<br>
+                        List: {{ equip.list|join:", " }}
+                      {% else %}
+                        N/A
+                      {% endif %}
+                    {% endwith %}
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="fas fa-clock"></i> Timestamp</th>
+                  <td>{{ entity.timestamp }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="text-end">
+              <a href="{% url 'edit_row' entity.id %}" class="btn btn-sm btn-warning me-2"><i class="fas fa-edit"></i> Edit</a>
+              <button onclick="deleteRow({{ entity.id }})" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
             </div>
           </div>
         </div>
+      </div>
       {% endfor %}
     </div>
-  {% else %}
-    <div class="alert alert-info">No entities found in the database.</div>
-  {% endif %}
 
-  <script>
-    function deleteRow(id) {
-      if (confirm('Are you sure you want to delete this row?')) {
-        fetch(`/delete/${id}/`, {
-          method: 'POST',
-          headers: { 'X-CSRFToken': '{{ csrf_token }}' }
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data.status === 'success') {
-            location.reload();
-          }
-        });
-      }
-    }
-  </script>
+    <div class="sticky-bottom bg-dark p-2 shadow-lg">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="select-all">
+          <label class="form-check-label text-light" for="select-all">Select All</label>
+        </div>
+        <button type="submit" class="btn btn-warning" onclick="return confirm('Delete selected items?')">
+          <i class="fas fa-trash"></i> Delete Selected
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script>
+  // Select all functionality
+  document.getElementById('select-all').addEventListener('change', function(e) {
+    document.querySelectorAll('input[name="ids"]').forEach(cb => {
+      cb.checked = e.target.checked;
+    });
+  });
+
+  // Sticky bottom bar intersection observer
+  const observer = new IntersectionObserver(([e]) => 
+    e.target.classList.toggle('shadow-lg', e.intersectionRatio < 1),
+    {threshold: [1]}
+  );
+  observer.observe(document.querySelector('.sticky-bottom'));
+</script>
+
+<style>
+  .sticky-bottom {
+    position: sticky;
+    bottom: 0;
+    z-index: 1000;
+    transition: box-shadow 0.3s ease;
+  }
+  .accordion-button::after {
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+  .form-check-input {
+    margin-top: 0.25rem;
+  }
+</style>
 {% endblock %}

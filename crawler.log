@@ -1,0 +1,1054 @@
+2025-04-13 00:16:54,372 - INFO - Before stop: crawler_running_event.is_set() = False
+2025-04-13 00:16:54,372 - INFO - No crawler running to stop
+2025-04-13 00:17:02,710 - INFO - Starting crawler...
+2025-04-13 00:17:02,710 - INFO - Crawler execution started
+2025-04-13 00:17:02,710 - INFO - Starting run_workflow_with_stop
+2025-04-13 00:17:02,710 - INFO - Crawler thread started
+2025-04-13 00:17:02,710 - INFO - Starting workflow execution...
+2025-04-13 00:17:02,717 - INFO - Current crawler_running_event.is_set(): True
+2025-04-13 00:17:02,740 - INFO - Calling generate_urls...
+2025-04-13 00:17:02,755 - INFO - Loading university domains from data/universities.txt
+2025-04-13 00:17:02,993 - INFO - Loaded 4 validated university domains
+2025-04-13 00:17:03,009 - INFO - Processing directory at depth 0: https://www.knust.edu.gh (Visited: 0)
+2025-04-13 00:17:03,014 - INFO - Processing directory at depth 0: https://www.ug.edu.gh/ (Visited: 1)
+2025-04-13 00:17:06,896 - INFO - Found 68 sublinks at depth 0 for https://www.ug.edu.gh/
+2025-04-13 00:17:07,009 - INFO - Processing directory at depth 1: http://admissions.ug.edu.gh/international (Visited: 2)
+2025-04-13 00:17:07,054 - INFO - Processing directory at depth 1: https://sakai.ug.edu.gh (Visited: 3)
+2025-04-13 00:17:07,097 - INFO - Processing directory at depth 1: https://www.ug.edu.gh (Visited: 4)
+2025-04-13 00:17:07,210 - INFO - Processing directory at depth 1: https://www.ug.edu.gh/events  (Visited: 5)
+2025-04-13 00:17:07,322 - INFO - Processing directory at depth 1: https://coh.ug.edu.gh (Visited: 6)
+2025-04-13 00:17:07,333 - INFO - Found 0 sublinks at depth 1 for https://sakai.ug.edu.gh
+2025-04-13 00:17:07,376 - INFO - Processing directory at depth 1: http://admissions.ug.edu.gh/undergraduate/overview (Visited: 7)
+2025-04-13 00:17:07,820 - WARNING - URL not found (404): https://www.ug.edu.gh/events 
+2025-04-13 00:17:07,840 - INFO - Processing directory at depth 1: https://www.ug.edu.gh/announcement/call-climate-research-catalyst-grant-applications (Visited: 8)
+2025-04-13 00:17:09,749 - INFO - Found 12 sublinks at depth 1 for http://admissions.ug.edu.gh/international
+2025-04-13 00:17:09,759 - INFO - Processing directory at depth 2: https://orid.ug.edu.gh (Visited: 9)
+2025-04-13 00:17:09,765 - INFO - Stopping at https://coe.ug.edu.gh: Depth 2, Visited 10, Time elapsed 7s
+2025-04-13 00:17:09,931 - WARNING - Failed to fetch https://orid.ug.edu.gh: HTTPSConnectionPool(host='orid.ug.edu.gh', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x00000271F50206D0>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+2025-04-13 00:17:10,081 - INFO - Stopping at https://www.ug.edu.gh/staff-faculty-services: Depth 1, Visited 10, Time elapsed 7s
+2025-04-13 00:17:10,092 - INFO - Stopping at https://www.ug.edu.gh/pad/publications: Depth 1, Visited 10, Time elapsed 7s
+2025-04-13 00:17:10,142 - INFO - Stopping at https://www.ug.edu.gh/academics/calendar: Depth 1, Visited 10, Time elapsed 7s
+2025-04-13 00:17:10,180 - INFO - Stopping at https://www.ug.edu.gh/about-ug/affiliates-partners: Depth 1, Visited 10, Time elapsed 7s
+2025-04-13 00:17:10,194 - INFO - Stopping at https://portal.office.com: Depth 1, Visited 10, Time elapsed 7s
+2025-04-13 00:17:10,225 - INFO - Stopping at https://sts.ug.edu.gh/services: Depth 1, Visited 10, Time elapsed 7s
+2025-04-13 00:17:10,241 - INFO - Stopping at https://univers.ug.edu.gh: Depth 1, Visited 10, Time elapsed 7s
+2025-04-13 00:17:10,272 - INFO - Stopping at https://youtube.com/live/q76Df-ejBfg?feature=share: Depth 1, Visited 10, Time elapsed 7s
+2025-04-13 00:17:10,377 - INFO - Stopping at http://admissions.ug.edu.gh/graduate-admissions/overview: Depth 1, Visited 10, Time elapsed 7s
+2025-04-13 00:17:10,404 - INFO - Stopping at https://sts.ug.edu.gh: Depth 1, Visited 10, Time elapsed 7s
+2025-04-13 00:17:10,419 - INFO - Stopping at https://journals.ug.edu.gh: Depth 1, Visited 10, Time elapsed 7s
+2025-04-13 00:17:10,437 - INFO - Stopping at https://www.ug.edu.gh/student-life: Depth 1, Visited 10, Time elapsed 7s
+2025-04-13 00:17:10,474 - INFO - Stopping at https://sts.ug.edu.gh/timetable: Depth 1, Visited 10, Time elapsed 7s
+2025-04-13 00:17:10,537 - INFO - Stopping at https://x.com/UnivofGh: Depth 1, Visited 10, Time elapsed 7s
+2025-04-13 00:17:10,570 - INFO - Stopping at https://www.linkedin.com/school/636196/admin/feed/posts: Depth 1, Visited 10, Time elapsed 7s
+2025-04-13 00:17:10,589 - INFO - Stopping at https://www.ug.edu.gh/about-ug/overview: Depth 1, Visited 10, Time elapsed 7s
+2025-04-13 00:17:10,606 - INFO - Found 15 sublinks at depth 1 for http://admissions.ug.edu.gh/undergraduate/overview
+2025-04-13 00:17:10,607 - INFO - Stopping at https://www.ug.edu.gh/aad/resources/academic-support-services/verification-academic-records: Depth 1, Visited 10, Time elapsed 7s
+2025-04-13 00:17:10,625 - INFO - Stopping at https://www.youtube.com/@UnivofGh: Depth 1, Visited 10, Time elapsed 7s
+2025-04-13 00:17:10,764 - INFO - Stopping at https://www.ug.edu.gh/news/ugs-new-strategic-plan-2024-2029-and-key-documents-launched-and-outdoored: Depth 1, Visited 10, Time elapsed 8s
+2025-04-13 00:17:10,910 - INFO - Stopping at https://www.ug.edu.gh/about-ug/mission-vision: Depth 1, Visited 10, Time elapsed 8s
+2025-04-13 00:17:11,037 - INFO - Stopping at https://www.ug.edu.gh/aad/schedule-fees: Depth 1, Visited 10, Time elapsed 8s
+2025-04-13 00:17:11,109 - INFO - Stopping at https://balme.ug.edu.gh: Depth 1, Visited 10, Time elapsed 8s
+2025-04-13 00:17:11,129 - INFO - Stopping at https://admissions.ug.edu.gh/graduate-admissions/overview: Depth 1, Visited 10, Time elapsed 8s
+2025-04-13 00:17:11,137 - INFO - Stopping at https://www.ug.edu.gh/research/overview: Depth 1, Visited 10, Time elapsed 8s
+2025-04-13 00:17:11,192 - INFO - Stopping at https://www.ug.edu.gh/hrodd: Depth 1, Visited 10, Time elapsed 8s
+2025-04-13 00:17:11,221 - INFO - Stopping at https://www.ug.edu.gh/programme-catalogue: Depth 1, Visited 10, Time elapsed 8s
+2025-04-13 00:17:11,243 - INFO - Stopping at https://www.ug.edu.gh/news/strong-political-will-and-science-backed-policies-are-key-climate-solutions-prof-browne-klutse: Depth 1, Visited 10, Time elapsed 8s
+2025-04-13 00:17:11,254 - INFO - Stopping at https://www.ug.edu.gh/announcements: Depth 1, Visited 10, Time elapsed 8s
+2025-04-13 00:17:11,271 - INFO - Stopping at https://www.ug.edu.gh/announcement/20252026-undergraduate-admissions-opened: Depth 1, Visited 10, Time elapsed 8s
+2025-04-13 00:17:11,308 - INFO - Stopping at https://www.ug.edu.gh/academics/colleges-schools: Depth 1, Visited 10, Time elapsed 8s
+2025-04-13 00:17:11,325 - INFO - Stopping at https://ar.ug.edu.gh: Depth 1, Visited 10, Time elapsed 8s
+2025-04-13 00:17:11,433 - INFO - Stopping at https://cbas.ug.edu.gh: Depth 1, Visited 10, Time elapsed 8s
+2025-04-13 00:17:11,444 - INFO - Stopping at https://www.ug.edu.gh/about-ug/leadership: Depth 1, Visited 10, Time elapsed 8s
+2025-04-13 00:17:11,455 - INFO - Stopping at https://www.ug.edu.gh/news/president-mahama-commends-ace-centres-ug-contributions-food-security-and-health-west-africa: Depth 1, Visited 10, Time elapsed 8s
+2025-04-13 00:17:11,645 - INFO - Stopping at https://www.ug.edu.gh/news/strengthening-agribusiness-key-ghanas-economic-transformation-experts-school-social-sciences: Depth 1, Visited 10, Time elapsed 8s
+2025-04-13 00:17:11,709 - INFO - Stopping at https://www.ug.edu.gh/announcement/phd-oral-examination-announcements: Depth 1, Visited 10, Time elapsed 8s
+2025-04-13 00:17:11,746 - INFO - Stopping at https://www.ug.edu.gh/careers: Depth 1, Visited 10, Time elapsed 8s
+2025-04-13 00:17:11,755 - INFO - Stopping at https://www.ug.edu.gh/hrodd/vacancy-announcements: Depth 1, Visited 10, Time elapsed 9s
+2025-04-13 00:17:11,778 - INFO - Stopping at https://www.ug.edu.gh/announcement/university-ghana-internship-season: Depth 1, Visited 10, Time elapsed 9s
+2025-04-13 00:17:11,993 - INFO - Stopping at https://www.ug.edu.gh/about-ug/history: Depth 1, Visited 10, Time elapsed 9s
+2025-04-13 00:17:12,461 - INFO - Stopping at https://www.ug.edu.gh/vcsdi/home: Depth 1, Visited 10, Time elapsed 9s
+2025-04-13 00:17:12,640 - INFO - Stopping at https://sakai.ug.edu.gh/portal: Depth 1, Visited 10, Time elapsed 9s
+2025-04-13 00:17:12,738 - INFO - Stopping at https://coe.ug.edu.gh: Depth 1, Visited 10, Time elapsed 9s
+2025-04-13 00:17:12,780 - INFO - Stopping at http://admissions.ug.edu.gh/undergraduate/distance: Depth 1, Visited 10, Time elapsed 10s
+2025-04-13 00:17:12,796 - INFO - Stopping at https://www.ug.edu.gh/news/president-mahama-commits-156m-safeguard-research-ghana-hosts-ace10-forum: Depth 1, Visited 10, Time elapsed 10s
+2025-04-13 00:17:12,812 - INFO - Stopping at https://www.ug.edu.gh/aad/resources/academic-support-services: Depth 1, Visited 10, Time elapsed 10s
+2025-04-13 00:17:12,839 - INFO - Stopping at https://www.ug.edu.gh/admissions: Depth 1, Visited 10, Time elapsed 10s
+2025-04-13 00:17:12,845 - INFO - Stopping at https://alumni.ug.edu.gh: Depth 1, Visited 10, Time elapsed 10s
+2025-04-13 00:17:12,853 - INFO - Stopping at https://pada.ug.edu.gh: Depth 1, Visited 10, Time elapsed 10s
+2025-04-13 00:17:12,853 - INFO - Stopping at https://www.ug.edu.gh/announcement/announcement-opening-applications-admissions-202526-academic-year: Depth 1, Visited 10, Time elapsed 10s
+2025-04-13 00:17:12,872 - INFO - Stopping at https://www.ug.edu.gh/aad/resources/graduation: Depth 1, Visited 10, Time elapsed 10s
+2025-04-13 00:17:12,874 - INFO - Stopping at https://www.instagram.com/univofgh: Depth 1, Visited 10, Time elapsed 10s
+2025-04-13 00:17:12,886 - INFO - Stopping at https://www.tiktok.com/@univofgh: Depth 1, Visited 10, Time elapsed 10s
+2025-04-13 00:17:12,906 - INFO - Stopping at https://forms.office.com/pages/responsepage.aspx?id=X78blMDydUiiTGkHhl0lGtIKYVDBwMpHgEdfPKU7qO9URVNSRFlGT0VKUFZPSUMyMlNNWExYUlFEVi4u&utm_source=Brave: Depth 1, Visited 10, Time elapsed 10s
+2025-04-13 00:17:12,911 - INFO - Stopping at https://www.ug.edu.gh/admissions/overview: Depth 1, Visited 10, Time elapsed 10s
+2025-04-13 00:17:12,920 - INFO - Stopping at https://chs.ug.edu.gh: Depth 1, Visited 10, Time elapsed 10s
+2025-04-13 00:17:12,920 - INFO - Stopping at https://ar.ug.edu.gh/give-ug: Depth 1, Visited 10, Time elapsed 10s
+2025-04-13 00:17:12,929 - INFO - Stopping at https://www.ugaana.org: Depth 1, Visited 10, Time elapsed 10s
+2025-04-13 00:17:12,936 - INFO - Stopping at https://www.facebook.com/univofgh: Depth 1, Visited 10, Time elapsed 10s
+2025-04-13 00:17:12,953 - INFO - Stopping at https://www.ug.edu.gh/academics/overview: Depth 1, Visited 10, Time elapsed 10s
+2025-04-13 00:17:12,953 - INFO - Stopping at https://www.ug.edu.gh/news-list: Depth 1, Visited 10, Time elapsed 10s
+2025-04-13 00:17:15,237 - INFO - Found 43 sublinks at depth 1 for https://www.ug.edu.gh/announcement/call-climate-research-catalyst-grant-applications
+2025-04-13 00:17:15,667 - INFO - Found 44 sublinks at depth 1 for https://coh.ug.edu.gh
+2025-04-13 00:17:16,221 - INFO - Found 61 sublinks at depth 1 for https://www.ug.edu.gh
+2025-04-13 00:17:17,956 - INFO - Found 171 sublinks at depth 0 for https://www.knust.edu.gh
+2025-04-13 00:17:17,958 - INFO - Discovered 221 unique URLs
+2025-04-13 00:17:17,974 - INFO - URL generation completed successfully
+2025-04-13 00:17:17,983 - INFO - Calling create_db...
+2025-04-13 00:17:18,119 - INFO - Initializing workflow state...
+2025-04-13 00:17:18,131 - INFO - Invoking LangGraph workflow...
+2025-04-13 00:17:18,168 - INFO - Loaded 176 validated URLs from data/urls.txt
+2025-04-13 00:17:19,983 - INFO - Scraping static website: http://admissions.ug.edu.gh/undergraduate/diploma-hnd-degree
+2025-04-13 00:17:21,101 - INFO - Successfully scraped http://admissions.ug.edu.gh/undergraduate/diploma-hnd-degree (Fields extracted: 13, Raw content length: 1862, OCR items: 0)
+2025-04-13 00:17:21,118 - INFO - Pre-extracted content:- university: Diploma/HND to Degree
+- location: 
+- website: http://admissions.ug.edu.gh/undergraduate/diploma-hnd-degree
+- edurank: 
+- department: teams: {'urls': [], 'members': []}, focus: study and where required, supported with two other subjects in a related field, for admission. Diplo
+- publications: 
+- related: 
+- point_of_contact: email: pad@ug.edu.gh, phone_number: +233 30 2213820
+- scopes: 
+- research_abstract: Holders of University of Ghana Diplomas or recognised equivalents, with a Final Grade Point Average (FGPA) of3.25or better (for Legon Campus and City Campus programmes)and2.5or better (for Distance Learning programmes)in any of the under-listed programmes, are eligible to apply to the SAME area of study and where required, supported with two other subjects in a related field, for admission.
+- lab_equipment: 
+- ocr_content: 
+
+2025-04-13 00:17:21,132 - INFO - Raw content:
+## Higher National Diploma (HND) to Degree Applicants
+[Context: Higher National Diploma (HND) to Degree Applicants]
+Holders of Higher National Diplomas (HND) from a recognized Technical University /Polytechnic with a Final Grade Point Average (FGPA) of 4.00 (for Legon Campus and City Campus programmes ) and 3.25 or better (for Distance Learning programmes) in any of the under-listed programmes are eligible to apply to the SAME area of study, and where required, supported with one other subject in a related field, for admission.
+[Context: Higher National Diploma (HND) to Degree Applicants]
+Applicants may be asked to write an entrance examination and/or attend an interview as part of the admission process. HND holders will be admitted to the same subject area as their HND qualification.
+
+## Diploma to Degree Applicants
+
+#### Applicants in Possession of University of Ghana Diplomas
+[Context: Higher National Diploma (HND) to Degree Applicants > Diploma to Degree Applicants > Applicants in Possession of University of Ghana Diplomas]
+Holders of University of Ghana Diplomas or recognised equivalents, with a Final Grade Point Average (FGPA) of 3.25 or better ( for Legon Campus and City Campus programmes) and 2.5 or better ( for Distance Learning programmes) in any of the under-listed programmes, are eligible to apply to the SAME area of study and where required, supported with two other subjects in a related field, for admission.
+[Context: Higher National Diploma (HND) to Degree Applicants > Diploma to Degree Applicants > Applicants in Possession of University of Ghana Diplomas]
+Diploma holders will be admitted to either Level 200 or Level 300 based on their FGPA and area of study. In the case of the School of Veterinary Medicine, admission will be to Level 100. All admission will be to the same subject area as the diploma qualification.
+2025-04-13 00:17:28,261 - INFO - Scraping static website: https://admissions.ug.edu.gh/graduate-admissions/overview
+2025-04-13 00:17:28,842 - INFO - Successfully scraped https://admissions.ug.edu.gh/graduate-admissions/overview (Fields extracted: 13, Raw content length: 949, OCR items: 0)
+2025-04-13 00:17:28,842 - INFO - Pre-extracted content:- university: Graduate Admissions
+- location: 
+- website: https://admissions.ug.edu.gh/graduate-admissions/overview
+- edurank: 
+- department: name: School of Graduate Studies, teams: {'urls': [], 'members': []}, focus: study programmes and thesis examination of all graduate students of the university. The School Of Gr
+- publications: 
+- related: 
+- point_of_contact: email: pad@ug.edu.gh, phone_number: +233 30 2213820
+- scopes: 
+- research_abstract: Welcome to the Graduate Admissions of the University of Ghana.The School of Graduate Studies offers a wide range of post-graduate programmes in Agriculture & Consumer Science, Arts, Business, Engineering Science, Health Sciences, Law, Science and Social Sciences.
+- lab_equipment: 
+- ocr_content: 
+
+2025-04-13 00:17:28,842 - INFO - Raw content:
+# Overview
+[Context: Overview]
+Welcome to the Graduate Admissions of the University of Ghana. The School of Graduate Studies offers a wide range of post-graduate programmes in Agriculture & Consumer Science, Arts, Business, Engineering Science, Health Sciences, Law, Science and Social Sciences.
+[Context: Overview]
+It is announced for the information of prospective applicants and the general public that the School of Graduate Studies is offering various Masters/PhD programmes for the 2023-2024 Academic Year. Get all information about applications, available programmes and admission requirements for post-graduate admission here.
+
+## School of Graduate Studies
+[Context: Overview > School of Graduate Studies]
+The School Of Graduate Studies is responsible for the admission, registration, study programmes and thesis examination of all graduate students of the university.
+
+#### Available programmes
+
+#### Entry Requirements
+
+#### How to Apply
+2025-04-13 00:17:39,841 - INFO - Scraping static website: https://apps.knust.edu.gh/StaffApplication
+2025-04-13 00:17:42,344 - ERROR - Error processing image /StaffApplication/lib/prospectivestaffmvc/content/images/knust_seal-web.png: 'str' object has no attribute 'get'
+2025-04-13 00:17:42,354 - INFO - Successfully scraped https://apps.knust.edu.gh/StaffApplication (Fields extracted: 13, Raw content length: 374, OCR items: 0)
+2025-04-13 00:17:42,354 - INFO - Pre-extracted content:- university: Log in
+- location: 
+- website: https://apps.knust.edu.gh/StaffApplication
+- edurank: 
+- department: teams: {'urls': [], 'members': []}
+- publications: 
+- related: 
+- point_of_contact: email: hrd@knust.edu.gh, phone_number: +233 3224 97299
+- scopes: 
+- research_abstract: 
+- lab_equipment: 
+- ocr_content: 
+
+2025-04-13 00:17:42,369 - INFO - Raw content:Please Sign In Or Create An Account To Gain Access.
+Don't have an account? Create an Account
+If you are a staff, login with your Tech Mail Credentials
+Trouble Logging in?
+Contact our Technical Support Team.
++233 3224 97299
++233 3224 97202
+*Open 8AM - 5PM GMT
+Send your complaint and inquiries through our email "hrd@knust.edu.gh"
+Forgot your password?
+Click here to reset it
+2025-04-13 00:17:49,933 - INFO - Scraping static website: https://apps.knust.edu.gh/admissions
+2025-04-13 00:17:52,528 - ERROR - Error processing image /admissions/apply/assets/images/logo/knustadmissions-logo-white.png: 'str' object has no attribute 'get'
+2025-04-13 00:17:53,734 - ERROR - Error processing image /admissions/apply/landing/img/thumbnail.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:17:54,948 - ERROR - Error processing image /admissions/apply/landing/img/play.png: 'str' object has no attribute 'get'
+2025-04-13 00:17:56,151 - ERROR - Error processing image /admissions/apply/landing/img/PDF_file_icon.svg.png: 'str' object has no attribute 'get'
+2025-04-13 00:17:57,353 - ERROR - Error processing image /admissions/apply/landing/img/PDF_file_icon.svg.png: 'str' object has no attribute 'get'
+2025-04-13 00:17:58,547 - ERROR - Error processing image /admissions/apply/landing/img/PDF_file_icon.svg.png: 'str' object has no attribute 'get'
+2025-04-13 00:17:59,753 - ERROR - Error processing image /admissions/apply/landing/img/tour-img-4.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:18:01,013 - ERROR - Error processing pdf https://webapps.knust.edu.gh/check/forms/Notice_HB_DENT.pdf: 'str' object has no attribute 'get'
+2025-04-13 00:18:02,087 - ERROR - Error processing pdf https://webapps.knust.edu.gh/check/forms/KNUST_Human_Biology.pdf: 'str' object has no attribute 'get'
+2025-04-13 00:18:03,174 - ERROR - Error processing pdf https://webapps.knust.edu.gh/check/forms/KNUST_Dental_Surgery.pdf: 'str' object has no attribute 'get'
+2025-04-13 00:18:04,219 - ERROR - Error processing pdf https://webapps.knust.edu.gh/check/forms/Admission_Requirement.pdf: 'str' object has no attribute 'get'
+2025-04-13 00:18:05,231 - ERROR - Error processing pdf https://webapps.knust.edu.gh/check/forms/POSTGRADUATE_ADMISSIONS.pdf: 'str' object has no attribute 'get'
+2025-04-13 00:18:05,235 - INFO - Successfully scraped https://apps.knust.edu.gh/admissions (Fields extracted: 13, Raw content length: 1455, OCR items: 0)
+2025-04-13 00:18:05,240 - INFO - Pre-extracted content:- university: KNUST Admission Portal
+- location: 
+- website: https://apps.knust.edu.gh/admissions
+- edurank: 
+- department: teams: {'urls': [], 'members': []}, focus: specialized training, we have the right programme
+                                for you. Browse t
+- publications: 
+- related: 
+- point_of_contact: 
+- scopes: 
+- research_abstract: Ghanaian students:Purchase
+                            vouchers online
+                            or verify vouchers purchased from approved outlets.
+- lab_equipment: 
+- ocr_content: 
+
+2025-04-13 00:18:05,261 - INFO - Raw content:
+## Available Programmes
+[Context: Available Programmes]
+Explore a diverse range of programmes designed to equip you with the skills and knowledge needed for success. Our available programmes cover various fields, ensuring there’s something for everyone.
+[Context: Available Programmes]
+Whether you're looking for professional development, academic advancement, or specialized training, we have the right programme for you. Browse through our offerings and take the next step toward your goals.
+
+## Virtual Campus Tour
+[Context: Available Programmes > Virtual Campus Tour]
+Kindly log in with the details on your voucher. Make sure you have the correct credentials. Kindly log in with the details on your voucher. Make sure.
+
+## How to use the Admissions Portal
+
+##### Sign up and create Account
+[Context: Available Programmes > How to use the Admissions Portal > Sign up and create Account]
+Register with a valid and active email address.
+
+##### Select your student category
+[Context: Available Programmes > How to use the Admissions Portal > Sign up and create Account > Select your student category]
+Ghanaian students: Purchase vouchers online or verify vouchers purchased from approved outlets.
+
+##### Complete and submit Application
+[Context: Available Programmes > How to use the Admissions Portal > Sign up and create Account > Select your student category > Complete and submit Application]
+Fill in the required details and submit your application.
+2025-04-13 00:18:15,326 - INFO - Scraping static website: https://apps.knust.edu.gh/students/Account/Login?ReturnUrl=%2Fstudents%2F
+2025-04-13 00:18:17,471 - ERROR - Error processing image /students/assets/images/aim.png: 'str' object has no attribute 'get'
+2025-04-13 00:18:18,650 - ERROR - Error processing image /students/assets/images/logo-light.png: 'str' object has no attribute 'get'
+2025-04-13 00:18:18,651 - INFO - Successfully scraped https://apps.knust.edu.gh/students/Account/Login?ReturnUrl=%2Fstudents%2F (Fields extracted: 13, Raw content length: 156, OCR items: 0)
+2025-04-13 00:18:18,655 - INFO - Pre-extracted content:- university: Login
+- location: 
+- website: https://apps.knust.edu.gh/students/Account/Login?ReturnUrl=%2Fstudents%2F
+- edurank: 
+- department: teams: {'urls': [], 'members': []}
+- publications: 
+- related: 
+- point_of_contact: 
+- scopes: 
+- research_abstract: You can also access
+                                                        the Student Portal on your mobile phone.Download App
+- lab_equipment: 
+- ocr_content: 
+
+2025-04-13 00:18:18,669 - INFO - Raw content:You can also access the Student Portal on your mobile phone. Download App
+
+##### Login
+[Context: Login]
+Having issues accessing your portal? Create a ticket
+2025-04-13 00:18:25,947 - INFO - Scraping static website: https://coe.ug.edu.gh
+2025-04-13 00:18:27,065 - ERROR - Error processing image /sites/coe.ug.edu.gh/files/2025-04/IMG-20250407-WA0027.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:18:27,813 - ERROR - Error processing image /sites/coe.ug.edu.gh/files/2025-04/b.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:18:28,509 - ERROR - Error processing image /sites/coe.ug.edu.gh/files/2025-04/0J9A3395%20%282%29.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:18:29,229 - ERROR - Error processing image /sites/coe.ug.edu.gh/files/2025-03/12%20.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:18:29,931 - ERROR - Error processing image /sites/coe.ug.edu.gh/files/2025-03/PHOTO-2025-03-05-14-00-43%20%281%29_0.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:18:30,629 - ERROR - Error processing image /sites/coe.ug.edu.gh/files/2025-03/New.png: 'str' object has no attribute 'get'
+2025-04-13 00:18:31,342 - ERROR - Error processing image /sites/coe.ug.edu.gh/files/2025-04/UGLCs_Seminar%20Series%2C%202025_page-0001%20%281%29.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:18:31,342 - INFO - Successfully scraped https://coe.ug.edu.gh (Fields extracted: 13, Raw content length: 914, OCR items: 0)
+2025-04-13 00:18:31,354 - INFO - Pre-extracted content:- university: Home
+- location: 
+- website: https://coe.ug.edu.gh
+- edurank: 
+- department: teams: {'urls': [], 'members': []}
+- publications: other_url: /research
+- related: 
+- point_of_contact: email: 749469929pad@ug.edu.ghP, phone_number: +233 24745896
+- scopes: 
+- research_abstract: Leveraging Internet Access for Teacher Professional Development and Improved Students Learning Outcomes in Ghana - October 23, 2024
+- lab_equipment: 
+- ocr_content: 
+
+2025-04-13 00:18:31,374 - INFO - Raw content:
+## Spotlight
+[Context: Spotlight]
+Invitation to UGLCs Seminar Series
+
+## Announcements
+[Context: Spotlight > Announcements]
+76th Annual New Year School and Conference
+[Context: Spotlight > Announcements]
+Commissioning of Tema Learning Centre Building
+[Context: Spotlight > Announcements]
+Invitation to Department of Information Studies Conference 2024 - October 30-31, 2024
+[Context: Spotlight > Announcements]
+Leveraging Internet Access for Teacher Professional Development and Improved Students Learning Outcomes in Ghana - October 23, 2024
+[Context: Spotlight > Announcements]
+College of Education Maiden Pen Ceremony- 14th August, 2024
+
+# Department of Distance Education Hosts Employability Workshop to Enhance Career Readiness
+
+# UG’s Annual New Year School and Conference Commended for Shaping National Development
+
+# Media and Information Literacy Workshop Equips SHS Teachers to Tackle Digital Challenges
+2025-04-13 00:18:37,498 - INFO - Scraping static website: https://coh.ug.edu.gh
+2025-04-13 00:18:39,569 - ERROR - Error processing image /sites/default/files/2025-03/PSX_20250314_222606.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:18:40,381 - ERROR - Error processing image /sites/default/files/2024-09/IMG-20240927-WA0012.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:18:40,381 - INFO - Successfully scraped https://coh.ug.edu.gh (Fields extracted: 13, Raw content length: 430, OCR items: 0)
+2025-04-13 00:18:40,391 - INFO - Pre-extracted content:- university: Home
+- location: 
+- website: https://coh.ug.edu.gh
+- edurank: 
+- department: teams: {'urls': [], 'members': []}, focus: research institutes, and 517 teaching and research staff.   Message from the Provost, Professor Jose
+- publications: other_url: https://orid.ug.edu.gh/research-opportunity-alerts-6
+- related: 
+- point_of_contact: name: CoH Congratulates Rev. Dr. Abraham Nana Opare Kwakye, first_name: Congratulates, last_name: Kwakye, email: coh@ug.edu.ghEmail
+- scopes: 
+- research_abstract: The College of Humanities was established in 2014.It is the largest college at the University of Ghana.It has 6 schools, 11 centres, 4 research institutes, and 517 teaching and research staff.
+- lab_equipment: 
+- ocr_content: 
+
+2025-04-13 00:18:40,403 - INFO - Raw content:
+# Welcome to the College of Humanities, University of Ghana
+[Context: Welcome to the College of Humanities, University of Ghana]
+The College of Humanities was established in 2014. It is the largest college at the University of Ghana. It has 6 schools, 11 centres, 4 research institutes, and 517 teaching and research staff.
+
+# College News
+
+## Courtesy Visit by Yale Professors to The Office of The Provost, College of Humanities
+2025-04-13 00:18:47,190 - INFO - Scraping static website: https://coh.ug.edu.gh/announcements/new-provost-coh-meets-deans-and-directors
+2025-04-13 00:18:49,443 - INFO - Successfully scraped https://coh.ug.edu.gh/announcements/new-provost-coh-meets-deans-and-directors (Fields extracted: 13, Raw content length: 581, OCR items: 0)
+2025-04-13 00:18:49,460 - INFO - Pre-extracted content:- university: New Provost, CoH Meets with Deans and Directors
+- location: 
+- website: https://coh.ug.edu.gh/announcements/new-provost-coh-meets-deans-and-directors
+- edurank: 
+- department: teams: {'urls': [], 'members': []}
+- publications: other_url: https://orid.ug.edu.gh/research-opportunity-alerts-6
+- related: 
+- point_of_contact: email: coh@ug.edu.ghEmail
+- scopes: 
+- research_abstract: Thursday, 15th August 2024: The newly appointed Provost of the College of Humanities, Professor Joseph Awetori Yaro, has met with Deans and Directors to present his vision and strategic plan for the college.
+- lab_equipment: 
+- ocr_content: 
+
+2025-04-13 00:18:49,468 - INFO - Raw content:
+### New Provost, CoH Meets with Deans and Directors
+[Context: New Provost, CoH Meets with Deans and Directors]
+Thursday, 15th August 2024: The newly appointed Provost of the College of Humanities, Professor Joseph Awetori Yaro, has met with Deans and Directors to present his vision and strategic plan for the college.
+[Context: New Provost, CoH Meets with Deans and Directors]
+The new Provost was greeted by the heads of units within the college at the new conference room of the Kojo Senanu Arts and Languages building.
+[Context: New Provost, CoH Meets with Deans and Directors]
+2025-04-13 00:18:58,935 - INFO - Scraping static website: https://coh.ug.edu.gh/faculty
+2025-04-13 00:19:01,174 - INFO - Successfully scraped https://coh.ug.edu.gh/faculty (Fields extracted: 13, Raw content length: 0, OCR items: 0)
+2025-04-13 00:19:01,190 - INFO - Pre-extracted content:- university: Page not found
+- location: 
+- website: https://coh.ug.edu.gh/faculty
+- edurank: 
+- department: teams: {'urls': [], 'members': []}
+- publications: other_url: https://orid.ug.edu.gh/research-opportunity-alerts-6
+- related: 
+- point_of_contact: email: coh@ug.edu.ghEmail
+- scopes: 
+- research_abstract: 
+- lab_equipment: 
+- ocr_content: 
+
+2025-04-13 00:19:01,207 - INFO - Raw content:
+2025-04-13 00:19:08,185 - INFO - Scraping static website: https://coh.ug.edu.gh/news
+2025-04-13 00:19:10,010 - ERROR - Error processing image /sites/default/files/2025-03/PSX_20250314_222606.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:19:10,715 - ERROR - Error processing image /sites/default/files/2024-10/train.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:19:11,444 - ERROR - Error processing image /sites/default/files/2024-09/Selected.jpeg: 'str' object has no attribute 'get'
+2025-04-13 00:19:12,186 - ERROR - Error processing image /sites/default/files/2024-07/Highlife%20Music%20Archive%20Launched%20at%20the%20Department%20of%20Music%2C%20School%20of%20Performing%20Arts%2C%20College%20of%20Humanities%2C%20UG2.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:19:12,870 - ERROR - Error processing image /sites/default/files/2024-07/Thirty-Nine%20Administrative%20Staff%2C%20Faculty%2C%20and%20Doctoral%20Researchers%20Honoured%20at%20%20%20Third%20College%20of%20Humanities%20Awards%20Ceremony.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:19:13,654 - ERROR - Error processing image /sites/default/files/2024-07/College%20of%20Humanities%20Launches%202nd%20Annual%20Report%20and%20College%20Handbooks.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:19:14,437 - ERROR - Error processing image /sites/default/files/2024-07/AU%20ACSRM%20%26%20UPPSALA%20UNIVERSITY%20d.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:19:15,183 - ERROR - Error processing image /sites/default/files/2024-07/IDRC%20a.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:19:15,911 - ERROR - Error processing image /sites/default/files/2024-07/20240711_095029.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:19:15,911 - INFO - Successfully scraped https://coh.ug.edu.gh/news (Fields extracted: 13, Raw content length: 890, OCR items: 0)
+2025-04-13 00:19:15,911 - INFO - Pre-extracted content:- university: News
+- location: 
+- website: https://coh.ug.edu.gh/news
+- edurank: 
+- department: teams: {'urls': [], 'members': []}
+- publications: other_url: /index.php/news/thirty-nine-administrative-staff-faculty-and-doctoral-researchers-honoured-third-college
+- related: 
+- point_of_contact: email: coh@ug.edu.ghEmail
+- scopes: 
+- research_abstract: 
+- lab_equipment: 
+- ocr_content: 
+
+2025-04-13 00:19:15,921 - INFO - Raw content:
+## Recent News
+
+# College News
+
+##### Courtesy Visit by Yale Professors to The Office of The Provost, College of Humanities
+
+##### College of Humanities Organises Training Programme on Promotion Processes and Procedures for Academic Staff
+
+##### New Provost, College of Humanities Meets with Deans and Directors
+
+##### Highlife Music Archive Launched at the Department of Music, School of Performing Arts, College of Humanities, UG
+
+##### Thirty-Nine Administrative Staff, Faculty, and Doctoral Researchers Honoured at Third College of Humanities Awards Ceremony
+
+##### College of Humanities Launches 2nd Annual Report and College Handbooks
+
+##### Meet the Provost with AU ACSRM and Uppsala University
+
+##### Centre for International Development (IDRC) Meet and Greet with the Provost
+
+##### Carnegie African Diaspora Fellow Pays A Courtesy Call On The Provost of The College of Humanities
+2025-04-13 00:19:22,871 - INFO - Scraping static website: https://forms.office.com/pages/responsepage.aspx?id=X78blMDydUiiTGkHhl0lGtIKYVDBwMpHgEdfPKU7qO9URVNSRFlGT0VKUFZPSUMyMlNNWExYUlFEVi4u&utm_source=Brave
+2025-04-13 00:19:23,782 - INFO - Successfully scraped https://forms.office.com/pages/responsepage.aspx?id=X78blMDydUiiTGkHhl0lGtIKYVDBwMpHgEdfPKU7qO9URVNSRFlGT0VKUFZPSUMyMlNNWExYUlFEVi4u&utm_source=Brave (Fields extracted: 13, Raw content length: 0, OCR items: 0)
+2025-04-13 00:19:23,785 - INFO - Pre-extracted content:- university: Microsoft Forms
+- location: 
+- website: https://forms.office.com/pages/responsepage.aspx?id=X78blMDydUiiTGkHhl0lGtIKYVDBwMpHgEdfPKU7qO9URVNSRFlGT0VKUFZPSUMyMlNNWExYUlFEVi4u&utm_source=Brave
+- edurank: 
+- department: teams: {'urls': [], 'members': []}
+- publications: 
+- related: 
+- point_of_contact: 
+- scopes: 
+- research_abstract: 
+- lab_equipment: 
+- ocr_content: 
+
+2025-04-13 00:19:23,787 - INFO - Raw content:
+2025-04-13 00:19:29,947 - INFO - Scraping static website: https://hrd.knust.edu.gh
+2025-04-13 00:19:32,313 - ERROR - Error processing image /sites/hrd.knust.edu.gh/files/styles/slideshowimage_1280px_x_500px_/public/2018-02/Orientation-For-Newly-Appointed-Staff-featured-image.jpg?itok=E7Jcg-Wn: 'str' object has no attribute 'get'
+2025-04-13 00:19:34,218 - ERROR - Error processing image /sites/hrd.knust.edu.gh/files/2018-02/Prof-Nathaniel-Boso.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:19:35,372 - ERROR - Error processing image /sites/hrd.knust.edu.gh/files/2018-02/Orientation-for-Newly-Appointed-Staff-featuredimage.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:19:35,382 - INFO - Successfully scraped https://hrd.knust.edu.gh (Fields extracted: 13, Raw content length: 411, OCR items: 0)
+2025-04-13 00:19:35,422 - INFO - Pre-extracted content:- university: Home
+- location: 
+- website: https://hrd.knust.edu.gh
+- edurank: 
+- department: teams: {'urls': [], 'members': []}
+- publications: 
+- related: 
+- point_of_contact: email: hrd@knust.edu.gh, phone_number: +233 3224 97299
+- scopes: 
+- research_abstract: Newly appointed Staff in the KNUST have benefited from a workshop and orientation organized by the Human Resource Division
+- lab_equipment: 
+- ocr_content: 
+
+2025-04-13 00:19:35,437 - INFO - Raw content:
+### Orientation For Newly Appointed Staff
+[Context: Orientation For Newly Appointed Staff]
+Newly appointed Staff in the KNUST have benefited from a workshop and orientation organized by the Human Resource Division
+
+#### Featured
+
+#### Profile of Professor Nathaniel Boso, Dean, KNUST School of Business
+
+### News
+
+### Announcements
+
+#### Public Health Alert: What you need to know about Lassa Fever
+
+### Events
+2025-04-13 00:20:05,072 - INFO - Scraping static website: https://idl.knust.edu.gh
+2025-04-13 00:20:08,013 - ERROR - Error processing image /sites/idl.knust.edu.gh/files/styles/slide_image_3000_1500_/public/2025-04/Third-Block-Mid-semTimetable-FINAL.jpg?itok=eNCUBtFu: 'str' object has no attribute 'get'
+2025-04-13 00:20:09,269 - ERROR - Error processing image /sites/idl.knust.edu.gh/files/styles/slide_image_3000_1500_/public/2025-03/new-banner.jpg?itok=hD6E0RAp: 'str' object has no attribute 'get'
+2025-04-13 00:20:10,511 - ERROR - Error processing image /sites/idl.knust.edu.gh/files/styles/slide_image_3000_1500_/public/2025-03/ISACA%20IDL%20%20%281%29.jpg?itok=Lvfix7Ap: 'str' object has no attribute 'get'
+2025-04-13 00:20:11,768 - ERROR - Error processing image /sites/idl.knust.edu.gh/files/styles/slide_image_3000_1500_/public/2025-01/IDL-Timetable.jpg?itok=g_Fb8j6c: 'str' object has no attribute 'get'
+2025-04-13 00:20:13,184 - ERROR - Error processing image /sites/idl.knust.edu.gh/files/styles/slide_image_3000_1500_/public/2024-12/IDL-Banner-enhanced.jpg?itok=3dEIIOBd: 'str' object has no attribute 'get'
+2025-04-13 00:20:14,411 - ERROR - Error processing image /sites/idl.knust.edu.gh/files/styles/slide_image_3000_1500_/public/2022-01/programmes-banner_1.jpg?itok=YVG-I_7O: 'str' object has no attribute 'get'
+2025-04-13 00:20:15,646 - ERROR - Error processing image /sites/idl.knust.edu.gh/files/2025-02/_CSL0175.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:20:16,823 - ERROR - Error processing image /sites/idl.knust.edu.gh/files/2025-04/HS3A0003-resized.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:20:18,035 - ERROR - Error processing image /sites/idl.knust.edu.gh/files/2025-01/HS3A1685.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:20:19,206 - ERROR - Error processing image /sites/idl.knust.edu.gh/files/2022-05/IMG_9997.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:20:20,409 - ERROR - Error processing image /sites/idl.knust.edu.gh/files/2022-02/D3_1.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:20:22,182 - ERROR - Error processing image /sites/idl.knust.edu.gh/files/2022-01/busines-sch.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:20:23,415 - ERROR - Error processing image /sites/idl.knust.edu.gh/files/2022-01/Flexible-programmes.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:20:24,598 - ERROR - Error processing image /sites/idl.knust.edu.gh/files/2022-01/Excellent-facilities-sm.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:20:25,765 - ERROR - Error processing image /sites/idl.knust.edu.gh/files/2022-01/networking-of-people.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:20:26,991 - ERROR - Error processing image /sites/idl.knust.edu.gh/files/2022-01/library-and-resources.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:20:28,158 - ERROR - Error processing image /sites/idl.knust.edu.gh/files/2022-01/dipimage.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:20:29,354 - ERROR - Error processing image /sites/idl.knust.edu.gh/files/2022-01/topupimage.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:20:30,548 - ERROR - Error processing image /sites/idl.knust.edu.gh/files/2022-01/pgimage.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:20:31,208 - INFO - Skipping small or non-image file: https://idl.knust.edu.gh/sites/idl.knust.edu.gh/files/2022-01/agriculture.png
+2025-04-13 00:20:31,891 - INFO - Skipping small or non-image file: https://idl.knust.edu.gh/sites/idl.knust.edu.gh/files/2022-01/arts.png
+2025-04-13 00:20:32,557 - INFO - Skipping small or non-image file: https://idl.knust.edu.gh/sites/idl.knust.edu.gh/files/2022-01/business.png
+2025-04-13 00:20:33,213 - INFO - Skipping small or non-image file: https://idl.knust.edu.gh/sites/idl.knust.edu.gh/files/2022-01/education.png
+2025-04-13 00:20:33,870 - INFO - Skipping small or non-image file: https://idl.knust.edu.gh/sites/idl.knust.edu.gh/files/2022-01/engineering.png
+2025-04-13 00:20:34,506 - INFO - Skipping small or non-image file: https://idl.knust.edu.gh/sites/idl.knust.edu.gh/files/2022-01/IT.png
+2025-04-13 00:20:35,163 - INFO - Skipping small or non-image file: https://idl.knust.edu.gh/sites/idl.knust.edu.gh/files/2022-01/science.png
+2025-04-13 00:20:35,857 - INFO - Skipping small or non-image file: https://idl.knust.edu.gh/sites/idl.knust.edu.gh/files/2022-01/social-science.png
+2025-04-13 00:20:35,858 - INFO - Successfully scraped https://idl.knust.edu.gh (Fields extracted: 13, Raw content length: 4496, OCR items: 0)
+2025-04-13 00:20:35,864 - INFO - Pre-extracted content:- university: Home
+- location: 
+- website: https://idl.knust.edu.gh
+- edurank: 
+- department: teams: {'urls': [], 'members': []}, focus: specialized programmes lasts for a year. Registration is done at the beginning of each semester. To
+- publications: 
+- related: 
+- point_of_contact: email: idl@knust.edu.gh, phone_number: +233 247274661
+- scopes: 
+- research_abstract: From our unparalleled academics to our excellent facilities to promote E-learning, we strive to offer the best resources to the next generation of leaders.
+- lab_equipment: 
+- ocr_content: 
+
+2025-04-13 00:20:35,874 - INFO - Raw content:
+### Frequently asked questions
+[Context: Frequently asked questions]
+What Is The Duration Of Distance Programmes?
+[Context: Frequently asked questions]
+It depends. Top-up programmes lasts for two and half years. Postgraduate programmes spans for 2 years and specialized programmes lasts for a year.
+[Context: Frequently asked questions]
+How Does A Student Register?
+[Context: Frequently asked questions]
+Registration is done at the beginning of each semester. To register, Students are required to pay their fees before you can register. First year and continuing students are permitted to pay at least 60% and 50% respectively of their fees for the entire academic year to enable them register for the First Semester. The remaining amount, that is, balance of the fees, MUST be paid before registration can be done for the second semester. Payment of fees can be done at any of the following banks: ECOBANK, HFC BANK, MERCHANT BANK, GCB, FIDELITY BANK and UBA. After payment, students are to submit their Pay-In–Slips to their Centre for official KNUST receipt. First year students/Freshmen & women will be given their usernames and passwords by the University Information Technology Services (UITS) to enable them register their courses for the semester online. NOTE that, after payment of the required amount of fees, students will receive an email or an SMS which will give the details of username, password and website for registration purposes. Visit your Centre for assistance if you encounter any difficulty.
+[Context: Frequently asked questions]
+Registration is done at the beginning of each semester. To register,
+[Context: Frequently asked questions]
+Students are required to pay their fees before you can register.
+[Context: Frequently asked questions]
+First year and continuing students are permitted to pay at least 60% and 50% respectively of their fees for the entire academic year to enable them register for the First Semester.
+[Context: Frequently asked questions]
+The remaining a
+2025-04-13 00:21:05,611 - INFO - Scraping static website: https://kcsc.knust.edu.gh
+2025-04-13 00:21:08,452 - ERROR - Error processing image /sites/kcsc.knust.edu.gh/files/2024-07/Career-Services-Centre-Slider_The-KNUST-Career-Fair-2024-story.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:21:09,701 - ERROR - Error processing image /sites/kcsc.knust.edu.gh/files/2024-06/web%20banner%20career%20fair.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:21:10,893 - ERROR - Error processing image /sites/kcsc.knust.edu.gh/files/2024-04/KCSC-Partners-With-German-Embassy-3.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:21:12,154 - ERROR - Error processing image /sites/kcsc.knust.edu.gh/files/2024-04/Workshop-for-final-year-students-at-the-CANR-slider.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:21:13,331 - ERROR - Error processing image /sites/kcsc.knust.edu.gh/files/2024-04/MOE-slide.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:21:14,496 - ERROR - Error processing image /sites/kcsc.knust.edu.gh/files/2024-02/Employable-Skills-and-CV-Writing-Expertise-Slider.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:21:15,705 - ERROR - Error processing image /sites/kcsc.knust.edu.gh/files/2023-09/Career-Services-Centre-Slider3.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:21:17,072 - ERROR - Error processing image /sites/kcsc.knust.edu.gh/files/2023-09/Career-Services-Centre-Slider-DTI.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:21:18,228 - ERROR - Error processing image /sites/kcsc.knust.edu.gh/files/2023-09/Career-Services-Centre-Slider4-alt-1.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:21:19,415 - ERROR - Error processing image /sites/kcsc.knust.edu.gh/files/styles/news_thumbnail_for_card_442_x_268_/public/2025-04/WhatsApp%20Image%202025-04-10%20at%2009.58.07_03df0fbb.jpg?itok=nA7pbzmJ: 'str' object has no attribute 'get'
+2025-04-13 00:21:20,637 - ERROR - Error processing image /sites/kcsc.knust.edu.gh/files/styles/news_thumbnail_for_card_442_x_268_/public/2024-08/Practitioners%20Forum.jpg?itok=kUiDzk18: 'str' object has no attribute 'get'
+2025-04-13 00:21:21,790 - ERROR - Error processing image /sites/kcsc.knust.edu.gh/files/styles/news_thumbnail_for_card_442_x_268_/public/2024-07/KNUST%20Career%20Services%20Centre%20Partners%20GCB%20Bank%20PLC%2C%20GNPC%20and%20Other%20Industry%20Players%20To%20Host%20The%20KNUST%20Career%20Fair%202024.jpg?itok=FnRmdhE1: 'str' object has no attribute 'get'
+2025-04-13 00:21:23,061 - ERROR - Error processing image /sites/kcsc.knust.edu.gh/files/2023-09/career-coaching.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:21:24,468 - ERROR - Error processing image /sites/kcsc.knust.edu.gh/files/2023-09/Capacity-Building.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:21:25,651 - ERROR - Error processing image /sites/kcsc.knust.edu.gh/files/2023-09/internship.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:21:26,850 - ERROR - Error processing image /sites/kcsc.knust.edu.gh/files/2023-09/Black-Women-Financial-Experts.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:21:28,073 - ERROR - Error processing image /sites/kcsc.knust.edu.gh/files/2023-09/right-talent.7c41a975.png: 'str' object has no attribute 'get'
+2025-04-13 00:21:29,250 - ERROR - Error processing image /sites/kcsc.knust.edu.gh/files/2023-09/For-students.png: 'str' object has no attribute 'get'
+2025-04-13 00:21:30,433 - ERROR - Error processing image /sites/kcsc.knust.edu.gh/files/2023-09/for-alumni.png: 'str' object has no attribute 'get'
+2025-04-13 00:21:30,433 - INFO - Successfully scraped https://kcsc.knust.edu.gh (Fields extracted: 13, Raw content length: 1391, OCR items: 0)
+2025-04-13 00:21:30,442 - INFO - Pre-extracted content:- university: Home
+- location: country: GhanaTel: (+233) 322-190741Email: admin.careerservices@knust.edu.gh, city: Kumasi
+- website: https://kcsc.knust.edu.gh
+- edurank: 
+- department: name: Department of Hospitality and Tourism Studies and KNUST Career Services Centre Host Practitioners Forum, url: /news/department-hospitality-and-tourism-studies-and-knust-career-services-centre-host-practitioners, teams: {'urls': [], 'members': []}
+- publications: 
+- related: 
+- point_of_contact: email: admin.careerservices@knust.edu.gh, phone_number: 322-190741
+- scopes: 
+- research_abstract: A platform for employers and potential employees (top talents from KNUST) to connect, collaborate, share career opportunities and promote products and services.
+- lab_equipment: overview: KNUST and Carleton University Discuss Collaboration to Enhance Student Career Development
+- ocr_content: 
+
+2025-04-13 00:21:30,460 - INFO - Raw content:
+## About Us
+[Context: About Us]
+The KNUST Career Services Centre is a unit of the University with the mandate to bridge the skills gap between academia and industry and serve as a hub of career advancement opportunities for students and alumni. The Centre runs training sessions for students on topics such as Employable Skills, CV and Cover Letter Writing, Career Development, Interviewing Skills, Effective Communication, Employment Contracts among others. The Centre also provides internship and employment opportunities for students and alumni.
+
+### For Employers
+
+## Find the right talent with ease
+[Context: About Us > Find the right talent with ease]
+Make your hiring process quick and hassle-free using our recruitment solutions which are tailored for every hiring need. We have over 700,000 graduates across all levels, right for your organisation!
+
+### For Students of KNUST
+
+## Find the right internships and Explore our events
+[Context: About Us > Find the right internships and Explore our events]
+Our interns collaborate across disciplines, borders and production lines.Â Experience interactive networking events andÂ seminars within our exceptional community of experts.
+
+### For Alumni of KNUST
+
+## Discover new career opportunities
+[Context: About Us > Discover new career opportunities]
+Create an account, complete your profile and let the right opportunities come to you.
+2025-04-13 00:21:47,511 - INFO - Scraping dynamic website: https://knustdayofgiving.knust.edu.gh
+2025-04-13 00:22:22,684 - ERROR - Error processing image https://knustdayofgiving.knust.edu.gh/asset/gabe/images/doglogo.png: 'str' object has no attribute 'get'
+2025-04-13 00:22:23,194 - INFO - Skipping small or non-image file: https://knustdayofgiving.knust.edu.gh/asset/gabe/images/doghostel.webp
+2025-04-13 00:22:23,730 - INFO - Skipping small or non-image file: https://knustdayofgiving.knust.edu.gh/asset/gabe/images/vcimage.webp
+2025-04-13 00:22:24,268 - INFO - Skipping small or non-image file: https://knustdayofgiving.knust.edu.gh/asset/gabe/images/about_img_giving.webp
+2025-04-13 00:22:25,310 - ERROR - Error processing image https://knustdayofgiving.knust.edu.gh/asset/gabe/images/ambassadors/EBENEZER-DONKOH,-Radio,-TV-Host.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:22:26,394 - ERROR - Error processing image https://knustdayofgiving.knust.edu.gh/asset/gabe/images/ambassadors/NIKOLETTA-SAMONAS,-Actress,-Freelance,-Model1.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:22:26,966 - INFO - Skipping small or non-image file: https://knustdayofgiving.knust.edu.gh/asset/gabe/images/projects/8.webp
+2025-04-13 00:22:27,515 - INFO - Skipping small or non-image file: https://knustdayofgiving.knust.edu.gh/asset/gabe/images/projects/2.webp
+2025-04-13 00:22:28,080 - INFO - Skipping small or non-image file: https://knustdayofgiving.knust.edu.gh/asset/gabe/images/projects/5.webp
+2025-04-13 00:22:28,652 - INFO - Skipping small or non-image file: https://knustdayofgiving.knust.edu.gh/asset/gabe/images/projects/10.webp
+2025-04-13 00:22:29,199 - INFO - Skipping small or non-image file: https://knustdayofgiving.knust.edu.gh/asset/gabe/images/projects/9.webp
+2025-04-13 00:22:29,749 - INFO - Skipping small or non-image file: https://knustdayofgiving.knust.edu.gh/asset/gabe/images/projects/7.webp
+2025-04-13 00:22:30,316 - INFO - Skipping small or non-image file: https://knustdayofgiving.knust.edu.gh/asset/gabe/images/knustlogo.webp
+2025-04-13 00:22:31,875 - ERROR - Error processing image https://knustdayofgiving.knust.edu.gh/asset/gabe/images/ambassadors/LOUIS-LAMIS,-CEO,-Artistic-Director-Filmmaker-and-Actor1.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:22:33,748 - ERROR - Error processing image https://knustdayofgiving.knust.edu.gh/asset/gabe/images/ambassadors/KWAME-NSIAH-APPAU,-Musician,-Songwriter,-Creative-Director-and-Entrepreneur.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:22:34,822 - ERROR - Error processing image https://knustdayofgiving.knust.edu.gh/asset/gabe/images/ambassadors/EVANS-PHIL-AKESSE-BREMPONG,-Songwriter,-Recording-Artiste,-Music-Director.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:22:35,892 - ERROR - Error processing image https://knustdayofgiving.knust.edu.gh/asset/gabe/images/ambassadors/EMMANUEL-KWASI-DEBRAH,-Blogger,-freelance-journalist,-reporter1.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:22:36,951 - ERROR - Error processing image https://knustdayofgiving.knust.edu.gh/asset/gabe/images/ambassadors/EBENEZER-DONKOH,-Radio,-TV-Host.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:22:38,208 - ERROR - Error processing image https://knustdayofgiving.knust.edu.gh/asset/gabe/images/ambassadors/ERNEST-NII-OKAI-OKAI,-Singer,-Song-Writer.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:22:39,609 - ERROR - Error processing image https://knustdayofgiving.knust.edu.gh/asset/gabe/images/ambassadors/NIKOLETTA-SAMONAS,-Actress,-Freelance,-Model1.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:22:40,690 - ERROR - Error processing image https://knustdayofgiving.knust.edu.gh/asset/gabe/images/ambassadors/LOUIS-LAMIS,-CEO,-Artistic-Director-Filmmaker-and-Actor1.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:22:41,790 - ERROR - Error processing image https://knustdayofgiving.knust.edu.gh/asset/gabe/images/ambassadors/KWAME-NSIAH-APPAU,-Musician,-Songwriter,-Creative-Director-and-Entrepreneur.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:22:42,846 - ERROR - Error processing image https://knustdayofgiving.knust.edu.gh/asset/gabe/images/ambassadors/EVANS-PHIL-AKESSE-BREMPONG,-Songwriter,-Recording-Artiste,-Music-Director.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:22:43,905 - ERROR - Error processing image https://knustdayofgiving.knust.edu.gh/asset/gabe/images/ambassadors/EMMANUEL-KWASI-DEBRAH,-Blogger,-freelance-journalist,-reporter1.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:22:44,955 - ERROR - Error processing image https://knustdayofgiving.knust.edu.gh/asset/gabe/images/ambassadors/EBENEZER-DONKOH,-Radio,-TV-Host.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:22:45,979 - ERROR - Error processing image https://knustdayofgiving.knust.edu.gh/asset/gabe/images/ambassadors/ERNEST-NII-OKAI-OKAI,-Singer,-Song-Writer.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:22:47,029 - ERROR - Error processing image https://knustdayofgiving.knust.edu.gh/asset/gabe/images/ambassadors/NIKOLETTA-SAMONAS,-Actress,-Freelance,-Model1.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:22:48,100 - ERROR - Error processing image https://knustdayofgiving.knust.edu.gh/asset/gabe/images/ambassadors/LOUIS-LAMIS,-CEO,-Artistic-Director-Filmmaker-and-Actor1.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:22:49,271 - ERROR - Error processing image https://knustdayofgiving.knust.edu.gh/asset/gabe/images/doglogo.png: 'str' object has no attribute 'get'
+2025-04-13 00:22:50,311 - ERROR - Error processing image https://knustdayofgiving.knust.edu.gh/asset/gabe/images/doglogo.png: 'str' object has no attribute 'get'
+2025-04-13 00:22:51,394 - ERROR - Error processing image https://knustdayofgiving.knust.edu.gh/asset/gabe/images/doglogo.png: 'str' object has no attribute 'get'
+2025-04-13 00:22:51,394 - INFO - Successfully scraped https://knustdayofgiving.knust.edu.gh (Fields extracted: 13, Raw content length: 17518, OCR items: 0)
+2025-04-13 00:22:54,831 - INFO - Pre-extracted content:- university: Welcome - KNUST Day of Giving
+- location: 
+- website: https://knustdayofgiving.knust.edu.gh
+- edurank: 
+- department: name: School of Business Graduate Block, url: https://knustdayofgiving.knust.edu.gh/asset/gabe/images/projects/ksb.webp, teams: {'urls': [], 'members': []}
+- publications: 
+- related: 
+- point_of_contact: name: Full NameAffiliationAmountBenjamin SampahAlumnusGHS 2.00Benjamin SampahAlumnusGHS 2.00Benjamin SampahAlumnusGHS 2.00Daniel AsieduAlumnusGHS 10.00Ronald AdamteyAlumnusGHS 500.00Methodist Church Ghana - Kumasi (Methodist Church Ghana - Kumasi)GroupGHS 10, first_name: NameAffiliationAmountBenjamin, last_name: 10, phone_number: +233 20 110 5555
+- scopes: 
+- research_abstract: The objective is to rally as many people as possible to create the single biggest donation in
+            KNUST’s history and, in turn, create an unprecedented wave of support that will culminate in raising GHS
+            200m towards the construction of a 2000-bed capacity Hall of Residence facility for student accommodation on campus.
+- lab_equipment: overview: Offices and Lecture Facility
+- ocr_content: 
+
+2025-04-13 00:22:54,921 - INFO - Raw content:
+#### Total Funds Donated (GHS)
+
+##### Cedi Donations (GHS)
+
+##### Dollar Donations (USD)
+
+### Donation Form
+
+#### Step 1
+
+### Back to Step 1
+
+#### Step 2
+
+#### Set up Recurring Payment
+[Context: Total Funds Donated (GHS) > Cedi Donations (GHS) > Back to Step 1 > Set up Recurring Payment]
+Would you like to subscribe to a recurring payment?
+[Context: Total Funds Donated (GHS) > Cedi Donations (GHS) > Back to Step 1 > Set up Recurring Payment]
+Leave empty to perform the transaction indefinitely.
+
+# Welcome To KNUST Day of Giving Official Launch of the KNUST Day of Giving by His Royal Majesty Otumfuo Osei Tutu II, The Chancellor of KNUST.
+
+# Our Target is to raise GHS 200 million to build a 2000-bed capacity Hall of Residence for students.
+[Context: Our Target is to raise GHS 200 million to build a 2000-bed capacity Hall of Residence for students.]
+The objective is to rally as many people as possible to create the single biggest donation in KNUST’s history and, in turn, create an unprecedented wave of support that will culminate in raising GHS 200m towards the construction of a 2000-bed capacity Hall of Residence facility for student accommodation on campus.
+
+### 2000-Bed Space Accommodation
+• [Context: Our Target is to raise GHS 200 million to build a 2000-bed capacity Hall of Residence for students. > 2000-Bed Space Accommodation]
+• [Context: Our Target is to raise GHS 200 million to build a 2000-bed capacity Hall of Residence for students. > 2000-Bed Space Accommodation]
+[Context: Our Target is to raise GHS 200 million to build a 2000-bed capacity Hall of Residence for students. > 2000-Bed Space Accommodation]
+• How to Donate
+• [Context: Our Target is to raise GHS 200 million to build a 2000-bed capacity Hall of Residence for students. > 2000-Bed Space Accommodation]
+
+# Know about KNUST Day of Giving Welcome message from the Vice-Chancellor
+[Context: Know about KNUST Day of Giving Welcome message from the Vice-Chancellor]
+On behalf of the Chancellor, His Majesty Otu
+2025-04-13 00:23:04,250 - ERROR - Error checking https://mcf.knust.edu.gh: HTTPSConnectionPool(host='mcf.knust.edu.gh', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)')))
+2025-04-13 00:23:04,253 - INFO - Scraping dynamic website: https://mcf.knust.edu.gh
+2025-04-13 00:23:27,250 - ERROR - Error processing image https://mcf.knust.edu.gh/wp-content/plugins/cookie-law-info/lite/frontend/images/close.svg: HTTPSConnectionPool(host='mcf.knust.edu.gh', port=443): Max retries exceeded with url: /wp-content/plugins/cookie-law-info/lite/frontend/images/close.svg (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)')))
+2025-04-13 00:23:27,659 - ERROR - Error processing image https://mcf.knust.edu.gh/wp-content/plugins/cookie-law-info/lite/frontend/images/close.svg: HTTPSConnectionPool(host='mcf.knust.edu.gh', port=443): Max retries exceeded with url: /wp-content/plugins/cookie-law-info/lite/frontend/images/close.svg (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)')))
+2025-04-13 00:23:27,997 - ERROR - Error processing image https://mcf.knust.edu.gh/wp-content/uploads/2023/01/MCFSP.png: HTTPSConnectionPool(host='mcf.knust.edu.gh', port=443): Max retries exceeded with url: /wp-content/uploads/2023/01/MCFSP.png (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)')))
+2025-04-13 00:23:28,329 - ERROR - Error processing image https://mcf.knust.edu.gh/wp-content/uploads/2023/02/Partnership-03-1.png: HTTPSConnectionPool(host='mcf.knust.edu.gh', port=443): Max retries exceeded with url: /wp-content/uploads/2023/02/Partnership-03-1.png (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)')))
+2025-04-13 00:23:29,590 - ERROR - Error processing image https://elementor.zozothemes.com/corpkit/wp-content/uploads/sites/45/2021/08/5-1.jpg: 'str' object has no attribute 'get'
+2025-04-13 00:23:29,915 - ERROR - Error processing image https://mcf.knust.edu.gh/wp-content/uploads/2024/06/youthumb_yJN6SJfQRm8_standard.jpg: HTTPSConnectionPool(host='mcf.knust.edu.gh', port=443): Max retries exceeded with url: /wp-content/uploads/2024/06/youthumb_yJN6SJfQRm8_standard.jpg (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)')))
+2025-04-13 00:23:30,253 - ERROR - Error processing image https://mcf.knust.edu.gh/wp-content/uploads/2024/06/youthumb_2_IfYtfuQ1A_standard.jpg: HTTPSConnectionPool(host='mcf.knust.edu.gh', port=443): Max retries exceeded with url: /wp-content/uploads/2024/06/youthumb_2_IfYtfuQ1A_standard.jpg (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)')))
+2025-04-13 00:23:30,623 - ERROR - Error processing image https://mcf.knust.edu.gh/wp-content/uploads/2024/06/youthumb_tl667K99HT0_standard.jpg: HTTPSConnectionPool(host='mcf.knust.edu.gh', port=443): Max retries exceeded with url: /wp-content/uploads/2024/06/youthumb_tl667K99HT0_standard.jpg (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)')))
+2025-04-13 00:23:31,011 - ERROR - Error processing image https://mcf.knust.edu.gh/wp-content/uploads/2021/08/GIve_back.jpg: HTTPSConnectionPool(host='mcf.knust.edu.gh', port=443): Max retries exceeded with url: /wp-content/uploads/2021/08/GIve_back.jpg (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)')))
+2025-04-13 00:23:31,363 - ERROR - Error processing image https://mcf.knust.edu.gh/wp-content/uploads/2021/08/Education-and-learning.jpg: HTTPSConnectionPool(host='mcf.knust.edu.gh', port=443): Max retries exceeded with url: /wp-content/uploads/2021/08/Education-and-learning.jpg (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)')))
+2025-04-13 00:23:31,714 - ERROR - Error processing image https://mcf.knust.edu.gh/wp-content/uploads/2021/08/Youth-livelihoods.jpg: HTTPSConnectionPool(host='mcf.knust.edu.gh', port=443): Max retries exceeded with url: /wp-content/uploads/2021/08/Youth-livelihoods.jpg (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)')))
+2025-04-13 00:23:31,717 - INFO - Successfully scraped https://mcf.knust.edu.gh (Fields extracted: 13, Raw content length: 726, OCR items: 0)
+2025-04-13 00:23:35,257 - INFO - Pre-extracted content:- university: Mastercard Foundation Scholars Program, KNUST
+- location: country: 064781.(+55) 654 - 545 - 1235info@corpkit.com, city: United States America
+- website: https://mcf.knust.edu.gh
+- edurank: 
+- department: teams: {'urls': [], 'members': []}
+- publications: other_url: https://mcf.knust.edu.gh/service/market-research/
+- related: 
+- point_of_contact: email: sec.mcf@knust.edu.ghmcfknust, phone_number: +233 322 398 766
+- scopes: 
+- research_abstract: We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.
+- lab_equipment: 
+- ocr_content: 
+
+2025-04-13 00:23:35,267 - INFO - Raw content:Mastercard Foundation Scholars Program at KNUST
+
+### Summer Camp Skills Training 2023 – Leather Works Class
+
+# well-known https://www.isend.to/ online store.high quality givenchy.to has the mind with research.the unique cost appreciate is among features about best swiss reliable replica watch sites .swiss made https://fr.upscalerolex.to .cheap rolex https://losangeleslakers.ru will be altogether hand-crafted.please do not flow or escape might be the intent relating to rolex cashmere .convenient to use can be a huge feature of https://www.puffplusvape.com for sale in usa.supply cheap vape on sale . cheap miu miu wholesale reddit model hunt for short.
+
+### Summer Camp Skills Training 2023 – Satellite Installation Class
+2025-04-13 00:23:56,523 - INFO - Scraping static website: https://reg.knust.edu.gh/registrar/registrars-profile
+2025-04-13 00:23:59,672 - ERROR - OCR.space error for https://reg.knust.edu.gh/sites/reg.knust.edu.gh/files/inline-images/Mr.%20Andrews%20K%20Boateng.JPG: E214:File failed validation. File size exceeds the maximum size limit. Maximum size limit 1024 KB
+2025-04-13 00:24:02,313 - INFO - OCR said no text found in https://reg.knust.edu.gh/sites/reg.knust.edu.gh/files/inline-images/reg_footer_logo.png
+2025-04-13 00:24:02,315 - INFO - Successfully scraped https://reg.knust.edu.gh/registrar/registrars-profile (Fields extracted: 13, Raw content length: 2255, OCR items: 0)
+2025-04-13 00:24:02,323 - INFO - Pre-extracted content:- university: The Registrar's Profile
+- location: 
+- website: https://reg.knust.edu.gh/registrar/registrars-profile
+- edurank: 
+- department: teams: {'urls': [], 'members': []}
+- publications: other_url: /university-relations-office/publications
+- related: 
+- point_of_contact: email: registrar@knust.edu.gh, phone_number: +233-3224-99897
+- scopes: 
+- research_abstract: Mr. Andrews Kwasi Boateng attended Opoku Ware School, Kumasi from 1978 to 1985 and proceeded to the University of Cape Coast, where he obtained a Diploma in Education, Bachelor of Arts (Economics) and a Master of Philosophy in Development Studies by the University of Cape Coast. He also holds a Commonwealth Executive Masters in Business Administration from the Kwame Nkrumah University of Science and Technology (KNUST), Kumasi.
+- lab_equipment: 
+- ocr_content: 
+
+2025-04-13 00:24:02,346 - INFO - Raw content:
+#### The Registrar's Office
+
+# The Registrar's Profile
+[Context: The Registrar's Profile]
+Mr. Andrews K. Boateng, Registrar
+[Context: The Registrar's Profile]
+Mr. Andrews Kwasi Boateng attended Opoku Ware School, Kumasi from 1978 to 1985 and proceeded to the University of Cape Coast, where he obtained a Diploma in Education, Bachelor of Arts (Economics) and a Master of Philosophy in Development Studies by the University of Cape Coast. He also holds a Commonwealth Executive Masters in Business Administration from the Kwame Nkrumah University of Science and Technology (KNUST), Kumasi.
+[Context: The Registrar's Profile]
+Mr. A.K. Boateng joined the service of KNUST in October 1999 as an Assistant Registrar and has risen through the ranks becoming a Deputy Registrar (General Administration and Human Resource Development); Foundation Registrar, College of Science; Head of KNUST Accra Office, Coordinator KNUST IDL centre in Accra before he eventually ascended the high office as the 10th Registrar of the Kwame Nkrumah University of Science and Technology (KNUST), Kumasi. He is the Foundation Registrar of the University of Energy and Natural Resources (UENR).
+[Context: The Registrar's Profile]
+In 2010, he was appointed by the President of the Republic of Ghana to serve as Secretary to the Presidential Committee on Emoluments for Article 71 Office Holders. Mr. Boateng has also served either as Secretary or Chairman to high-profile executive search committees for the appointment of Vice-Chancellors and Registrars in the tertiary education landscape. He is also an external assessor to the Registrar’s Offices of a number of universities and technical universities. He is a strong team player, a versatile university administrator whose extensive experience and affable leadership style have helped in promoting the mandate of the University and projecting KNUST to be among the comity of ivy league universities in Africa.
+[Context: The Registrar's Profile]
+As Registrar of the Univer
+2025-04-13 00:24:09,954 - INFO - Scraping static website: https://www.knust.edu.gh
+2025-04-13 00:24:15,779 - INFO - OCR said no text found in https://www.knust.edu.gh/sites/default/files/2025-03/Professorial%20Inaugural%20Lecture%20by%20Professor%20N.%20O.%20Boadi_1.jpg
+2025-04-13 00:24:19,106 - INFO - OCR said no text found in https://www.knust.edu.gh/sites/default/files/2025-03/Nurses%20Admission%2001.jpg
+2025-04-13 00:24:22,529 - INFO - OCR said no text found in https://www.knust.edu.gh/sites/default/files/2025-02/NURSES%20PROGRAMME%20AD_0.jpg
+2025-04-13 00:24:24,226 - ERROR - OCR.space error for https://www.knust.edu.gh/sites/default/files/2025-04/image-1000x607%20-%202025-04-11T133019.628.jpg: E214:File failed validation. File size exceeds the maximum size limit. Maximum size limit 1024 KB
+2025-04-13 00:24:27,502 - INFO - OCR said no text found in https://www.knust.edu.gh/sites/default/files/2025-04/image-1000x607%20-%202025-03-14T170611.240.jpg
+2025-04-13 00:24:30,502 - INFO - OCR said no text found in https://www.knust.edu.gh/sites/default/files/2025-04/WhatsApp%20Image%202025-04-11%20at%201.48.16%20PM.jpeg
+2025-04-13 00:24:33,195 - INFO - OCR said no text found in https://www.knust.edu.gh/sites/default/files/2025-04/Professor-Ellis-Owusu-Dabo-Knust-Pro-Vice-Chancellor.jpg
+2025-04-13 00:24:34,890 - ERROR - OCR.space error for https://www.knust.edu.gh/sites/default/files/2025-04/image-1000x1000%20%289%29.jpg: E214:File failed validation. File size exceeds the maximum size limit. Maximum size limit 1024 KB
+2025-04-13 00:24:38,208 - INFO - OCR said no text found in https://www.knust.edu.gh/sites/default/files/2025-04/image-1000x607%20-%202025-04-08T160334.468.jpg
+2025-04-13 00:24:38,910 - INFO - Skipping small or non-image file: https://www.knust.edu.gh/sites/default/files/styles/medium/public/2018-01/Dr-Cynthia-Danquah-Pharmacology.jpg?itok=rlsfIfUC
+2025-04-13 00:24:42,218 - INFO - OCR extracted text from https://www.knust.edu.gh/sites/default/files/2024-12/KNUST%20Receives%20QAA%20International%20Institutional%20Accreditation.jpg: KWAME NKRUMAH UNIVERSITY
+11 il
+OF
+IENCE AND TEC...
+2025-04-13 00:24:42,228 - INFO - Successfully scraped https://www.knust.edu.gh (Fields extracted: 13, Raw content length: 4253, OCR items: 1)
+2025-04-13 00:24:44,034 - INFO - Scraping static website: https://www.knust.edu.gh/academics/academic-calendar/20172018-academic-calendar
+2025-04-13 00:24:45,721 - INFO - Successfully scraped https://www.knust.edu.gh/academics/academic-calendar/20172018-academic-calendar (Fields extracted: 13, Raw content length: 7618, OCR items: 0)
+2025-04-13 00:24:45,821 - INFO - Pre-extracted content:- university: 2017 / 2018 Academic Calendar
+- location: 
+- website: https://www.knust.edu.gh/academics/academic-calendar/20172018-academic-calendar
+- edurank: 
+- department: teams: {'urls': [], 'members': []}
+- publications: other_url: https://ogr.knust.edu.gh/research/doing-research
+- related: 
+- point_of_contact: email: uro@knust.edu.gh, phone_number: +233 5000 99299
+- scopes: 
+- research_abstract: Donate now and be a part of KNUST's next giant leap towards providing an ultra modern 2,000 bed capacity Hall of Residence for students.
+- lab_equipment: 
+- ocr_content: 
+
+2025-04-13 00:24:45,830 - INFO - Raw content:2017/2018 ACADEMIC CALENDAR (FIRST SEMESTER)
+Arrival of Continuing Students
+Friday, August 25, 2017
+Biometric Registration of Continuing Students
+Friday, August 25, 2017 - Tuesday, August 29, 2017
+Wednesday, August 30, 2017
+Arrival of Freshmen
+Friday, September 08, 2017
+Registration of Freshmen
+Friday, September 08, 2017 - Wednesday, October 04, 2017
+Medical Examinations for Freshmen
+Monday, September 11, 2017 (Runs throughout the semester)
+Orientation for Freshmen
+Saturday, September 09, 2017 (to be held every Saturday throughout the Semester)
+Lectures Begin for Freshmen
+Monday, September 11, 2017
+Tuesday October 03, 2017 - Thursday, October 05, 2017
+Special Academic Board Meeting to consider Supplementary Examination Results (Final Year) Wednesday, October, 11, 2017
+MATRICULATION AT COLLEGE LEVEL Thursday, October 05, 2017 – Saturday, October 07, 2017
+
+### MATRICULATION AT COLLEGE LEVEL
+[Context: MATRICULATION AT COLLEGE LEVEL]
+Thursday, October 05, 2017 – Saturday, October 07, 2017
+[Context: MATRICULATION AT COLLEGE LEVEL]
+[Context: MATRICULATION AT COLLEGE LEVEL]
+Monday, October 30, 2017 - Friday, November 03, 2017
+[Context: MATRICULATION AT COLLEGE LEVEL]
+Mid-Semester Break/Assessment of Lecturers and Courses by students
+[Context: MATRICULATION AT COLLEGE LEVEL]
+Monday, November 06, 2017 - Friday, November 10, 2017
+[Context: MATRICULATION AT COLLEGE LEVEL]
+R. P. Baffour Memorial Lectures Monday, November 20, 2017 Wednesday, November 22, 2017 Friday, November 24, 2017
+
+### R. P. Baffour Memorial Lectures
+[Context: MATRICULATION AT COLLEGE LEVEL > R. P. Baffour Memorial Lectures]
+Monday, November 20, 2017 Wednesday, November 22, 2017 Friday, November 24, 2017
+[Context: MATRICULATION AT COLLEGE LEVEL > R. P. Baffour Memorial Lectures]
+[Context: MATRICULATION AT COLLEGE LEVEL > R. P. Baffour Memorial Lectures]
+Friday, November 24, 2017
+[Context: MATRICULATION AT COLLEGE LEVEL > R. P. Baffour Memorial Lectures]
+First Semester Examinations
+[Context: MATRICULATION AT 
+2025-04-13 00:24:57,513 - INFO - Scraping static website: https://www.knust.edu.gh/academics/academics-fees/fees-schedule-20222023-academic-year
+2025-04-13 00:25:02,461 - ERROR - OCR.space error for https://www.knust.edu.gh/sites/default/files/2023-03/REGULAR%20FRESHERS.pdf: The maximum page limit of 3 was reached and only pages upto the limit were parsed successfully
+2025-04-13 00:25:05,756 - INFO - OCR extracted text from https://www.knust.edu.gh/sites/default/files/2023-01/PARALLEL%20FRESHERS.pdf: KWAME NKRUMAH UNIVERSITY OF SCIENCE AND TECHNOLOGY...
+2025-04-13 00:25:09,373 - ERROR - OCR.space error for https://www.knust.edu.gh/sites/default/files/2023-03/REGULAR%20.%20CONTINUING%20YR%202-6.pdf: The maximum page limit of 3 was reached and only pages upto the limit were parsed successfully
+2025-04-13 00:25:12,702 - INFO - OCR extracted text from https://www.knust.edu.gh/sites/default/files/2023-01/PARALLEL%20CONTINUING.pdf: KWAME NKRUMAH UNIVERSITY OF SCIENCE AND TECHNOLOGY...
+2025-04-13 00:25:17,010 - INFO - OCR extracted text from https://www.knust.edu.gh/sites/default/files/2023-03/FEE%20PAYING%20FRESHERS.pdf: KAVALME NKRUMAH UNIVERSITY OF SCIENCE AND
+TECHNOL...
+2025-04-13 00:25:20,933 - INFO - OCR extracted text from https://www.knust.edu.gh/sites/default/files/2023-01/INTL.%20FRESHERS_0.pdf: KWAME NKRUMAH UNIVERSITY OF SCIENCE AND TECHNOLOGY...
+2025-04-13 00:25:24,903 - INFO - OCR extracted text from https://www.knust.edu.gh/sites/default/files/2023-03/FEE%20PAYING%20YRS%202-6.pdf: KWAME NKRUMAH UNIVERSITY OF SCIENCE AND
+TECHNOLOG...
+2025-04-13 00:25:28,503 - INFO - OCR extracted text from https://www.knust.edu.gh/sites/default/files/2023-01/INTL%20CONTINUING_0.pdf: KWAME NKRUMAH UNIVERSITY OF SCIENCE AND TECHNOLOGY...
+2025-04-13 00:25:32,407 - ERROR - OCR.space error for https://www.knust.edu.gh/sites/default/files/2023-01/POSTGRADUAT%20FRESHERS.pdf: The maximum page limit of 3 was reached and only pages upto the limit were parsed successfully
+2025-04-13 00:25:36,314 - INFO - OCR extracted text from https://www.knust.edu.gh/sites/default/files/2023-01/INTL%20POST%20GRADUATE%20FRESHERS_0.pdf: KWAME NKRUMAH UNIVERSITY OF SCIENCE AND TECHNOLOGY...
+2025-04-13 00:25:40,190 - ERROR - OCR.space error for https://www.knust.edu.gh/sites/default/files/2023-01/POSTGRADUATE%20CONTINUING.pdf: The maximum page limit of 3 was reached and only pages upto the limit were parsed successfully
+2025-04-13 00:25:44,427 - INFO - OCR extracted text from https://www.knust.edu.gh/sites/default/files/2023-01/INTL%20POSTGRADUATE%20CONTINUING_0.pdf: KWAME NKRUMAH UNIVERSITY OF SCIENCE AND TECkNOLOGY...
+2025-04-13 00:25:44,429 - INFO - Successfully scraped https://www.knust.edu.gh/academics/academics-fees/fees-schedule-20222023-academic-year (Fields extracted: 13, Raw content length: 287, OCR items: 8)
+2025-04-13 00:25:46,074 - INFO - Scraping static website: https://www.knust.edu.gh/academics/affiliate-institutions
+2025-04-13 00:25:51,101 - INFO - OCR extracted text from https://www.knust.edu.gh/sites/default/files/2023-05/MINISTRY%20OF%20HEALTH%20TRAINING%20INSTITUTIONS%20AFFILIATED%20TO%20KNUST%20.pdf: MINISTRY OF HEALTH (MoH)/CHRlSTlAN HEALTH ASSOCIAT...
+2025-04-13 00:25:54,749 - ERROR - OCR.space error for https://www.knust.edu.gh/sites/default/files/2021-03/LIST%20OF%20LOCAL%20AND%20INTERNATIONAL%20COLLABORATIONS.pdf: The maximum page limit of 3 was reached and only pages upto the limit were parsed successfully
+2025-04-13 00:25:54,753 - INFO - Successfully scraped https://www.knust.edu.gh/academics/affiliate-institutions (Fields extracted: 13, Raw content length: 2158, OCR items: 1)
+2025-04-13 00:25:57,003 - INFO - Scraping static website: https://www.knust.edu.gh/academics/departments-programmes/departments
+2025-04-13 00:25:59,235 - INFO - Successfully scraped https://www.knust.edu.gh/academics/departments-programmes/departments (Fields extracted: 13, Raw content length: 20644, OCR items: 0)
+2025-04-13 00:25:59,267 - INFO - Pre-extracted content:- university: All Academic Departments
+- location: 
+- website: https://www.knust.edu.gh/academics/departments-programmes/departments
+- edurank: 
+- department: name: All Academic Departments, teams: {'urls': [], 'members': []}, focus: Research Centres Faculty of Art Faculty of Built Environment Faculty of Educational Studies (FES) Re
+- publications: other_url: http://canr.knust.edu.gh/researcharea/centres/ars
+- related: 
+- point_of_contact: email: uro@knust.edu.gh, phone_number: +233 5000 99299
+- scopes: 
+- research_abstract: Donate now and be a part of KNUST's next giant leap towards providing an ultra modern 2,000 bed capacity Hall of Residence for students.
+- lab_equipment: 
+- ocr_content: 
+
+2025-04-13 00:25:59,273 - INFO - Raw content:
+### College of Agriculture and Natural Resources
+[Context: College of Agriculture and Natural Resources]
+Faculty of Agriculture
+[Context: College of Agriculture and Natural Resources]
+• Department of Agricultural Economics, Agribusiness and Extension
+[Context: College of Agriculture and Natural Resources]
+• Department of Animal Science
+[Context: College of Agriculture and Natural Resources]
+• Department of Horticulture
+[Context: College of Agriculture and Natural Resources]
+• Department of Crop and Soil Science
+[Context: College of Agriculture and Natural Resources]
+Faculty of Renewable Natural Resources
+[Context: College of Agriculture and Natural Resources]
+• Department of Agroforestry
+[Context: College of Agriculture and Natural Resources]
+• Department of Fisheries and Watershed Management
+[Context: College of Agriculture and Natural Resources]
+• Department of Silviculture and Forest Management
+[Context: College of Agriculture and Natural Resources]
+• Department of Wildlife and Range Management
+[Context: College of Agriculture and Natural Resources]
+• Department of Wood Science and Technology
+[Context: College of Agriculture and Natural Resources]
+• Department of Forest Resources Technology
+[Context: College of Agriculture and Natural Resources]
+[Context: College of Agriculture and Natural Resources]
+• Bureau of Integrated Rural Development (BIRD)
+[Context: College of Agriculture and Natural Resources]
+• KNUST Dairy/Beef Cattle Research Station, Boadi
+[Context: College of Agriculture and Natural Resources]
+• KNUST Agriculture Research Station, Anwomaso
+
+### College of Art and Built Environment
+[Context: College of Agriculture and Natural Resources > College of Art and Built Environment]
+Faculty of Art
+[Context: College of Agriculture and Natural Resources > College of Art and Built Environment]
+• Department of Communication Design
+[Context: College of Agriculture and Natural Resources > College of Art and Built Environment]
+• Department of Educational Innovation
+2025-04-13 00:26:07,209 - INFO - Scraping static website: https://www.knust.edu.gh/academics/sfso/background-of-the-office
+2025-04-13 00:26:08,792 - INFO - Successfully scraped https://www.knust.edu.gh/academics/sfso/background-of-the-office (Fields extracted: 13, Raw content length: 2973, OCR items: 0)
+2025-04-13 00:26:08,802 - INFO - Pre-extracted content:- university: Background of the Office
+- location: 
+- website: https://www.knust.edu.gh/academics/sfso/background-of-the-office
+- edurank: 
+- department: teams: {'urls': [], 'members': []}, focus: study.To further the course of this policy, the University instituted the Students' Financial Servic
+- publications: other_url: https://ogr.knust.edu.gh/research/doing-research
+- related: 
+- point_of_contact: email: uro@knust.edu.gh, phone_number: +233 5000 99299
+- scopes: 
+- research_abstract: As part of its policy towards greater access to Higher Education, the University initiated the Less Endowed Schools Admission Programme in 2003. This was to offer concessionary admissions to students from those Schools who would otherwise not have had the benefit of University education due to the competitive Admission process and limited vacancies.The problem is further compounded by the new educational reform introduced by the government at the tertiary level, with emphasis on
+- lab_equipment: 
+- ocr_content: 
+
+2025-04-13 00:26:08,816 - INFO - Raw content:As part of its policy towards greater access to Higher Education, the University initiated the Less Endowed Schools Admission Programme in 2003. This was to offer concessionary admissions to students from those Schools who would otherwise not have had the benefit of University education due to the competitive Admission process and limited vacancies. The problem is further compounded by the new educational reform introduced by the government at the tertiary level, with emphasis on
+• Cost sharing,
+• The payment of Academic Facility User Fees (AFUF),
+• The decoupling of accommodation from admission and
+• The rationing of residential facilities leading to the payment of Residential Facility User Fees(RFUF) and In-Out-Out-Out residential policy have resulted in the gradual increase in cost of University education.
+Coupled with the aforementioned, the inflationary and macroeconomic trends have raised the cost of upkeep (food, books and handouts) of students on campus such that the less affluent and needy but brilliant students struggle hard to secure funds to enable them complete their programmes of study. To further the course of this policy, the University instituted the Students' Financial Services Office (SFSO) to, among others, explore, solicit and offer financial assistance to students from Less Endowed Schools, as well as, Needy but brilliant Students studying in the University.
+The SFSO is expected, among others, to:
+• provide financial assistance by the way of bursaries and scholarships to Less Endowed Schools Students as well as needy but brilliant students studying at the University who, without such assistance, may be unable to meet educational and other expenditure at the University; and,
+• Create work-study opportunities for students.
+• To ensure that financial assistance is provided in an effective, timely, fair and equitable manner to all qualified applicants.
+• To promote the establishment of financial assistance (Scholarships, Bursaries, Awards and Work 
+2025-04-13 00:26:17,585 - INFO - Scraping static website: https://www.knust.edu.gh/academics/sfso/mission-statement-vision-and-core-value
+2025-04-13 00:26:23,029 - INFO - Successfully scraped https://www.knust.edu.gh/academics/sfso/mission-statement-vision-and-core-value (Fields extracted: 13, Raw content length: 1011, OCR items: 0)
+2025-04-13 00:26:23,219 - INFO - Pre-extracted content:- university: Mission Statement, Vision and Core Value
+- location: 
+- website: https://www.knust.edu.gh/academics/sfso/mission-statement-vision-and-core-value
+- edurank: 
+- department: teams: {'urls': [], 'members': []}, focus: research and entrepreneurship training in science and technology for the industrial and socio-econom
+- publications: other_url: https://ogr.knust.edu.gh/research/doing-research
+- related: 
+- point_of_contact: email: uro@knust.edu.gh, phone_number: +233 5000 99299
+- scopes: 
+- research_abstract: The Mission Statement of the Students' Financial Services Office (SFSO) is carved from KNUST's Main Mission Statement as follows:Mission
+- lab_equipment: 
+- ocr_content: 
+
+2025-04-13 00:26:23,267 - INFO - Raw content:The Mission Statement of the Students' Financial Services Office (SFSO) is carved from KNUST's Main Mission Statement as follows: Mission
+The Office of the KNUST Student' Financial Services is committed to provide financial support to underprivileged students to achieve their aims in a sound academic environment for teaching, research and entrepreneurship training in science and technology for the industrial and socio-economic development of Ghana, Africa and the world at large. Vision
+The vision of Students' Financial Services Office is to advance knowledge in Science and Technology for sustainable development in Africa by assisting brilliant but needy students who would have dropped out in the course of their University education. Core Values
+The KNUST Students' Financial Services seeks excellence in all its endeavors and strive to do things better and create equal opportunities for all needy but brilliant students for sound intellectual development.
+
+## Mission Statement, Vision and Core Value
+2025-04-13 00:26:30,417 - INFO - Scraping static website: https://www.knust.edu.gh/academics/sfso/scholarships
+2025-04-13 00:26:31,937 - INFO - Successfully scraped https://www.knust.edu.gh/academics/sfso/scholarships (Fields extracted: 13, Raw content length: 2034, OCR items: 0)
+2025-04-13 00:26:31,950 - INFO - Pre-extracted content:- university: Various Scholarships of the Office
+- location: 
+- website: https://www.knust.edu.gh/academics/sfso/scholarships
+- edurank: 
+- department: teams: {'urls': [], 'members': []}, focus: study or for a number of academic years. Depending on the Donor, the scholarship may also cover othe
+- publications: other_url: https://ogr.knust.edu.gh/research/doing-research
+- related: 
+- point_of_contact: email: uro@knust.edu.gh, phone_number: +233 5000 99299
+- scopes: 
+- research_abstract: These usually cover full payment of Academic Facility User Fees (AFUF) for the duration of the beneficiary's programme of study or for a number of academic years. Depending on the Donor, the scholarship may also cover other expenses such as accommodation, books and stipend.
+- lab_equipment: 
+- ocr_content: 
+
+2025-04-13 00:26:31,983 - INFO - Raw content:
+### SCHOLARSHIPS
+[Context: SCHOLARSHIPS]
+These usually cover full payment of Academic Facility User Fees (AFUF) for the duration of the beneficiary's programme of study or for a number of academic years. Depending on the Donor, the scholarship may also cover other expenses such as accommodation, books and stipend.
+
+#### External Scholarships
+[Context: SCHOLARSHIPS > External Scholarships]
+[Context: SCHOLARSHIPS > External Scholarships]
+• Educational Pathways International (EPI) • Timothy Ansah Memorial Foundation (TAMF) • Fondazione Edu Scholarships • Wood Group Scholarships
+[Context: SCHOLARSHIPS > External Scholarships]
+[Context: SCHOLARSHIPS > External Scholarships]
+• Vodafone Ghana • TEST For Ghana • MASTEES-GHANA Gov't • Baker Hughes Foundation • Total Petroleum Ghana Limited (TPGL) • Lebanon Embassy Community Scholarship
+[Context: SCHOLARSHIPS > External Scholarships]
+[Context: SCHOLARSHIPS > External Scholarships]
+These may cover full or part payment of the Academic Facility User Fees-AFUF of beneficiaries in a particular year. External Bursaries
+[Context: SCHOLARSHIPS > External Scholarships]
+• Unibank Ghana Ltd. Bursary • S. T. Nankani Bursary • Kingdom Books and Stationery Bursary Scheme • Toyota Ghana Bursary
+[Context: SCHOLARSHIPS > External Scholarships]
+[Context: SCHOLARSHIPS > External Scholarships]
+These are Financial Supports or Bursaries given to needy students of the University mainly to help support their educational expenses. These supports are provided through the University’s initiatives and also by the Student Welfare Associations at the various Colleges. These are
+[Context: SCHOLARSHIPS > External Scholarships]
+• KNUST Bursary • Ketewa Biara Nsua (KBN) - SRC • College Students’ Welfare Associations - GESA, SOCIOSO, SCISA, SIMPUA, IAAS & CHS-Funds • Boa Wo Nua - GRASAG
+[Context: SCHOLARSHIPS > External Scholarships]
+Work /Study Programmes
+[Context: SCHOLARSHIPS > External Scholarships]
+• Undergraduate Work Study • Graduate Assistantship
+
+## 
+2025-04-13 00:26:39,521 - INFO - Scraping static website: https://www.knust.edu.gh/index.php/about/administration
+2025-04-13 00:26:47,099 - INFO - OCR said no text found in https://www.knust.edu.gh/sites/default/files/inline-images/aboutknustimg_1.jpg
+2025-04-13 00:26:47,109 - INFO - Successfully scraped https://www.knust.edu.gh/index.php/about/administration (Fields extracted: 13, Raw content length: 557, OCR items: 0)
+2025-04-13 00:26:47,131 - INFO - Pre-extracted content:- university: Administration of the University
+- location: 
+- website: https://www.knust.edu.gh/index.php/about/administration
+- edurank: 
+- department: teams: {'urls': [], 'members': []}
+- publications: other_url: https://ogr.knust.edu.gh/research/doing-research
+- related: 
+- point_of_contact: email: uro@knust.edu.gh, phone_number: +233 5000 99299
+- scopes: 
+- research_abstract: KNUST has enshrined in its University statutes the following officers as thePrincipal Officersof the University. They areThe Chancellor, The Chairman ofCouncilandThe Vice-Chancellor. The Other Officers are thePro Vice-ChancellorandThe Registrar.
+- lab_equipment: 
+- ocr_content: 
+
+2025-04-13 00:26:47,142 - INFO - Raw content:KNUST has enshrined in its University statutes the following officers as the Principal Officers of the University. They are The Chancellor , The Chairman of Council and The Vice-Chancellor . The Other Officers are the Pro Vice-Chancellor and The Registrar .
+The Other Professional Officers are The Finance Officer, The University Librarian, The Director of Works, The Internal Auditor, The Director of Health Services, The Director of Information Technology Services, The Director of Procurement and The Estates Officer.
+
+## Administration of the University
+2025-04-13 00:26:54,914 - INFO - Scraping static website: https://www.knust.edu.gh/index.php/about/knust/campus
+2025-04-13 00:26:59,772 - INFO - OCR said no text found in https://www.knust.edu.gh/sites/default/files/inline-images/KNUST-PICTURE-collage_0.jpg
+2025-04-13 00:26:59,772 - INFO - Successfully scraped https://www.knust.edu.gh/index.php/about/knust/campus (Fields extracted: 13, Raw content length: 871, OCR items: 0)
+2025-04-13 00:26:59,782 - INFO - Pre-extracted content:- university: The Campus
+- location: 
+- website: https://www.knust.edu.gh/index.php/about/knust/campus
+- edurank: 
+- department: teams: {'urls': [], 'members': []}
+- publications: other_url: https://ogr.knust.edu.gh/research/doing-research
+- related: 
+- point_of_contact: email: uro@knust.edu.gh, phone_number: +233 5000 99299
+- scopes: 
+- research_abstract: The Kwame Nkrumah University of Science and Technology is a world-class academic centre of excellence, spearheading West Africa’s pursuit of technological advancement. Our campus is located at a very ideal   place inside the city of Kumasi.
+- lab_equipment: 
+- ocr_content: 
+
+2025-04-13 00:26:59,797 - INFO - Raw content:The Kwame Nkrumah University of Science and Technology is a world-class academic centre of excellence, spearheading West Africa’s pursuit of technological advancement. Our campus is located at a very ideal place inside the city of Kumasi.
+With an estimated eight-mile square of aesthetic beauty, a rising and falling landscape , state of the art buildings, a wide range of trees, long stretches of well-cut lawns and very conspicuous flora prettification, our community provides the right atmosphere for the holistic development of students.
+There are over 100 student groups and organizations on campus, although that number keeps expanding because students are encouraged to start new clubs to fit their interests - and they don't hesitate to do so! All student groups are governed and managed by students, and there is literally something for everybody.
+
+## The Campus
+2025-04-13 00:27:11,662 - INFO - Scraping static website: https://www.knust.edu.gh/index.php/about/knust/mandate
+2025-04-13 00:27:13,554 - INFO - Successfully scraped https://www.knust.edu.gh/index.php/about/knust/mandate (Fields extracted: 13, Raw content length: 2894, OCR items: 0)
+2025-04-13 00:27:13,562 - INFO - Pre-extracted content:- university: Strategic Mandate, Vision, Mission & Core Values
+- location: 
+- website: https://www.knust.edu.gh/index.php/about/knust/mandate
+- edurank: 
+- department: teams: {'urls': [], 'members': []}, focus: research, disseminate knowledge and foster relationships with the outside persons and bodies. The st
+- publications: other_url: https://ogr.knust.edu.gh/research/doing-research
+- related: 
+- point_of_contact: email: uro@knust.edu.gh, phone_number: +233 5000 99299
+- scopes: 
+- research_abstract: The Act establishing the University defines its mandate, which essentially is to provide higher education, undertake research, disseminate knowledge and foster relationships with the outside persons and bodies. The strategic mandate of the University is derived from Science and Technology in its name.
+- lab_equipment: 
+- ocr_content: 
+
+2025-04-13 00:27:13,602 - INFO - Raw content:
+### Our Strategic Mandate
+[Context: Our Strategic Mandate]
+The Act establishing the University defines its mandate, which essentially is to provide higher education, undertake research, disseminate knowledge and foster relationships with the outside persons and bodies. The strategic mandate of the University is derived from Science and Technology in its name.
+
+### Vision
+[Context: Our Strategic Mandate > Vision]
+To build on KNUST’s leadership as the premier science and technology university in Ghana and to be among the top ten Universities in Africa.
+
+### Mission Statement
+[Context: Our Strategic Mandate > Vision > Mission Statement]
+KNUST exists to advance knowledge in science and technology through creating an environment for undertaking relevant research, quality teaching, entrepreneurship training and community engagement to improve the quality of life.
+
+### Core Values
+[Context: Our Strategic Mandate > Vision > Core Values]
+KNUST is committed to attracting and developing excellent staff and students in order to contribute towards the achievement of the goals, targets and directions that the government has set for higher education. The following cherished values characterise the work and life of the University and are ingrained in all those who pass through the University.
+[Context: Our Strategic Mandate > Vision > Core Values]
+In fulfilling the Vision and Mission of the University, the following Core Values would be adhered to:
+
+### Leadership in Innovation and Technology
+[Context: Our Strategic Mandate > Vision > Leadership in Innovation and Technology]
+We endeavour to maintain and strengthen our position as the premier Science and Technology University in the country leading in generating and exchanging new knowledge in innovation and technology, and offering service to government, industry and society.
+
+### Culture of Excellence
+[Context: Our Strategic Mandate > Vision > Culture of Excellence]
+We strive to be the best and maintain a commitment to continuous
+2025-04-13 00:27:29,364 - INFO - Scraping static website: https://www.knust.edu.gh/index.php/about/knust/maps

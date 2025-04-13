@@ -2,6 +2,6 @@
     "REQUEST_TIMEOUT": 15,
     "MAX_WORKERS": 5,
     "MAX_DEPTH": 4,
-    "MAX_URLS": 30,
+    "MAX_URLS": 10,
     "TIMEOUT_SECONDS": 3600
 }

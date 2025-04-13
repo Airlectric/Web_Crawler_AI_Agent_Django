@@ -12,6 +12,7 @@ import os
 import time
 import spacy
 from scipy.spatial.distance import cosine
+import utils.state 
 
 logger = logging.getLogger(__name__)
 
@@ -19,26 +20,33 @@ logger = logging.getLogger(__name__)
 # Load config dynamically
 def load_config():
     config_path = os.path.join(os.path.dirname(__file__), '..', 'data/config.json')
-    try:
-        with open(config_path, 'r') as f:
+    if not os.path.exists(config_path):
+        raise FileNotFoundError(f"Config file not found at {config_path}")
+    
+    with open(config_path, 'r') as f:
+        try:
             return json.load(f)
-    except FileNotFoundError:
-        return {
-            "REQUEST_TIMEOUT": 15,
-            "MAX_WORKERS": 5,
-            "MAX_DEPTH": 4,
-            "MAX_URLS": 30,
-            "TIMEOUT_SECONDS": 3600
-        }
-
+        except json.JSONDecodeError as e:
+            raise ValueError(f"Invalid JSON in config file: {e}")
 
 def save_config(config):
     config_path = os.path.join(os.path.dirname(__file__), '..', 'data/config.json')
-    with open(config_path, 'w') as f:
-        json.dump(config, f)
+    
+    try:
+        with open(config_path, 'w') as f:
+            json.dump(config, f, indent=4)  
+    except TypeError as e:
+        raise ValueError(f"Config contains non-serializable data: {e}")
+    except FileNotFoundError:
+        raise FileNotFoundError(f"Directory does not exist for config path: {config_path}")
+    except PermissionError:
+        raise PermissionError(f"Permission denied when writing to config file at: {config_path}")
+    except Exception as e:
+        raise RuntimeError(f"Unexpected error while saving config: {e}")
 
 
 config = load_config()
+
 REQUEST_TIMEOUT = config['REQUEST_TIMEOUT']
 MAX_WORKERS = config['MAX_WORKERS']
 MAX_DEPTH = config['MAX_DEPTH']
@@ -168,6 +176,10 @@ def process_directory(url: str, university_domains: Set[str], visited_urls: Set[
     if depth > MAX_DEPTH or url in visited_urls or len(visited_urls) >= MAX_URLS or (time.time() - start_time) > TIMEOUT_SECONDS:
         logging.info(f"Stopping at {url}: Depth {depth}, Visited {len(visited_urls)}, Time elapsed {int(time.time() - start_time)}s")
         return set(), set()
+    
+    if not utils.state.crawler_running_event.is_set():
+        logger.info(f"Stopping at {url}: Crawler stopped by user")
+        return set(), set()
 
     logging.info(f"Processing directory at depth {depth}: {url} (Visited: {len(visited_urls)})")
     visited_urls.add(url)
@@ -198,6 +210,9 @@ def process_directory(url: str, university_domains: Set[str], visited_urls: Set[
                 for sub_url in sublinks if len(visited_urls) < MAX_URLS and (time.time() - start_time) <= TIMEOUT_SECONDS
             }
             for future in as_completed(futures):
+                if not utils.state.crawler_running_event.is_set():
+                    logger.info("Stopping sublink processing: Crawler stopped by user")
+                    break
                 try:
                     sub_lab_urls, sub_startup_urls = future.result()
                     url_lab_urls.update(sub_lab_urls)
@@ -213,6 +228,10 @@ def generate_urls():
     """Generate and categorize URLs with recursive crawling and semantic analysis."""
     global start_time
     start_time = time.time()
+
+    if not utils.state.crawler_running_event.is_set():
+        logger.info("Generating URLs stopped before starting")
+        return
 
     try:
         university_domains = load_university_domains()
@@ -259,6 +278,10 @@ def generate_urls():
     except Exception as e:
         logging.error(f"Critical error in URL generation: {str(e)}")
         raise
+
+    if not utils.state.crawler_running_event.is_set():
+        logger.info("URL generation stopped by user")
+        return
 
 ### URL Loading Function
 def load_seed_urls(file_path: str = 'data/urls.txt') -> List[Tuple[str, str]]:
