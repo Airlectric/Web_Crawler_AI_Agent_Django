@@ -11,11 +11,13 @@ import logging
 import utils.state
 import urllib.parse
 import os
-from dotenv import load_dotenv  
+from dotenv import load_dotenv
+from PIL import Image
+import io
+from pdf2image import convert_from_bytes
+import pytesseract
 
 load_dotenv()
-
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
 logger = logging.getLogger(__name__)
 
@@ -23,8 +25,12 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
 }
 
-OCR_SPACE_API_URL = "https://api.ocr.space/parse/image"
-OCR_SPACE_API_KEY = os.getenv("OCR_SPACE_API_KEY")
+# Platform-specific Tesseract path for Windows
+if os.name == 'nt':
+    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+
+
+from utils.config import load_config
 
 def is_static(url):
     """Enhanced static detection with better heuristics"""
@@ -59,14 +65,12 @@ def is_static(url):
         logger.error(f"Error checking {url}: {e}")
         return False
 
-
 def extract_raw_content(soup):
     """Extract structured content with enhanced context awareness"""
     if not utils.state.crawler_running_event.is_set():
         logger.info("Scraping stopped by user")
         return ""
-
-    # Configuration
+    
     CONTENT_SELECTORS = [
         'main', 'article', 'section',
         'div.content', 'div.main-content', 'div.container',
@@ -86,12 +90,10 @@ def extract_raw_content(soup):
         'code', 'q', 'cite'
     ]
 
-    # Find and exclude non-content areas
     non_content = soup.select(','.join(NON_CONTENT_SELECTORS))
     for element in non_content:
         element.decompose()
 
-    # Find potential content containers with priority
     content_containers = []
     for selector in CONTENT_SELECTORS:
         content_containers += soup.select(selector)
@@ -99,16 +101,13 @@ def extract_raw_content(soup):
     if not content_containers and soup.body:
         content_containers = [soup.body]
 
-    # Content scoring and selection
     container_scores = []
     for container in content_containers:
         score = 0
-        # Score based on container type
         if container.name == 'main':
             score += 3
         elif container.name == 'article':
             score += 2
-        # Score based on text density
         text_length = len(container.get_text())
         tag_count = len(container.find_all())
         if tag_count > 0:
@@ -116,43 +115,35 @@ def extract_raw_content(soup):
             score += text_density * 0.1
         container_scores.append((container, score))
     
-    # Sort containers by score and take top 3
     container_scores.sort(key=lambda x: x[1], reverse=True)
     main_containers = [cs[0] for cs in container_scores[:3]]
 
-    # Content extraction with structure preservation
     extracted_content = []
     seen_texts = set()
     current_heading = []
     
     for container in main_containers:
         for element in container.find_all(TEXT_ELEMENTS):
-            # Clean and normalize text
             text = ' '.join(element.get_text(' ', strip=True).split())
             if not text:
                 continue
                 
-            # Deduplication check
             text_hash = hash(text.lower().strip())
             if text_hash in seen_texts:
                 continue
             seen_texts.add(text_hash)
             
-            # Context awareness
             if element.name in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
                 level = int(element.name[1])
                 current_heading = current_heading[:level-1] + [text]
                 extracted_content.append(f"\n{'#'*level} {text}")
             else:
-                # Add context heading if available
                 if current_heading:
                     extracted_content.append(f"[Context: {' > '.join(current_heading)}]")
                 
-                # Text quality check (minimum 3 words)
                 if len(text.split()) >= 3:
                     extracted_content.append(text)
                     
-                # Special handling for different element types
                 if element.name == 'li':
                     extracted_content[-1] = f"• {extracted_content[-1]}"
                 elif element.name == 'blockquote':
@@ -162,60 +153,90 @@ def extract_raw_content(soup):
                     
     return '\n'.join(extracted_content)
 
-
-
-def process_ocr(url, base_url, file_type='image'):
-    """Process an image or PDF with OCR.space API"""
+def process_image_ocr(image_url, base_url):
+    """Process an image with Tesseract OCR"""
     if not utils.state.crawler_running_event.is_set():
         logger.info("Scraping stopped by user")
         return ""
     
+    config = load_config()
+    enable_ocr = config.get('ENABLE_OCR', True)
+    ocr_language = config.get('OCR_LANGUAGE', 'eng')
+    
+    if not enable_ocr:
+        logger.info("OCR disabled in configuration")
+        return ""
+    
     try:
-        # Resolve relative URLs
-        full_url = urllib.parse.urljoin(base_url, url)
-        # Check file size (skip small images, e.g., <10KB)
-        response = requests.head(full_url, headers=HEADERS, timeout=10, allow_redirects=True)
-        content_length = int(response.headers.get('Content-Length', 0))
-        content_type = response.headers.get('Content-Type', '')
+        full_url = urllib.parse.urljoin(base_url, image_url)
+        response = requests.get(full_url, headers=HEADERS, timeout=10)
+        if response.status_code != 200:
+            logger.warning(f"Failed to download image {full_url}: Status {response.status_code}")
+            return ""
         
-        if file_type == 'image' and (content_length < 10240 or 'image' not in content_type):
+        if 'image' not in response.headers.get('Content-Type', '') or len(response.content) < 10240:
             logger.info(f"Skipping small or non-image file: {full_url}")
             return ""
-        if file_type == 'pdf' and 'pdf' not in content_type:
-            logger.info(f"Skipping non-PDF file: {full_url}")
-            return ""
         
-        # Prepare OCR.space request
-        payload = {
-            'apikey': OCR_SPACE_API_KEY,
-            'url': full_url,
-            'language': 'eng',
-            'isOverlayRequired': False
-        }
-        if file_type == 'pdf':
-            payload['filetype'] = 'PDF'
+        img = Image.open(io.BytesIO(response.content))
+        text = pytesseract.image_to_string(img, lang=ocr_language).strip()
         
-        response = requests.post(OCR_SPACE_API_URL, data=payload, headers=HEADERS, timeout=15)
-        result = response.json()
-        
-        if result.get('IsErroredOnProcessing', True):
-            error_msg = result.get('ErrorMessage', ['Unknown error'])[0]
-            logger.error(f"OCR.space error for {full_url}: {error_msg}")
-            return ""
-        
-        text = result['ParsedResults'][0]['ParsedText'].strip()
         if text:
             logger.info(f"OCR extracted text from {full_url}: {text[:50]}...")
             return text
         else:
-            logger.info(f"OCR said no text found in {full_url}")
+            logger.info(f"No text found in image {full_url}")
             return ""
             
     except Exception as e:
-        logger.error(f"Error processing {file_type} {url}: {e}")
+        logger.error(f"Error processing image {image_url}: {e}")
         return ""
 
-
+def process_pdf_ocr(pdf_url, base_url):
+    """Process a PDF with Tesseract OCR"""
+    if not utils.state.crawler_running_event.is_set():
+        logger.info("Scraping stopped by user")
+        return ""
+    
+    config = load_config()
+    enable_ocr = config.get('ENABLE_OCR', True)
+    ocr_language = config.get('OCR_LANGUAGE', 'eng')
+    
+    if not enable_ocr:
+        logger.info("OCR disabled in configuration")
+        return ""
+    
+    try:
+        full_url = urllib.parse.urljoin(base_url, pdf_url)
+        response = requests.get(full_url, headers=HEADERS, timeout=15)
+        if response.status_code != 200:
+            logger.warning(f"Failed to download PDF {full_url}: Status {response.status_code}")
+            return ""
+        
+        if 'pdf' not in response.headers.get('Content-Type', ''):
+            logger.info(f"Skipping non-PDF file: {full_url}")
+            return ""
+        
+        images = convert_from_bytes(response.content, fmt='png', dpi=300, first_page=1, last_page=5)
+        text_parts = []
+        
+        for i, img in enumerate(images):
+            text = pytesseract.image_to_string(img, lang=ocr_language).strip()
+            if text:
+                text_parts.append(text)
+                logger.info(f"OCR extracted text from PDF page {i+1} of {full_url}: {text[:50]}...")
+        
+        combined_text = '\n'.join(text_parts)
+        if combined_text:
+            logger.info(f"OCR completed for {full_url}: {len(combined_text)} characters extracted")
+        else:
+            logger.info(f"No text found in PDF {full_url}")
+        
+        return combined_text
+        
+    except Exception as e:
+        logger.error(f"Error processing PDF {pdf_url}: {e}")
+        return ""
 
 def extract_structured_data(soup, url):
     """Extract structured data, raw content, and OCR content from the soup object"""
@@ -235,10 +256,9 @@ def extract_structured_data(soup, url):
         'research_abstract': '',
         'lab_equipment': {'overview': '', 'list': []},
         'raw_content': '',
-        'ocr_content': []  # New field for OCR-extracted text
+        'ocr_content': []
     }
 
-    # Existing extraction logic
     title = soup.title.string if soup.title else ''
     data['university'] = title.split('|')[0].strip() if '|' in title else title.strip()
     if not data['university']:
@@ -311,17 +331,15 @@ def extract_structured_data(soup, url):
         data['lab_equipment']['list'] = [li.get_text(strip=True) for li in items if li.get_text(strip=True)]
         break
 
-    # Extract raw content
     data['raw_content'] = extract_raw_content(soup)
 
-    # Extract OCR content from images and PDFs
     images = soup.find_all('img', src=True)
     pdfs = soup.find_all('a', href=re.compile(r'\.pdf$', re.I))
     
     for img in images:
         img_src = img['src']
         if img_src:
-            ocr_text = process_ocr(img_src, url, file_type='image')
+            ocr_text = process_image_ocr(img_src, url)
             if ocr_text:
                 data['ocr_content'].append({
                     'source': img_src,
@@ -332,7 +350,7 @@ def extract_structured_data(soup, url):
     for pdf in pdfs:
         pdf_href = pdf['href']
         if pdf_href:
-            ocr_text = process_ocr(pdf_href, url, file_type='pdf')
+            ocr_text = process_pdf_ocr(pdf_href, url)
             if ocr_text:
                 data['ocr_content'].append({
                     'source': pdf_href,
@@ -348,16 +366,18 @@ def scrape_with_bs(url):
         logger.info("Scraping stopped by user")
         return None
     
+    config = load_config()
+    timeout = config.get('REQUEST_TIMEOUT', 15000) / 1000  # Convert ms to seconds
     logger.info(f"Scraping static website: {url}")
     try:
-        response = requests.get(url, headers=HEADERS, timeout=15)
+        response = requests.get(url, headers=HEADERS, timeout=timeout)
         response.encoding = response.apparent_encoding 
         soup = BeautifulSoup(response.text, 'html.parser')
         data = extract_structured_data(soup, url)
         logger.info(f"Successfully scraped {url} (Fields extracted: {len(data)}, Raw content length: {len(data['raw_content'])}, OCR items: {len(data['ocr_content'])})")
         return data
     except Exception as e:
-        logger.error(f"Error scraping {url} with BeautifulSoup: {e}")
+        logger.error(f"Error scraping {url}: {e}")
         return None
 
 def scrape_with_selenium(url):
@@ -367,6 +387,8 @@ def scrape_with_selenium(url):
         return None
     
     logger.info(f"Scraping dynamic website: {url}")
+    config = load_config()
+    timeout = config.get('REQUEST_TIMEOUT', 15000) / 1000  # Convert ms to seconds
     options = Options()
     options.add_argument("--headless")
     options.add_argument("--disable-gpu")
@@ -376,7 +398,7 @@ def scrape_with_selenium(url):
     try:
         driver.get(url)
         
-        WebDriverWait(driver, 15).until(
+        WebDriverWait(driver, timeout).until(
             EC.presence_of_element_located((By.XPATH, '//body//*[text()]'))
         )
         
@@ -394,7 +416,7 @@ def scrape_with_selenium(url):
         logger.info(f"Successfully scraped {url} (Fields extracted: {len(data)}, Raw content length: {len(data['raw_content'])}, OCR items: {len(data['ocr_content'])})")
         return data
     except Exception as e:
-        logger.error(f"Error scraping {url} with Selenium: {e}")
+        logger.error(f"Error scraping {url}: {e}")
         return None
     finally:
         driver.quit()

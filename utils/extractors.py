@@ -35,14 +35,23 @@ def extract_info_with_llm(data: dict):
                 pre_extracted += f"- {key}: {value}\n"
 
     raw_content = data.get('raw_content', '')[:2000]
+    ocr_content = data.get('ocr_content', [])
     logger.info(f"Pre-extracted content:{pre_extracted}")
     logger.info(f"Raw content:{raw_content}")
+    logger.info(f"OCR content:{ocr_content}")
     
 
     prompt = f"""
-**TOP PRIORITY**: If the information in both the pre-extracted data and raw content is not closely related to science and engineering university research labs, research, or potential startups, you MUST return a JSON object with all fields blank or empty. This is critical to maintain data integrity and prevent the inclusion of irrelevant or speculative information.
+**TOP PRIORITY**:  
+If **neither** the pre‑extracted data nor the raw content clearly pertains to a science or engineering university research lab, its research activities, or a relevant startup—especially one matching UNLOKINNO’s focus on Global South\
+climate‑tech labs or green‑tech startups—you **must** return a JSON object with **all fields blank or empty**. This preserves data integrity and prevents irrelevant entries.
 
-You are an expert data extractor. You are given pre-extracted data and raw content from a webpage. Your task is to produce a JSON object that exactly follows the schema below.
+You are an expert data extractor. You are given three inputs for a single webpage:  
+1. **`pre_extracted`** — data already pulled by upstream processes  
+2. **`raw_content`** — the full HTML/text of the page 
+3. **`ocr_content`** — content from images on the webpage 
+
+Your output must be **one** JSON object that **exactly** follows the schema below.
 
 ### Task:
 Create a JSON object with the following fields:
@@ -59,9 +68,12 @@ Create a JSON object with the following fields:
 - **"lab_equipment"**: Object with "overview" (short description) and "list" (array of equipment). List equipment mentioned in raw content (e.g., "microscopes") or infer plausible equipment based on research context (e.g., "AI research" might suggest "computing clusters").
 
 ### Instructions:
-- Prioritize pre-extracted values unless they are incomplete, then supplement with raw content and your knowledge.
-- Infer plausible values for fields when direct evidence is missing but context supports it (e.g., university location, website, or research focus).
-- Use your reasoning to fill fields where reasonable, but avoid entirely speculative or unrelated data.
+1. **Strict Schema**: Output must be valid JSON matching the exact field names and types—no extra or missing fields.  
+2. **UNLOKINNO Focus**: Only labs in the offering climatetech/new‑materials services or green‑tech startups. Discard generic or unrelated pages.  
+3. **Evidence‑Based**: Fill a field **only** when there is explicit evidence in `pre_extracted` or `raw_content`. Otherwise set to `""`, `null`, `[]`, or `{{}}`.  
+4. **Minimal Inference**: Infer missing values **only** when context is strong (e.g. a known university’s location). Do **not** fabricate details.  
+5. **Precedence**: Always prefer `pre_extracted` data for accuracy; supplement from `raw_content` only as needed.  
+6. **Single Object**: Return exactly one JSON object per page—never arrays or multiple objects.
 
 ### Schema (all fields must be present, with correct types):
 {{
@@ -164,6 +176,9 @@ Below is an example output if the webpage were clearly about Stanford University
 ### Raw Content from the Webpage:
 {raw_content}
 
+### OCR content from images on Webpage:
+{ocr_content}
+
 ### Output:
 Return a valid JSON object that strictly follows the schema above.  
 **REMINDER**: If the information in both the pre-extracted data and raw content is not closely related to science and engineering university research labs, research, or potential startups, you MUST return a JSON object with all fields blank or empty.
@@ -184,7 +199,7 @@ Return a valid JSON object that strictly follows the schema above.
         response = requests.post(API_URL, json=request_data, headers=headers)
         response.raise_for_status()
         response_json = response.json()
-        # print("OpenRouter API Response:", json.dumps(response_json, indent=2))
+        print("OpenRouter API Response:", json.dumps(response_json, indent=2))
 
         if 'choices' not in response_json:
             print("Error: 'choices' key not found in OpenRouter API response")

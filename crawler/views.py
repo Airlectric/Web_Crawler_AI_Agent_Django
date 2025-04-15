@@ -6,7 +6,8 @@ import os
 import logging
 import threading
 from .models import Entity
-from utils.helpers import generate_urls, load_seed_urls, load_config, save_config
+from utils.helpers import generate_urls, load_seed_urls
+from utils.config import load_config, save_config
 from utils.database import create_db
 from utils.workflow import State, app
 from utils.scheduler import run_workflow
@@ -30,11 +31,13 @@ def parameters(request):
     if request.method == 'POST':
         print("POST received:", request.POST)  # Debug
         config = {
-            "REQUEST_TIMEOUT": int(request.POST.get('REQUEST_TIMEOUT')),
-            "MAX_WORKERS": int(request.POST.get('MAX_WORKERS')),
-            "MAX_DEPTH": int(request.POST.get('MAX_DEPTH')),
-            "MAX_URLS": int(request.POST.get('MAX_URLS')),
-            "TIMEOUT_SECONDS": int(request.POST.get('TIMEOUT_SECONDS'))
+            "REQUEST_TIMEOUT": int(request.POST.get('REQUEST_TIMEOUT', 15000)),
+            "MAX_WORKERS": int(request.POST.get('MAX_WORKERS', 4)),
+            "MAX_DEPTH": int(request.POST.get('MAX_DEPTH', 3)),
+            "MAX_URLS": int(request.POST.get('MAX_URLS', 100)),
+            "TIMEOUT_SECONDS": int(request.POST.get('TIMEOUT_SECONDS', 30)),
+            "ENABLE_OCR": 'ENABLE_OCR' in request.POST,  
+            "OCR_LANGUAGE": request.POST.get('OCR_LANGUAGE', 'eng')
         }
         save_config(config)
         return redirect('parameters')

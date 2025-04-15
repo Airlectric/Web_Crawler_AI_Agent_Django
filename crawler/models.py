@@ -25,3 +25,5 @@ class Entity(models.Model):
 
     class Meta:
         db_table = 'entities'
+
+

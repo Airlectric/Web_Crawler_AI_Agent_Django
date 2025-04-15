@@ -15,7 +15,7 @@ class State(BaseModel):
     index: int = 0
     current_url: Optional[str] = None
     is_static: Optional[bool] = None
-    scraped_data: Optional[dict] = None  # Changed to dict to match extract_info_with_llm input
+    scraped_data: Optional[dict] = None 
     extracted_data: Optional[dict] = None
     status: str = "starting"
     errors: List[str] = []
@@ -62,6 +62,7 @@ def detect_type(state: State) -> State:
         state.errors.append(f"Detection failed: {str(e)}")
         state.status = "error"
     return state
+
 
 def scrape(state: State) -> State:
     """Scrape content with error handling."""
