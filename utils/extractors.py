@@ -34,7 +34,7 @@ def extract_info_with_llm(data: dict):
             else:
                 pre_extracted += f"- {key}: {value}\n"
 
-    raw_content = data.get('raw_content', '')[:2000]
+    raw_content = data.get('raw_content', '') #[:4000]
     ocr_content = data.get('ocr_content', [])
     logger.info(f"Pre-extracted content:{pre_extracted}")
     logger.info(f"Raw content:{raw_content}")

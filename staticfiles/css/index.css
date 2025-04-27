@@ -1,0 +1,241 @@
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2rem;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 1.5rem;
+    border: 1px solid rgba(78, 204, 163, 0.2);
+}
+
+.session-tracker {
+    height: 400px;
+    overflow: hidden;
+}
+
+.session-card {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.session-card:hover {
+    transform: translateX(10px);
+    background: rgba(78, 204, 163, 0.1);
+}
+
+.session-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(78, 204, 163, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+}
+
+.session-info {
+    flex: 1;
+}
+
+.session-title {
+    color: #4ecca3;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.session-progress {
+    width: 100px;
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: #4ecca3;
+    width: 0;
+    transition: width 0.5s ease;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+    opacity: 0.5;
+}
+
+.lab-equipment-float {
+    position: absolute;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.lab-equipment-float i {
+    position: absolute;
+    font-size: 3rem;
+    opacity: 0.1;
+    animation: float 20s infinite linear;
+}
+
+@keyframes float {
+    0% { transform: translate(-10vw, 50vh) rotate(0deg); }
+    100% { transform: translate(110vw, -50vh) rotate(360deg); }
+}
+
+.command-center {
+    text-align: center;
+    padding: 2rem;
+}
+
+.control-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.bg-galaxy {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.hover-transform:hover {
+    transform: translateY(-10px) rotateZ(2deg);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.neon-text {
+    color: #4ecca3;
+    text-shadow: 0 0 10px #4ecca3;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+.btn-glow {
+    box-shadow: 0 0 15px rgba(78, 204, 163, 0.5);
+    transition: all 0.3s ease;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+}
+
+.btn-glow:hover {
+    filter: brightness(1.1);
+    transform: scale(1.05);
+}
+
+.log-container {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.panel-header {
+    padding: 15px;
+    background: rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: #4ecca3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.log-track {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 20px;
+    height: 200px; /* Fixed height */
+    overflow-y: auto;
+}
+
+.log-entry {
+    background: linear-gradient(90deg, rgba(78, 204, 163, 0.1), transparent);
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.log-entry i {
+    width: 25px;
+    text-align: center;
+}
+
+.log-time {
+    margin-left: auto;
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+.icon-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.neon-icon {
+    color: #4ecca3;
+    text-shadow: 0 0 15px #4ecca3;
+    font-size: 4rem;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4ecca3;
+    border-radius: 4px;
+}

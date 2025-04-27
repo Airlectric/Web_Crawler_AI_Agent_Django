@@ -7,7 +7,9 @@ from utils.extractors import extract_info_with_llm
 from utils.database import store_data, url_exists_in_db
 from utils.online_crawler_model import OnlineLearningCrawler
 import random
+import logging
 
+logger = logging.getLogger(__name__)
 online_learner = OnlineLearningCrawler(model_file='models/online_model.pkl', scaler_file='models/scaler.pkl')
 
 class State(BaseModel):
@@ -19,81 +21,103 @@ class State(BaseModel):
     extracted_data: Optional[dict] = None
     status: str = "starting"
     errors: List[str] = []
+    session: Optional[object] = None
 
 def initialize(state: State) -> State:
-    """Initialize the workflow by loading URLs."""
-    print("Initializing workflow...")
+    logger.info("Initializing workflow...")
     state.urls = load_seed_urls()
     state.index = 0
     state.status = "initialized"
-    print(f"Workflow initialized with {len(state.urls)} URLs")
+    logger.info(f"Workflow initialized with {len(state.urls)} URLs")
     return state
 
 def check_urls(state: State) -> State:
-    """Check if there are more URLs to process, predict relevance, and skip duplicates or low-relevance URLs."""
-    print(f"Checking URLs (index {state.index}/{len(state.urls)})...")
+    logger.info(f"Checking URLs (index {state.index}/{len(state.urls)})")
     if state.index >= len(state.urls):
+        logger.info("No more URLs to process, setting status to finished")
         state.status = "finished"
         return state
     url, anchor_text = state.urls[state.index]
+    logger.debug(f"Processing URL: {url}, anchor_text: {anchor_text}")
     if url_exists_in_db(url):
-        print(f"Skipping duplicate URL: {url}")
+        logger.info(f"Skipping duplicate URL: {url}")
         state.index += 1
         return state
     prob = online_learner.predict(url, anchor_text, parent_relevance=1)
     trained_enough = online_learner.total_updates >= 100
+    logger.debug(f"URL {url} relevance prob: {prob:.2f}, trained_enough: {trained_enough}")
     if not trained_enough or prob > 0.5 or random.random() < 0.3:
         state.current_url = url
         state.status = "processing"
-        print(f"Processing URL: {url} (prob: {prob:.2f})")
+        logger.info(f"Selected URL: {url} (prob: {prob:.2f})")
     else:
-        print(f"Skipping URL: {url} (low relevance: {prob:.2f})")
+        logger.info(f"Skipping URL: {url} (low relevance: {prob:.2f})")
         state.index += 1
     return state
 
-
-
 def detect_type(state: State) -> State:
-    """Detect website type with error handling."""
+    logger.info(f"Detecting type for URL: {state.current_url}")
     try:
-        print(f"Detecting type for: {state.current_url}")
         state.is_static = is_static(state.current_url)
+        logger.debug(f"URL {state.current_url} is_static: {state.is_static}")
     except Exception as e:
-        state.errors.append(f"Detection failed: {str(e)}")
+        error_msg = f"Detection failed for {state.current_url}: {str(e)}"
+        logger.error(error_msg)
+        state.errors.append(error_msg)
         state.status = "error"
     return state
 
-
 def scrape(state: State) -> State:
-    """Scrape content with error handling."""
+    logger.info(f"Scraping URL: {state.current_url}, is_static: {state.is_static}")
     try:
         if state.is_static:
             state.scraped_data = scrape_with_bs(state.current_url)
         else:
             state.scraped_data = scrape_with_selenium(state.current_url)
         if not state.scraped_data:
-            raise ValueError("No content extracted")
+            error_msg = f"No content extracted for {state.current_url}"
+            logger.warning(error_msg)
+            raise ValueError(error_msg)
+        logger.debug(f"Scraped data for {state.current_url}: {state.scraped_data}")
     except Exception as e:
-        state.errors.append(f"Scraping failed: {str(e)}")
+        error_msg = f"Scraping failed for {state.current_url}: {str(e)}"
+        logger.error(error_msg)
+        state.errors.append(error_msg)
         state.status = "error"
+        state.scraped_data = None
     return state
 
 def extract_data(state: State) -> State:
-    """Data extraction with error propagation."""
+    logger.info(f"Extracting data for URL: {state.current_url}")
+    logger.debug(f"Input scraped_data: {state.scraped_data}")
     try:
         if state.scraped_data:
             state.extracted_data = extract_info_with_llm(state.scraped_data)
+            logger.debug(f"Extracted data: {state.extracted_data}")
+            if state.extracted_data is None:
+                error_msg = f"extract_info_with_llm returned None for {state.current_url}"
+                logger.warning(error_msg)
+                raise ValueError(error_msg)
             if "error" in state.extracted_data:
-                raise ValueError(state.extracted_data["error"])
+                error_msg = f"LLM extraction error for {state.current_url}: {state.extracted_data['error']}"
+                logger.warning(error_msg)
+                raise ValueError(error_msg)
+        else:
+            error_msg = f"No scraped data available for {state.current_url}"
+            logger.warning(error_msg)
+            raise ValueError(error_msg)
     except Exception as e:
-        state.errors.append(f"Extraction failed: {str(e)}")
+        error_msg = f"Extraction failed for {state.current_url}: {str(e)}"
+        logger.error(error_msg)
+        state.errors.append(error_msg)
         state.status = "error"
+        state.extracted_data = None
     return state
 
 def store_data_node(state: State) -> State:
-    """Store data with transaction handling, skipping if all fields are empty."""
+    logger.info(f"Attempting to store data for URL: {state.current_url}")
+    logger.debug(f"Extracted data: {state.extracted_data}")
     if state.extracted_data and "error" not in state.extracted_data:
-
         empty_template = {
             "id": 0,
             "university": "",
@@ -108,30 +132,32 @@ def store_data_node(state: State) -> State:
             "research_abstract": "",
             "lab_equipment": {"overview": "", "list": []}
         }
-
         extracted_data_no_id = {k: v for k, v in state.extracted_data.items() if k != "id"}
         empty_template_no_id = {k: v for k, v in empty_template.items() if k != "id"}
-
-        # Check if extracted_data matches the empty template
+        logger.debug(f"Comparing extracted_data_no_id: {extracted_data_no_id}")
+        logger.debug(f"Against empty_template_no_id: {empty_template_no_id}")
         if extracted_data_no_id == empty_template_no_id:
-            print(f"Skipping storage for {state.current_url}: All fields are empty")
+            logger.info(f"Skipping storage for {state.current_url}: All fields are empty")
         else:
             try:
-                store_data(state.current_url, state.extracted_data)
+                logger.info(f"Calling store_data with URL: {state.current_url}, session: {state.session}")
+                store_data(state.current_url, state.extracted_data, session=state.session)
+                logger.info(f"Successfully stored data for {state.current_url}")
             except Exception as e:
-                state.errors.append(f"Storage failed: {str(e)}")
+                error_msg = f"Storage failed for {state.current_url}: {str(e)}"
+                logger.error(error_msg)
+                state.errors.append(error_msg)
                 state.status = "error"
     else:
-        print(f"Skipping storage for {state.current_url}: Invalid data or error - {state.extracted_data}")
+        error_msg = f"Skipping storage for {state.current_url}: Invalid data or error - {state.extracted_data}"
+        logger.warning(error_msg)
     return state
 
 def update_model(state: State) -> State:
-    """Update the model based on whether key fields are meaningfully populated."""
+    logger.info(f"Updating model for URL: {state.current_url}")
     if state.current_url:
         url, anchor_text = state.urls[state.index]
         parent_relevance = state.parent_relevance if hasattr(state, 'parent_relevance') else 0.5
-
-        # Define an empty template to compare against
         empty_template = {
             "id": 0,
             "university": "",
@@ -146,21 +172,18 @@ def update_model(state: State) -> State:
             "research_abstract": "",
             "lab_equipment": {"overview": "", "list": []}
         }
-
         if state.status == "error" or not state.extracted_data or "error" in state.extracted_data:
             label = 0
             populated_fields = 0
+            logger.debug(f"Model update: label=0 due to error or no data")
         else:
-            # Remove 'id' from comparison
             extracted_data_no_id = {k: v for k, v in state.extracted_data.items() if k != "id"}
             empty_template_no_id = {k: v for k, v in empty_template.items() if k != "id"}
-
-            # Check if extracted_data is all empty
             if extracted_data_no_id == empty_template_no_id:
                 label = 0
                 populated_fields = 0
+                logger.debug(f"Model update: label=0, data is empty")
             else:
-                # Check key fields for meaningful content
                 def is_populated(field):
                     if field == 'publications':
                         pubs = state.extracted_data.get(field, {})
@@ -177,18 +200,16 @@ def update_model(state: State) -> State:
                     elif field == 'research_abstract':
                         return state.extracted_data.get(field, "") != ""
                     return False
-
                 key_fields = ['publications', 'scopes', 'lab_equipment', 'research_abstract']
                 populated_fields = sum(1 for field in key_fields if is_populated(field))
                 label = 1 if populated_fields >= 1 else 0
-
+                logger.debug(f"Model update: label={label}, populated_fields={populated_fields}")
         online_learner.update_model(state.current_url, anchor_text, parent_relevance=parent_relevance, label=label)
-        print(f"Updated model for {url}: label={label}, populated_fields={populated_fields}")
-
+        logger.info(f"Updated model for {url}: label={label}, populated_fields={populated_fields}")
     return state
 
 def increment_index(state: State) -> State:
-    """Move to next URL with state cleanup."""
+    logger.info(f"Incrementing index to {state.index + 1} for URL: {state.current_url}")
     state.index += 1
     state.current_url = None
     state.is_static = None
@@ -198,7 +219,6 @@ def increment_index(state: State) -> State:
     return state
 
 graph = StateGraph(State)
-
 graph.add_node("initialize", initialize)
 graph.add_node("check_urls", check_urls)
 graph.add_node("detect_type", detect_type)
@@ -207,12 +227,11 @@ graph.add_node("extract_data", extract_data)
 graph.add_node("store_data", store_data_node)
 graph.add_node("update_model", update_model)
 graph.add_node("increment_index", increment_index)
-
 graph.set_entry_point("initialize")
 graph.add_edge("initialize", "check_urls")
 
 def route_after_check(state: State):
-    """Conditional routing logic after URL check."""
+    logger.debug(f"Routing after check_urls, status: {state.status}, current_url: {state.current_url}")
     if state.status == "finished":
         return END
     if state.status == "error" or state.current_url is None:
@@ -224,12 +243,10 @@ graph.add_conditional_edges(
     route_after_check,
     {"detect_type": "detect_type", "increment_index": "increment_index", END: END}
 )
-
 graph.add_edge("detect_type", "scrape")
 graph.add_edge("scrape", "extract_data")
 graph.add_edge("extract_data", "store_data")
 graph.add_edge("store_data", "update_model")
 graph.add_edge("update_model", "increment_index")
 graph.add_edge("increment_index", "check_urls")
-
 app = graph.compile()

@@ -12,7 +12,7 @@
                 {% csrf_token %}
                 <div class="row g-4">
                     <!-- Timeout Settings -->
-                    <div class="col-md-6 mb-4">
+                    <div class="col-md-6 col-lg-4 mb-4">
                         <div class="parameter-card">
                             <label class="param-label">REQUEST TIMEOUT (ms)</label>
                             <input type="number" name="REQUEST_TIMEOUT" value="{{ config.REQUEST_TIMEOUT|default:15000 }}"
@@ -21,7 +21,7 @@
                     </div>
 
                     <!-- Concurrency Settings -->
-                    <div class="col-md-6 mb-4">
+                    <div class="col-md-6 col-lg-4 mb-4">
                         <div class="parameter-card">
                             <label class="param-label">MAX WORKERS</label>
                             <input type="number" name="MAX_WORKERS" value="{{ config.MAX_WORKERS|default:4 }}"
@@ -30,7 +30,7 @@
                     </div>
 
                     <!-- Depth Control -->
-                    <div class="col-md-6 mb-4">
+                    <div class="col-md-6 col-lg-4 mb-4">
                         <div class="parameter-card">
                             <label class="param-label">MAX DEPTH</label>
                             <input type="number" name="MAX_DEPTH" value="{{ config.MAX_DEPTH|default:3 }}"
@@ -39,7 +39,7 @@
                     </div>
 
                     <!-- URL Limits -->
-                    <div class="col-md-6 mb-4">
+                    <div class="col-md-6 col-lg-4 mb-4">
                         <div class="parameter-card">
                             <label class="param-label">MAX URLS</label>
                             <input type="number" name="MAX_URLS" value="{{ config.MAX_URLS|default:100 }}"
@@ -48,7 +48,7 @@
                     </div>
 
                     <!-- Session Settings -->
-                    <div class="col-md-6 mb-4">
+                    <div class="col-md-6 col-lg-4 mb-4">
                         <div class="parameter-card">
                             <label class="param-label">TIMEOUT (seconds)</label>
                             <input type="number" name="TIMEOUT_SECONDS" value="{{ config.TIMEOUT_SECONDS|default:30 }}"
@@ -57,7 +57,7 @@
                     </div>
 
                     <!-- OCR Enable -->
-                    <div class="col-md-6 mb-4">
+                    <div class="col-md-6 col-lg-4 mb-4">
                         <div class="parameter-card">
                             <label class="param-label">ENABLE OCR</label>
                             <div class="form-check">
@@ -69,7 +69,7 @@
                     </div>
 
                     <!-- OCR Language -->
-                    <div class="col-md-6 mb-4">
+                    <div class="col-md-6 col-lg-4 mb-4">
                         <div class="parameter-card">
                             <label class="param-label">OCR LANGUAGE</label>
                             <select name="OCR_LANGUAGE" class="form-control glass-input" required>
@@ -179,6 +179,29 @@
         background: rgba(255, 255, 255, 0.15);
         border-color: rgba(255, 255, 255, 0.3);
         transform: translateY(-1px);
+    }
+
+    @media (max-width: 768px) {
+        .param-label {
+            font-size: 0.875rem;
+        }
+
+        .glass-input,
+        .form-control {
+            padding: 0.5rem;
+        }
+
+        .glass-button {
+            padding: 0.5rem 1.5rem;
+        }
+
+        .glass-panel {
+            padding: 1.5rem;
+        }
+
+        .parameter-card {
+            padding: 1rem;
+        }
     }
 </style>
 {% endblock %}

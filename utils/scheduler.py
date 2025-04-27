@@ -1,4 +1,3 @@
-# utils/scheduler.py
 import logging
 import schedule
 import time
@@ -10,7 +9,7 @@ import utils.state
 
 logger = logging.getLogger(__name__)
 
-def run_workflow():
+def run_workflow(session):
     """Execute the LangGraph workflow with stop control and error handling."""
     logger.info("Starting workflow execution...")
     logger.info(f"Current crawler_running_event.is_set(): {utils.state.crawler_running_event.is_set()}")
@@ -37,12 +36,12 @@ def run_workflow():
         return
     
     logger.info("Initializing workflow state...")
-    initial_state = State(urls=[])
+    initial_state = State(urls=[], session=session)
     
     try:
         logger.info("Invoking LangGraph workflow...")
         config = RunnableConfig(recursion_limit=500)
-        final_state = app.invoke(initial_state, config=config)
+        final_state = app.invoke({"urls": [], "session": session}, config=config)
         logger.info(f"Type of final_state: {type(final_state)}")
         logger.info(f"Content of final_state: {final_state}")
         

@@ -7,7 +7,6 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import tldextract
 import backoff
 import re
-
 import os
 import time
 import spacy
@@ -16,7 +15,6 @@ import utils.state
 from utils.config import load_config
 
 logger = logging.getLogger(__name__)
-
 
 config = load_config()
 
@@ -68,11 +66,8 @@ def load_university_domains(file_path: str = 'data/universities.txt') -> Set[str
 def is_university_domain(url: str, university_domains: Set[str]) -> bool:
     """Check if a URL belongs to a university domain, including subdomains."""
     extracted = tldextract.extract(url)
-    comparison_domains = {
-        extracted.registered_domain,
-        f"{extracted.subdomain}.{extracted.registered_domain}" if extracted.subdomain else None
-    }
-    return len(comparison_domains & university_domains) > 0
+    domain = extracted.registered_domain.lower()
+    return domain in university_domains
 
 @backoff.on_exception(
     backoff.expo,
@@ -125,6 +120,10 @@ def categorize_urls_with_semantics(links_with_anchor: Set[Tuple[str, str]], univ
     startup_urls = set()
 
     for url, anchor_text in links_with_anchor:
+        # Only process URLs within university domains
+        if not is_university_domain(url, university_domains):
+            continue
+
         # Use anchor text as context; fallback to URL if no anchor text
         context = anchor_text if anchor_text else url
         context_doc = nlp(context)
@@ -135,8 +134,8 @@ def categorize_urls_with_semantics(links_with_anchor: Set[Tuple[str, str]], univ
             lab_similarity = 1 - cosine(context_embedding, lab_embedding)
             startup_similarity = 1 - cosine(context_embedding, startup_embedding)
 
-            # Classify based on similarity threshold and domain
-            if is_university_domain(url, university_domains) and lab_similarity > startup_similarity and lab_similarity > 0.5:
+            # Classify based on similarity threshold
+            if lab_similarity > startup_similarity and lab_similarity > 0.5:
                 lab_urls.add((url, anchor_text))
             elif startup_similarity > lab_similarity and startup_similarity > 0.5:
                 startup_urls.add((url, anchor_text))
@@ -172,9 +171,11 @@ def process_directory(url: str, university_domains: Set[str], visited_urls: Set[
     url_lab_urls.update(lab_urls)
     url_startup_urls.update(startup_urls)
 
-    # Recursively process sublinks
-    sublinks = {link[0] for link in links_with_anchor} - visited_urls
-    logging.info(f"Found {len(sublinks)} sublinks at depth {depth} for {url}")
+    # Filter sublinks to only university domains
+    all_sublinks = {link[0] for link in links_with_anchor}
+    university_sublinks = {link for link in all_sublinks if is_university_domain(link, university_domains)}
+    sublinks = university_sublinks - visited_urls
+    logging.info(f"Found {len(all_sublinks)} sublinks, {len(university_sublinks)} within university domains at depth {depth} for {url}")
 
     if depth + 1 <= MAX_DEPTH and sublinks:
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -215,6 +216,12 @@ def generate_urls():
         try:
             with open('data/potential_directories.txt', 'r') as f:
                 directory_urls = {line.strip() for line in f if line.strip()}
+            # Filter directory_urls to only include university domains
+            directory_urls = {url for url in directory_urls if is_university_domain(url, university_domains)}
+            logging.info(f"Filtered to {len(directory_urls)} university domain URLs")
+            if not directory_urls:
+                logging.error("No valid university domain URLs to process")
+                return
         except FileNotFoundError:
             logging.error("data/potential_directories.txt not found")
             return
@@ -239,7 +246,6 @@ def generate_urls():
 
         merged_urls = all_lab_urls | all_startup_urls
         logging.info(f"Discovered {len(merged_urls)} unique URLs")
-    
 
         temp_file = 'urls.tmp'
         with open(temp_file, 'w', encoding='utf-8') as f:

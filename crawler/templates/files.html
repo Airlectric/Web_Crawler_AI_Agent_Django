@@ -2,16 +2,16 @@
 {% block content %}
 <div class="container-fluid min-vh-100 bg-galaxy">
     <div class="container py-5">
-        <div class="glass-header neon-glow mb-5">
+        <div class="glass-header neon-glow text-center mb-5">
             <h2 class="neon-text"><i class="fas fa-file-alt fa-beat"></i> File Management Console</h2>
             <p class="lead text-light">Manage crawling source files and outputs</p>
         </div>
 
         <div class="row g-4">
             {% for filename, content in file_content.items %}
-            <div class="col-lg-4 col-md-6">
-                <div class="glass-card hover-transform h-100">
-                    <div class="card-body">
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="glass-card hover-transform h-100 d-flex flex-column justify-content-between">
+                    <div class="card-body d-flex flex-column">
                         <div class="file-header mb-4">
                             <div class="icon-circle-sm bg-{{ filename|cut:'.txt' }}">
                                 <i class="fas 
@@ -21,8 +21,8 @@
                             </div>
                             <h4 class="neon-text-accent">{{ filename }}</h4>
                         </div>
-                        
-                        <form method="post" class="file-editor">
+
+                        <form method="post" class="file-editor mt-auto">
                             {% csrf_token %}
                             <input type="hidden" name="filename" value="{{ filename }}">
                             <div class="form-group">
@@ -36,7 +36,7 @@
                                 </button>
                                 {% endif %}
                             </div>
-                        <form/>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -69,6 +69,8 @@
         align-items: center;
         justify-content: center;
         font-size: 1.2rem;
+        background-color: rgba(78, 204, 163, 0.1);
+        color: #4ecca3;
     }
 
     .glass-input {
@@ -131,6 +133,20 @@
         0% { transform: scale(1); }
         50% { transform: scale(1.15); }
         100% { transform: scale(1); }
+    }
+
+    @media (max-width: 576px) {
+        .glass-header h2 {
+            font-size: 1.5rem;
+        }
+
+        .glass-header p {
+            font-size: 1rem;
+        }
+
+        .code-editor textarea {
+            font-size: 0.8rem;
+        }
     }
 </style>
 {% endblock %}

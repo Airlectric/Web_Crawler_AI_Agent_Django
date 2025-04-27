@@ -1,9 +1,9 @@
 {
-    "REQUEST_TIMEOUT": 15,
-    "MAX_WORKERS": 5,
+    "REQUEST_TIMEOUT": 3000,
+    "MAX_WORKERS": 10,
     "MAX_DEPTH": 4,
-    "MAX_URLS": 30,
+    "MAX_URLS": 60,
     "TIMEOUT_SECONDS": 3600,
-    "ENABLE_OCR": true,
+    "ENABLE_OCR": false,
     "OCR_LANGUAGE": "eng"
 }

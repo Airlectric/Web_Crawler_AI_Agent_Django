@@ -4,6 +4,7 @@ from crawler import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('search/', views.search_view, name='search'),
     path('parameters/', views.parameters, name='parameters'),
     path('files/', views.files, name='files'),
     path('database/', views.database, name='database'),
@@ -15,4 +16,7 @@ urlpatterns = [
     path('get-crawler-state/', views.get_crawler_state, name='get_crawler_state'),
     path('stop-crawler/', views.stop_crawler, name='stop_crawler'),
     path('get-logs/', views.get_logs, name='get_logs'),
+    path('session/<int:session_id>/', views.session_output, name='session_output'),
+    path('session/<int:session_id>/delete_selected/', views.delete_session_selected, name='delete_session_selected'),
 ]
+

@@ -1,7 +1,76 @@
-body {
-    background-color: #f8f9fa;
+
+:root {
+    --neon-color: #4ecca3;
+    --bg-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
 }
-textarea {
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-gradient);
+    color: #ffffff;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.navbar {
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--neon-color) !important;
+    text-shadow: 0 0 10px rgba(78, 204, 163, 0.5);
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    transition: all 0.3s ease;
+    position: relative;
+    margin: 0 15px;
+    padding: 10px 20px !important;
+    border-radius: 8px;
+}
+
+.nav-link:hover {
+    color: var(--neon-color) !important;
+    background: rgba(78, 204, 163, 0.1);
+    transform: translateY(-2px);
+}
+
+.nav-link.active {
+    color: var(--neon-color) !important;
+    background: rgba(78, 204, 163, 0.2);
+}
+
+.container.main-content {
+    padding-top: 80px;
+    padding-bottom: 40px;
+}
+
+/* Particles container */
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    resize: vertical;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--neon-color);
+    border-radius: 4px;
 }
