@@ -1,6 +1,7 @@
 from langgraph.graph import StateGraph, END
 from pydantic import BaseModel
 from typing import List, Optional, Tuple
+from asgiref.sync import sync_to_async
 from utils.helpers import load_seed_urls
 from utils.scrapers import is_static, scrape_with_bs, scrape_with_selenium
 from utils.extractors import extract_info_with_llm
@@ -22,10 +23,15 @@ class State(BaseModel):
     status: str = "starting"
     errors: List[str] = []
     session: Optional[object] = None
+    quick_scrape: bool = False  # Track quick scrape mode
 
 def initialize(state: State) -> State:
     logger.info("Initializing workflow...")
-    state.urls = load_seed_urls()
+    if state.urls:
+        logger.info(f"Using provided URLs: {state.urls}")
+    else:
+        state.urls = load_seed_urls()
+        logger.info(f"Loaded {len(state.urls)} seed URLs")
     state.index = 0
     state.status = "initialized"
     logger.info(f"Workflow initialized with {len(state.urls)} URLs")
@@ -39,20 +45,27 @@ def check_urls(state: State) -> State:
         return state
     url, anchor_text = state.urls[state.index]
     logger.debug(f"Processing URL: {url}, anchor_text: {anchor_text}")
-    if url_exists_in_db(url):
-        logger.info(f"Skipping duplicate URL: {url}")
-        state.index += 1
-        return state
+    if not state.quick_scrape:  # Skip DB check for quick scrape
+        try:
+            # Run url_exists_in_db synchronously
+            exists = url_exists_in_db(url)
+            if exists:
+                logger.info(f"Skipping duplicate URL: {url}")
+                state.index += 1
+                return state
+        except Exception as e:
+            logger.error(f"Error checking URL {url} in database: {str(e)}")
+            state.errors.append(f"DB check failed for {url}: {str(e)}")
+            state.status = "error"
+            state.index += 1
+            return state
+    # In quick_scrape mode, always select the URL
     prob = online_learner.predict(url, anchor_text, parent_relevance=1)
     trained_enough = online_learner.total_updates >= 100
     logger.debug(f"URL {url} relevance prob: {prob:.2f}, trained_enough: {trained_enough}")
-    if not trained_enough or prob > 0.5 or random.random() < 0.3:
-        state.current_url = url
-        state.status = "processing"
-        logger.info(f"Selected URL: {url} (prob: {prob:.2f})")
-    else:
-        logger.info(f"Skipping URL: {url} (low relevance: {prob:.2f})")
-        state.index += 1
+    state.current_url = url
+    state.status = "processing"
+    logger.info(f"Selected URL: {url} (prob: {prob:.2f})")
     return state
 
 def detect_type(state: State) -> State:
@@ -74,6 +87,10 @@ def scrape(state: State) -> State:
             state.scraped_data = scrape_with_bs(state.current_url)
         else:
             state.scraped_data = scrape_with_selenium(state.current_url)
+        if not state.scraped_data:
+            # Fallback to BeautifulSoup if Selenium fails
+            logger.warning(f"Selenium failed for {state.current_url}, trying BeautifulSoup")
+            state.scraped_data = scrape_with_bs(state.current_url)
         if not state.scraped_data:
             error_msg = f"No content extracted for {state.current_url}"
             logger.warning(error_msg)

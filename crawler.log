@@ -1,0 +1,745 @@
+2025-05-02 17:01:12,375 - INFO - Processing AI prompt: biology research at University of ghana legon
+2025-05-02 17:01:14,443 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-02 17:01:14,443 - INFO - Identified university: University of Ghana (normalized: University of Ghana)
+2025-05-02 17:01:14,453 - INFO - Found 1 relevant entities for University of Ghana
+2025-05-02 17:02:23,828 - INFO - response: https://html.duckduckgo.com/html 200
+2025-05-02 17:02:27,510 - INFO - Starting crawler...
+2025-05-02 17:02:27,627 - INFO - Crawler execution started
+2025-05-02 17:02:27,627 - INFO - Starting run_workflow_with_stop (quick_scrape=False, initial_url=None)
+2025-05-02 17:02:27,627 - INFO - Crawler thread started
+2025-05-02 17:02:27,627 - INFO - Starting workflow execution (quick_scrape=False, initial_url=None)
+2025-05-02 17:02:27,627 - INFO - Current crawler_running_event.is_set(): True
+2025-05-02 17:02:27,627 - INFO - Calling generate_urls...
+2025-05-02 17:02:27,627 - INFO - Loading university domains from data/universities.txt
+2025-05-02 17:02:27,727 - INFO - Loaded 1 validated university domains
+2025-05-02 17:02:27,727 - INFO - Filtered to 1 university domain URLs
+2025-05-02 17:02:27,734 - INFO - Processing directory at depth 0: https://www.ub.bw/research/research-centres/clean-energy-research-centre (Visited: 0)
+2025-05-02 17:02:31,882 - INFO - Prioritized 15 sublinks at depth 0 for https://www.ub.bw/research/research-centres/clean-energy-research-centre
+2025-05-02 17:02:31,882 - INFO - Processing directory at depth 1: https://www.ub.bw/research/research-centres (Visited: 1)
+2025-05-02 17:02:31,892 - INFO - Processing directory at depth 1: https://converis.ub.bw/converis (Visited: 2)
+2025-05-02 17:02:31,902 - INFO - Processing directory at depth 1: https://www.ub.bw/research (Visited: 3)
+2025-05-02 17:02:31,922 - INFO - Processing directory at depth 1: https://www.ub.bw/discover (Visited: 4)
+2025-05-02 17:02:31,928 - INFO - Processing directory at depth 1: https://www.ub.bw/discover/faculties-and-departments/departments-a-z (Visited: 5)
+2025-05-02 17:02:31,928 - INFO - Processing directory at depth 1: https://www.ub.bw/study (Visited: 6)
+2025-05-02 17:02:31,942 - INFO - Processing directory at depth 1: https://ubasas.ub.bw (Visited: 7)
+2025-05-02 17:02:31,952 - INFO - Processing directory at depth 1: https://www.ub.bw/campus-map (Visited: 8)
+2025-05-02 17:02:31,962 - INFO - Processing directory at depth 1: https://www.ub.bw/connect/get-in-touch (Visited: 9)
+2025-05-02 17:02:31,972 - INFO - Processing directory at depth 1: https://www.ub.bw/discover/administration-and-support (Visited: 10)
+2025-05-02 17:02:32,899 - INFO - Processing directory at depth 1: https://linyanti.ub.bw (Visited: 11)
+2025-05-02 17:02:34,848 - INFO - Processing directory at depth 1: https://www.ub.bw/connect (Visited: 12)
+2025-05-02 17:02:34,875 - INFO - Processing directory at depth 1: https://www.ub.bw/ubpayments (Visited: 13)
+2025-05-02 17:02:38,031 - INFO - Prioritized 2 sublinks at depth 1 for https://www.ub.bw/research/research-centres
+2025-05-02 17:02:38,058 - INFO - Processing directory at depth 2: https://www.ub.bw (Visited: 14)
+2025-05-02 17:02:38,058 - INFO - Processing directory at depth 2: https://www.ub.bw/experience (Visited: 15)
+2025-05-02 17:02:38,697 - INFO - Prioritized 2 sublinks at depth 1 for https://www.ub.bw/connect/get-in-touch
+2025-05-02 17:02:38,707 - INFO - Stopping at https://www.ub.bw: Depth 2, Visited 16, Time elapsed 11s
+2025-05-02 17:02:38,707 - INFO - Stopping at https://www.ub.bw/experience: Depth 2, Visited 16, Time elapsed 11s
+2025-05-02 17:02:38,717 - INFO - Stopping at https://www.ub.bw: Depth 1, Visited 16, Time elapsed 11s
+2025-05-02 17:02:38,717 - INFO - Stopping at https://www.ub.bw/experience: Depth 1, Visited 16, Time elapsed 11s
+2025-05-02 17:02:39,530 - INFO - Prioritized 3 sublinks at depth 1 for https://www.ub.bw/discover
+2025-05-02 17:02:39,540 - INFO - Processing directory at depth 2: https://www.ub.bw/discover/faculties (Visited: 16)
+2025-05-02 17:02:39,547 - INFO - Processing directory at depth 2: https://www.ub.bw/user/1 (Visited: 17)
+2025-05-02 17:02:39,557 - INFO - Processing directory at depth 2: https://www.ub.bw/discover/history (Visited: 18)
+2025-05-02 17:02:42,240 - INFO - Prioritized 2 sublinks at depth 2 for https://www.ub.bw/experience
+2025-05-02 17:02:42,256 - INFO - Processing directory at depth 3: https://www.ub.bw/experience/campus-life (Visited: 19)
+2025-05-02 17:02:42,256 - INFO - Processing directory at depth 3: https://www.ub.bw/experience/culture-sports-and-recreation (Visited: 19)
+2025-05-02 17:02:42,563 - INFO - Prioritized 7 sublinks at depth 1 for https://www.ub.bw/connect
+2025-05-02 17:02:42,573 - INFO - Processing directory at depth 2: https://www.ub.bw/connect/job-opportunities (Visited: 21)
+2025-05-02 17:02:42,573 - INFO - Processing directory at depth 2: https://www.ub.bw/discover/administration-and-support/university-botswana-foundation (Visited: 22)
+2025-05-02 17:02:42,580 - INFO - Processing directory at depth 2: https://www.ub.bw/connect/cv-database (Visited: 23)
+2025-05-02 17:02:42,590 - INFO - Stopping at https://www.ub.bw/user/1: Depth 2, Visited 23, Time elapsed 14s
+2025-05-02 17:02:42,606 - INFO - Processing directory at depth 2: https://www.ub.bw/connect/tenders (Visited: 24)
+2025-05-02 17:02:42,613 - INFO - Processing directory at depth 2: https://www.ub.bw/connect/graduation-certificates-and-transcripts (Visited: 24)
+2025-05-02 17:02:42,623 - INFO - Processing directory at depth 2: https://www.ub.bw/connect/staff (Visited: 24)
+2025-05-02 17:02:43,463 - INFO - Prioritized 1 sublinks at depth 2 for https://www.ub.bw/user/1
+2025-05-02 17:02:43,476 - INFO - Processing directory at depth 3: https://www.ub.bw/taxonomy/term/262 (Visited: 27)
+2025-05-02 17:02:52,203 - INFO - Prioritized 1 sublinks at depth 3 for https://www.ub.bw/experience/culture-sports-and-recreation
+2025-05-02 17:02:52,251 - INFO - Processing directory at depth 4: https://www.ub.bw/experience/culture-sports-and-recreation/facilities (Visited: 28)
+2025-05-02 17:02:58,235 - INFO - Prioritized 4 sublinks at depth 3 for https://www.ub.bw/experience/campus-life
+2025-05-02 17:02:58,345 - INFO - Processing directory at depth 4: https://www.ub.bw/discover/administration-and-support/health-and-wellness-centre (Visited: 29)
+2025-05-02 17:02:58,385 - INFO - Processing directory at depth 4: https://www.ub.bw/experience/campus-life/counselling (Visited: 29)
+2025-05-02 17:02:58,452 - INFO - Processing directory at depth 4: https://www.ub.bw/experience/campus-life/disability-support (Visited: 30)
+2025-05-02 17:02:58,502 - INFO - Processing directory at depth 4: https://www.ub.bw/experience/campus-life/accommodation-and-dining (Visited: 31)
+2025-05-02 17:02:59,992 - INFO - Prioritized 8 sublinks at depth 2 for https://www.ub.bw/discover/faculties
+2025-05-02 17:03:00,002 - INFO - Processing directory at depth 3: https://www.ub.bw/discover/faculties/science (Visited: 33)
+2025-05-02 17:03:00,018 - INFO - Prioritized 19 sublinks at depth 1 for https://www.ub.bw/study
+2025-05-02 17:03:00,018 - INFO - Processing directory at depth 3: https://www.ub.bw/discover/faculties/health-sciences (Visited: 34)
+2025-05-02 17:03:00,058 - INFO - Processing directory at depth 3: https://www.ub.bw/discover/faculties/social-sciences (Visited: 35)
+2025-05-02 17:03:00,075 - INFO - Processing directory at depth 2: https://www.ub.bw/study/academic-services-contacts (Visited: 36)
+2025-05-02 17:03:00,092 - INFO - Processing directory at depth 3: https://www.ub.bw/discover/faculties/engineering-and-technology (Visited: 37)
+2025-05-02 17:03:00,102 - INFO - Processing directory at depth 3: https://www.ub.bw/discover/faculties/humanities (Visited: 38)
+2025-05-02 17:03:00,112 - INFO - Processing directory at depth 2: https://www.ub.bw/study/international/migration-matters (Visited: 39)
+2025-05-02 17:03:00,225 - INFO - Processing directory at depth 3: https://www.ub.bw/discover/faculties/medicine (Visited: 40)
+2025-05-02 17:03:00,242 - INFO - Processing directory at depth 2: https://www.ub.bw/study/programmes/graduate (Visited: 40)
+2025-05-02 17:03:00,258 - INFO - Processing directory at depth 3: https://www.ub.bw/discover/faculties/education (Visited: 41)
+2025-05-02 17:03:00,274 - INFO - Processing directory at depth 3: https://www.ub.bw/discover/faculties/business (Visited: 42)
+2025-05-02 17:03:00,312 - INFO - Processing directory at depth 2: https://www.ub.bw/study/professional-development-programmes (Visited: 44)
+2025-05-02 17:03:00,362 - INFO - Processing directory at depth 2: https://www.ub.bw/study/distance-education (Visited: 45)
+2025-05-02 17:03:00,393 - INFO - Processing directory at depth 2: https://www.ub.bw/discover/administration-and-support/oiep (Visited: 46)
+2025-05-02 17:03:00,408 - INFO - Stopping at https://www.ub.bw/discover/faculties: Depth 2, Visited 47, Time elapsed 32s
+2025-05-02 17:03:00,418 - INFO - Processing directory at depth 2: https://www.ub.bw/study/international/study-abroad/inbound (Visited: 47)
+2025-05-02 17:03:00,436 - INFO - Processing directory at depth 2: https://www.ub.bw/study/application-requirements (Visited: 48)
+2025-05-02 17:03:00,436 - INFO - Processing directory at depth 2: https://www.ub.bw/study/international/study-abroad/outbound (Visited: 48)
+2025-05-02 17:03:00,458 - INFO - Stopping at https://www.ub.bw/user/1: Depth 2, Visited 49, Time elapsed 32s
+2025-05-02 17:03:00,518 - INFO - Processing directory at depth 2: https://www.ub.bw/study/public-administration-and-management-training (Visited: 50)
+2025-05-02 17:03:02,191 - WARNING - Connection pool is full, discarding connection: www.ub.bw. Connection pool size: 10
+2025-05-02 17:03:02,360 - WARNING - Connection pool is full, discarding connection: www.ub.bw. Connection pool size: 10
+2025-05-02 17:03:02,380 - WARNING - Connection pool is full, discarding connection: www.ub.bw. Connection pool size: 10
+2025-05-02 17:03:02,410 - WARNING - Connection pool is full, discarding connection: www.ub.bw. Connection pool size: 10
+2025-05-02 17:03:02,833 - WARNING - Connection pool is full, discarding connection: www.ub.bw. Connection pool size: 10
+2025-05-02 17:03:02,924 - WARNING - Connection pool is full, discarding connection: www.ub.bw. Connection pool size: 10
+2025-05-02 17:03:03,384 - WARNING - Connection pool is full, discarding connection: www.ub.bw. Connection pool size: 10
+2025-05-02 17:03:04,259 - WARNING - Connection pool is full, discarding connection: www.ub.bw. Connection pool size: 10
+2025-05-02 17:03:07,001 - INFO - Prioritized 6 sublinks at depth 3 for https://www.ub.bw/taxonomy/term/262
+2025-05-02 17:03:07,183 - INFO - Processing directory at depth 4: https://www.ub.bw/discover/administration-and-support/information-technology (Visited: 51)
+2025-05-02 17:03:07,528 - INFO - Processing directory at depth 4: https://www.ub.bw/taxonomy/term/262/feed (Visited: 52)
+2025-05-02 17:03:07,806 - INFO - Processing directory at depth 4: https://www.ub.bw/connect/job-opportunities/director-information-technology (Visited: 53)
+2025-05-02 17:03:07,950 - INFO - Processing directory at depth 4: https://www.ub.bw/connect/job-opportunities/manager-ict-security-and-data-protection (Visited: 54)
+2025-05-02 17:03:08,040 - INFO - Processing directory at depth 4: https://www.ub.bw/connect/job-opportunities/director-information-technology-contract-position-0 (Visited: 55)
+2025-05-02 17:03:08,110 - INFO - Processing directory at depth 4: https://www.ub.bw/connect/job-opportunities/director-information-technology-contract-position (Visited: 56)
+2025-05-02 17:03:16,779 - INFO - Processing directory at depth 2: https://www.ub.bw/study/evening-programmes (Visited: 57)
+2025-05-02 17:03:16,878 - INFO - Prioritized 23 sublinks at depth 1 for https://converis.ub.bw/converis
+2025-05-02 17:03:16,878 - INFO - Processing directory at depth 2: https://ubrisa.ub.bw (Visited: 58)
+2025-05-02 17:03:16,898 - INFO - Processing directory at depth 2: https://converis.ub.bw/converis/portal/detail/Project/10465056?auxfun=&lang=en_GB (Visited: 59)
+2025-05-02 17:03:16,908 - INFO - Stopping at https://converis.ub.bw/converis/portal/detail/Project/10463512?auxfun=&lang=en_GB: Depth 2, Visited 60, Time elapsed 49s
+2025-05-02 17:03:18,860 - INFO - Stopping at https://www.ub.bw/study/undergraduate/how-apply-admission: Depth 2, Visited 60, Time elapsed 51s
+2025-05-02 17:03:18,860 - INFO - Stopping at https://www.ub.bw/study/graduate-applications: Depth 2, Visited 60, Time elapsed 51s
+2025-05-02 17:03:18,860 - INFO - Stopping at https://www.ub.bw/study/call-centre: Depth 2, Visited 60, Time elapsed 51s
+2025-05-02 17:03:18,860 - INFO - Stopping at https://www.ub.bw/study/how-register: Depth 2, Visited 60, Time elapsed 51s
+2025-05-02 17:03:18,882 - INFO - Stopping at https://www.ub.bw/study/international/learn-setswana: Depth 2, Visited 60, Time elapsed 51s
+2025-05-02 17:03:18,892 - INFO - Stopping at https://www.ub.bw/study/registration-requirements: Depth 2, Visited 60, Time elapsed 51s
+2025-05-02 17:03:19,260 - INFO - Prioritized 1 sublinks at depth 4 for https://www.ub.bw/experience/campus-life/counselling
+2025-05-02 17:03:22,024 - INFO - Prioritized 1 sublinks at depth 2 for https://www.ub.bw/study/distance-education
+2025-05-02 17:03:22,111 - INFO - Prioritized 1 sublinks at depth 2 for https://www.ub.bw/study/application-requirements
+2025-05-02 17:03:22,989 - INFO - Prioritized 1 sublinks at depth 4 for https://www.ub.bw/connect/job-opportunities/director-information-technology-contract-position
+2025-05-02 17:03:23,028 - INFO - Prioritized 1 sublinks at depth 4 for https://www.ub.bw/connect/job-opportunities/director-information-technology-contract-position-0
+2025-05-02 17:03:25,253 - INFO - Prioritized 4 sublinks at depth 2 for https://www.ub.bw/study/public-administration-and-management-training
+2025-05-02 17:03:25,454 - INFO - Prioritized 1 sublinks at depth 2 for https://www.ub.bw/study/evening-programmes
+2025-05-02 17:03:25,505 - INFO - Prioritized 27 sublinks at depth 1 for https://www.ub.bw/discover/administration-and-support
+2025-05-02 17:03:25,952 - INFO - Prioritized 22 sublinks at depth 2 for https://www.ub.bw
+2025-05-02 17:03:31,464 - INFO - Prioritized 15 sublinks at depth 1 for https://www.ub.bw/research
+2025-05-02 17:03:33,560 - INFO - Prioritized 21 sublinks at depth 2 for https://www.ub.bw/connect/staff
+2025-05-02 17:03:37,252 - INFO - Prioritized 15 sublinks at depth 2 for https://converis.ub.bw/converis/portal/detail/Project/10465056?auxfun=&lang=en_GB
+2025-05-02 17:03:38,293 - INFO - Prioritized 23 sublinks at depth 2 for https://www.ub.bw/connect/job-opportunities
+2025-05-02 17:03:40,719 - INFO - Before stop: crawler_running_event.is_set() = True
+2025-05-02 17:03:40,720 - INFO - Stopping crawler...
+2025-05-02 17:03:40,720 - INFO - After clear: crawler_running_event.is_set() = False
+2025-05-02 17:03:42,697 - INFO - Prioritized 22 sublinks at depth 3 for https://www.ub.bw/discover/faculties/business
+2025-05-02 17:03:42,714 - INFO - Stopping sublink processing: Crawler stopped by user
+2025-05-02 17:03:42,764 - INFO - Prioritized 22 sublinks at depth 3 for https://www.ub.bw/discover/faculties/engineering-and-technology
+2025-05-02 17:03:45,446 - INFO - Prioritized 27 sublinks at depth 3 for https://www.ub.bw/discover/faculties/humanities
+2025-05-02 17:03:45,731 - WARNING - Crawler thread did not stop within 5 seconds
+2025-05-02 17:03:45,734 - INFO - Crawler stopped by user
+2025-05-02 17:03:45,971 - INFO - Prioritized 20 sublinks at depth 3 for https://www.ub.bw/discover/faculties/health-sciences
+2025-05-02 17:03:46,546 - INFO - Prioritized 29 sublinks at depth 3 for https://www.ub.bw/discover/faculties/medicine
+2025-05-02 17:03:48,994 - INFO - Prioritized 23 sublinks at depth 3 for https://www.ub.bw/discover/faculties/science
+2025-05-02 17:03:50,231 - INFO - Prioritized 25 sublinks at depth 3 for https://www.ub.bw/discover/faculties/social-sciences
+2025-05-02 17:03:50,434 - INFO - Prioritized 33 sublinks at depth 3 for https://www.ub.bw/discover/faculties/education
+2025-05-02 17:03:50,435 - INFO - Stopping sublink processing: Crawler stopped by user
+2025-05-02 17:03:50,451 - INFO - Stopping sublink processing: Crawler stopped by user
+2025-05-02 17:03:52,707 - INFO - Prioritized 51 sublinks at depth 2 for https://www.ub.bw/study/professional-development-programmes
+2025-05-02 17:03:52,714 - INFO - Stopping sublink processing: Crawler stopped by user
+2025-05-02 17:03:53,989 - INFO - Prioritized 61 sublinks at depth 1 for https://www.ub.bw/discover/faculties-and-departments/departments-a-z
+2025-05-02 17:03:57,844 - INFO - Prioritized 74 sublinks at depth 2 for https://www.ub.bw/study/programmes/graduate
+2025-05-02 17:03:57,844 - INFO - Discovered 11 unique URLs
+2025-05-02 17:03:57,854 - INFO - URL generation completed successfully
+2025-05-02 17:03:57,854 - INFO - URL generation stopped by user
+2025-05-02 17:03:57,854 - INFO - Workflow stopped after generating URLs
+2025-05-02 17:03:57,864 - INFO - Cleaning up: Clearing crawler_running_event
+2025-05-02 17:03:57,865 - INFO - Crawler execution completed or stopped
+2025-05-02 17:54:46,640 - INFO - response: https://html.duckduckgo.com/html 200
+2025-05-02 17:55:20,005 - INFO - response: https://html.duckduckgo.com/html 200
+2025-05-02 17:59:03,284 - INFO - Processing AI prompt: biology research at University of Ghana
+2025-05-02 17:59:05,639 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-02 17:59:05,649 - INFO - Identified university: University of Ghana (normalized: University of Ghana)
+2025-05-02 17:59:05,663 - INFO - Found 1 relevant entities for University of Ghana
+2025-05-02 18:00:10,558 - INFO - Processing AI prompt: clean energy research at university of cape coast
+2025-05-02 18:00:12,895 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-02 18:00:12,897 - INFO - Identified university: University of Cape Coast (normalized: University of Cape Coast)
+2025-05-02 18:00:12,903 - INFO - No relevant data for University of Cape Coast, searching for URL with prompt: clean energy research at university of cape coast
+2025-05-02 18:00:14,839 - INFO - response: https://lite.duckduckgo.com/lite/ 200
+2025-05-02 18:00:15,088 - INFO - Selected URL: https://environmental.ucc.edu.gh/programmes/msc-clean-energy-and-environment, domain: environmental.ucc.edu.gh
+2025-05-02 18:00:15,092 - INFO - Performing quick scrape for URL: https://environmental.ucc.edu.gh/programmes/msc-clean-energy-and-environment
+2025-05-02 18:00:15,621 - INFO - Quick scrape started, session ID: 207
+2025-05-02 18:00:15,622 - INFO - Starting run_workflow_with_stop (quick_scrape=True, initial_url=https://environmental.ucc.edu.gh/programmes/msc-clean-energy-and-environment)
+2025-05-02 18:00:15,623 - INFO - Starting workflow execution (quick_scrape=True, initial_url=https://environmental.ucc.edu.gh/programmes/msc-clean-energy-and-environment)
+2025-05-02 18:00:15,624 - INFO - Current crawler_running_event.is_set(): True
+2025-05-02 18:00:15,625 - INFO - Initializing workflow state...
+2025-05-02 18:00:15,866 - INFO - Invoking LangGraph workflow...
+2025-05-02 18:00:15,981 - INFO - Initializing workflow...
+2025-05-02 18:00:15,982 - INFO - Using provided URLs: [('https://environmental.ucc.edu.gh/programmes/msc-clean-energy-and-environment', 'initial')]
+2025-05-02 18:00:15,984 - INFO - Workflow initialized with 1 URLs
+2025-05-02 18:00:15,993 - INFO - Checking URLs (index 0/1)
+2025-05-02 18:00:16,287 - INFO - Selected URL: https://environmental.ucc.edu.gh/programmes/msc-clean-energy-and-environment (prob: 0.00)
+2025-05-02 18:00:16,292 - INFO - Detecting type for URL: https://environmental.ucc.edu.gh/programmes/msc-clean-energy-and-environment
+2025-05-02 18:00:18,438 - INFO - Scraping URL: https://environmental.ucc.edu.gh/programmes/msc-clean-energy-and-environment, is_static: True
+2025-05-02 18:00:18,440 - INFO - Scraping static website: https://environmental.ucc.edu.gh/programmes/msc-clean-energy-and-environment
+2025-05-02 18:00:19,495 - INFO - Searching EduRank for university: MSc. Clean Energy and Environment
+2025-05-02 18:00:19,495 - INFO - Trying direct EduRank URL: https://edurank.org/uni/msc.-clean-energy-and-environment/
+2025-05-02 18:00:19,994 - WARNING - Direct EduRank URL failed (Status 404): https://edurank.org/uni/msc.-clean-energy-and-environment/
+2025-05-02 18:00:19,995 - INFO - Falling back to Google search: https://www.google.com/search?q=site%3Aedurank.org%20MSc.%20Clean%20Energy%20and%20Environment
+2025-05-02 18:00:21,441 - INFO - No EduRank results found for MSc. Clean Energy and Environment
+2025-05-02 18:00:21,479 - INFO - Searching Google Scholar for university: MSc. Clean Energy and Environment, focus: research in clean and sustainable energy The programme focuses on entrepreneurship for the graduates
+2025-05-02 18:00:23,002 - INFO - Google Scholar found paper: https://www.sciencedirect.com/science/article/pii/S1749772821000373
+2025-05-02 18:00:23,003 - INFO - Added Google Scholar paper: https://www.sciencedirect.com/science/article/pii/S1749772821000373
+2025-05-02 18:00:23,451 - INFO - OCR disabled in configuration
+2025-05-02 18:00:23,452 - INFO - OCR disabled in configuration
+2025-05-02 18:00:23,454 - INFO - OCR disabled in configuration
+2025-05-02 18:00:23,455 - INFO - OCR disabled in configuration
+2025-05-02 18:00:23,459 - INFO - Successfully scraped https://environmental.ucc.edu.gh/programmes/msc-clean-energy-and-environment (Fields extracted: 13, Raw content length: 4356, OCR items: 0)
+2025-05-02 18:00:23,464 - INFO - Extracting data for URL: https://environmental.ucc.edu.gh/programmes/msc-clean-energy-and-environment
+2025-05-02 18:00:23,466 - INFO - Pre-extracted content: - university: MSc. Clean Energy and Environment
+- location: country: University of Cape Coast, city: Department of Environmental Science
+- website: https://environmental.ucc.edu.gh/programmes/msc-clean-energy-and-environment
+- edurank: 
+- department: name: Department of Environmental Science, teams: {'urls': [], 'members': []}, focus: research in clean and sustainable energy The programme focuses on entrepreneurship for the graduates
+- publications: other_url: https://www.sciencedirect.com/science/article/pii/S1749772821000373, contents: ['Research paper from MSc. Clean Energy and Environment related to research in clean and sustainable energy The programme focuses on entrepreneurship for the graduates']
+- related: 
+- point_of_contact: name: Prof. Mohammed A. Takase (Programme Coordinator) +233244909134, first_name: Mohammed, last_name: +233244909134, email: enviro.science@ucc.edu.gh, phone_number: 03320-96237
+- scopes: Renewable Energy, solar, clean energy, machine learning, AI, Clean Energy, Machine Learning, renewable energy
+- research_abstract: The programme focuses on entrepreneurship for the graduates. For instance, in the curriculum, there are core courses such as Local Solutions for Energy Access, Appliances for Off-Grid Communities, and Mini-Grids Planning and Design which are entrepreneurship-based and solely unique to this programme in Ghana and Sub-Saharan Africa.Why Choose this Programme
+- lab_equipment: 
+- ocr_content: 
+
+2025-05-02 18:00:23,467 - INFO - Raw content: The course will assess the profound transformations in the world energy landscape due to rapid technological change and concern about climate change. A review of global energy security and how key countries and regions view their energy challenges and strengths will be carried out. It will focus on evaluation of the considerations of impact international relations and strategies, and how energy security can be shaped by geopolitical factors, e.g., the rise of nationalism and weakening of the post-World War II global order. Objectives The objective of the course is to: . Describe the major energy security issues facing the world and specific regions and countries today and how this may evolve going forward . Discuss how particular countries and regions view their energy strengths and challenges and how this perception impacts foreign and security policies. . Explain how geopolitics might affect energy trends and how geopolitics could be impacted by energy developments
+The course will assess the profound transformations in the world energy landscape due to rapid technological change and concern about climate change. A review of global energy security and how key countries and regions view their energy challenges and strengths will be carried out. It will focus on evaluation of the considerations of impact international relations and strategies, and how energy security can be shaped by geopolitical factors, e.g., the rise of nationalism and weakening of the post-World War II global order.
+The objective of the course is to:
+today and how this may evolve going forward
+. Discuss how particular countries and regions view their energy strengths and challenges and
+how this perception impacts foreign and security policies.
+The course provides hands-on experience to students on theoretical/conceptual framework and modelling, statistical tools, data collection and analysis, problem identification and objectives setting, literature-searching skills to enable them write research proposals. Objectives The objective of the course is to: Apply statistical tools, knowledge and computing skills to research Explain basic concepts of research, variables operationalization, sampling, reliability and validity Explain quantitative, qualitative, and mixed methods of research Formulate research questions and hypotheses Analyse the appropriate method and variables needed for research questions Write a good research proposal
+The course provides hands-on experience to students on theoretical/conceptual framework and modelling, statistical tools, data collection and analysis, problem identification and objectives setting, literature-searching skills to enable them write research proposals.
+• Apply statistical tools, knowledge and computing skills to research
+• Explain basic concepts of research, variables operationalization, sampling, reliability and validity
+• Explain quantitative, qualitative, and mixed methods of research
+• Formulate research questions and hypotheses
+• Analyse the appropriate method and variables needed for research questions
+• Write a good research proposal
+The course focuses on the relationship between the technologies of renewable energy systems and the societies as well as the policies that influence the development of energy supply and demand, processes, and institutional arrangements. Objectives The objective of the course is to: Examine the different forms of renewable energy Discuss the merits and demerits of the different renewable energy sources Discuss the variety of applications for renewable energy Examine the scientific and technical principles in the applications of renewable energy Discuss the socio-political and economic incentives in the implementation of renewable energy
+The course focuses on the relationship between the technologies of renewable energy systems and the societies as well as the policies that influence the development of energy supply and demand, processes, and institutional arrangements.
+• Examine the different forms of renewable energy
+• Discuss the merits and demerits of the different renewable energy sources
+• Discuss the variety of applications for renewable energy
+• Examine the scientific and technical principles in the applications of renewable energy
+• Discuss the socio-political and economic incentives in the implementation of renewable energy
+2025-05-02 18:00:23,469 - INFO - OCR content: []
+2025-05-02 18:00:26,903 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-02 18:00:29,511 - INFO - AFC is enabled with max remote calls: 10.
+2025-05-02 18:00:34,543 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-05-02 18:00:35,219 - INFO - AFC remote call 1 is done.
+2025-05-02 18:00:35,239 - INFO - Attempting to store data for URL: https://environmental.ucc.edu.gh/programmes/msc-clean-energy-and-environment
+2025-05-02 18:00:35,249 - INFO - Calling store_data with URL: https://environmental.ucc.edu.gh/programmes/msc-clean-energy-and-environment, session: Session object (207)
+2025-05-02 18:00:36,059 - INFO - Successfully stored data for https://environmental.ucc.edu.gh/programmes/msc-clean-energy-and-environment
+2025-05-02 18:00:36,071 - INFO - Updating model for URL: https://environmental.ucc.edu.gh/programmes/msc-clean-energy-and-environment
+2025-05-02 18:00:39,106 - INFO - Updated model for https://environmental.ucc.edu.gh/programmes/msc-clean-energy-and-environment: label=1, populated_fields=3
+2025-05-02 18:00:39,120 - INFO - Incrementing index to 1 for URL: https://environmental.ucc.edu.gh/programmes/msc-clean-energy-and-environment
+2025-05-02 18:00:39,123 - INFO - Checking URLs (index 1/1)
+2025-05-02 18:00:39,134 - INFO - No more URLs to process, setting status to finished
+2025-05-02 18:00:39,138 - INFO - Type of final_state: <class 'langgraph.pregel.io.AddableValuesDict'>
+2025-05-02 18:00:39,139 - INFO - Content of final_state: {'urls': [('https://environmental.ucc.edu.gh/programmes/msc-clean-energy-and-environment', 'initial')], 'index': 1, 'current_url': None, 'is_static': None, 'scraped_data': None, 'extracted_data': None, 'status': 'finished', 'errors': [], 'session': <Session: Session object (207)>, 'quick_scrape': False}
+2025-05-02 18:00:39,140 - INFO - Workflow completed with status: finished
+2025-05-02 18:00:39,147 - INFO - Crawler execution completed or stopped
+2025-05-02 18:00:40,157 - INFO - Quick scrape completed
+2025-05-02 18:00:40,157 - INFO - After quick scrape: crawler_running_event.is_set() = False
+2025-05-02 18:00:40,167 - INFO - Retrieved 1 quick scrape entities for session 207
+2025-05-02 18:00:40,169 - INFO - Starting full crawler for University of Cape Coast
+2025-05-02 18:00:40,169 - INFO - Client supports SSE, streaming quick scrape results
+2025-05-02 18:00:40,496 - INFO - Streaming 1 quick scrape results
+2025-05-02 18:00:40,923 - INFO - Starting run_workflow_with_stop (quick_scrape=False, initial_url=None)
+2025-05-02 18:00:40,923 - INFO - Starting workflow execution (quick_scrape=False, initial_url=None)
+2025-05-02 18:00:40,929 - INFO - Current crawler_running_event.is_set(): True
+2025-05-02 18:00:40,930 - INFO - Calling generate_urls...
+2025-05-02 18:00:40,931 - INFO - Loading university domains from data/universities.txt
+2025-05-02 18:00:40,935 - INFO - Loaded 2 validated university domains
+2025-05-02 18:00:40,937 - INFO - Filtered to 2 university domain URLs
+2025-05-02 18:00:40,940 - INFO - Processing directory at depth 0: https://www.ub.bw/research/research-centres/clean-energy-research-centre (Visited: 0)
+2025-05-02 18:00:40,944 - INFO - Processing directory at depth 0: https://environmental.ucc.edu.gh/programmes/msc-clean-energy-and-environment (Visited: 1)
+2025-05-02 18:00:44,470 - INFO - Prioritized 6 sublinks at depth 0 for https://environmental.ucc.edu.gh/programmes/msc-clean-energy-and-environment
+2025-05-02 18:00:44,472 - INFO - Processing directory at depth 1: https://environmental.ucc.edu.gh/programmes (Visited: 2)
+2025-05-02 18:00:44,480 - INFO - Processing directory at depth 1: https://apply.ucc.edu.gh (Visited: 3)
+2025-05-02 18:00:44,483 - INFO - Processing directory at depth 1: https://environmental.ucc.edu.gh/programmes/graduate (Visited: 4)
+2025-05-02 18:00:44,496 - INFO - Processing directory at depth 1: https://directory.ucc.edu.gh/d/department-of-environmental-science (Visited: 5)
+2025-05-02 18:00:44,500 - INFO - Processing directory at depth 1: https://environmental.ucc.edu.gh/programmes/undergraduate (Visited: 6)
+2025-05-02 18:00:44,505 - INFO - Processing directory at depth 1: https://environmental.ucc.edu.gh (Visited: 7)
+2025-05-02 18:00:45,760 - INFO - Prioritized 15 sublinks at depth 0 for https://www.ub.bw/research/research-centres/clean-energy-research-centre
+2025-05-02 18:00:45,769 - INFO - Processing directory at depth 1: https://www.ub.bw/research/research-centres (Visited: 8)
+2025-05-02 18:00:45,779 - INFO - Processing directory at depth 1: https://converis.ub.bw/converis (Visited: 9)
+2025-05-02 18:00:45,784 - INFO - Processing directory at depth 1: https://www.ub.bw/research (Visited: 10)
+2025-05-02 18:00:45,787 - INFO - Processing directory at depth 1: https://www.ub.bw/discover (Visited: 11)
+2025-05-02 18:00:45,796 - INFO - Processing directory at depth 1: https://www.ub.bw/discover/faculties-and-departments/departments-a-z (Visited: 12)
+2025-05-02 18:00:45,799 - INFO - Processing directory at depth 1: https://www.ub.bw/study (Visited: 12)
+2025-05-02 18:00:45,805 - INFO - Processing directory at depth 1: https://ubasas.ub.bw (Visited: 14)
+2025-05-02 18:00:45,810 - INFO - Processing directory at depth 1: https://www.ub.bw/campus-map (Visited: 15)
+2025-05-02 18:00:45,823 - INFO - Processing directory at depth 1: https://www.ub.bw/connect/get-in-touch (Visited: 16)
+2025-05-02 18:00:45,833 - INFO - Processing directory at depth 1: https://www.ub.bw/discover/administration-and-support (Visited: 17)
+2025-05-02 18:00:46,271 - INFO - Processing directory at depth 1: https://linyanti.ub.bw (Visited: 18)
+2025-05-02 18:00:46,403 - INFO - Prioritized 1 sublinks at depth 1 for https://environmental.ucc.edu.gh/programmes/undergraduate
+2025-05-02 18:00:46,416 - INFO - Processing directory at depth 2: https://environmental.ucc.edu.gh/programmes/environmental-science (Visited: 19)
+2025-05-02 18:00:48,546 - INFO - Processing directory at depth 1: https://www.ub.bw/connect (Visited: 20)
+2025-05-02 18:00:48,856 - INFO - Processing directory at depth 1: https://www.ub.bw/ubpayments (Visited: 21)
+2025-05-02 18:00:48,876 - INFO - Prioritized 3 sublinks at depth 1 for https://environmental.ucc.edu.gh/programmes/graduate
+2025-05-02 18:00:48,889 - INFO - Processing directory at depth 2: https://environmental.ucc.edu.gh/programmes/mphil-environmental-science (Visited: 22)
+2025-05-02 18:00:48,900 - INFO - Processing directory at depth 2: https://environmental.ucc.edu.gh/programmes/phd-clean-energy-and-environment (Visited: 23)
+2025-05-02 18:00:48,916 - INFO - Processing directory at depth 2: https://environmental.ucc.edu.gh/programmes/mphil-clean-energy-and-environment (Visited: 24)
+2025-05-02 18:00:49,033 - INFO - Prioritized 4 sublinks at depth 1 for https://environmental.ucc.edu.gh/programmes
+2025-05-02 18:00:49,043 - INFO - Stopping at https://environmental.ucc.edu.gh/programmes/environmental-science: Depth 2, Visited 25, Time elapsed 8s
+2025-05-02 18:00:49,044 - INFO - Stopping at https://environmental.ucc.edu.gh/programmes/mphil-environmental-science: Depth 2, Visited 25, Time elapsed 8s
+2025-05-02 18:00:49,069 - INFO - Stopping at https://environmental.ucc.edu.gh/programmes/phd-clean-energy-and-environment: Depth 2, Visited 25, Time elapsed 8s
+2025-05-02 18:00:49,069 - INFO - Stopping at https://environmental.ucc.edu.gh/programmes/mphil-clean-energy-and-environment: Depth 2, Visited 25, Time elapsed 8s
+2025-05-02 18:00:51,659 - INFO - Prioritized 1 sublinks at depth 1 for https://environmental.ucc.edu.gh
+2025-05-02 18:00:51,672 - INFO - Processing directory at depth 2: https://directory.ucc.edu.gh/p/michael-miyittah-kporgbe (Visited: 25)
+2025-05-02 18:00:51,978 - INFO - Prioritized 4 sublinks at depth 1 for https://apply.ucc.edu.gh
+2025-05-02 18:00:51,985 - INFO - Processing directory at depth 2: https://www.ucc.edu.gh (Visited: 26)
+2025-05-02 18:00:51,989 - INFO - Processing directory at depth 2: https://www.ucc.edu.gh/admission-notices/undergraduate-admissions-regular (Visited: 27)
+2025-05-02 18:00:52,003 - INFO - Processing directory at depth 2: https://www.ucc.edu.gh/admission-notices/distance-undergraduate-admissions (Visited: 28)
+2025-05-02 18:00:52,011 - INFO - Processing directory at depth 2: https://www.ucc.edu.gh/admission-notices/undergraduate-sandwich-admissions-2021-sandwich-semester (Visited: 29)
+2025-05-02 18:00:52,667 - INFO - Prioritized 2 sublinks at depth 1 for https://www.ub.bw/research/research-centres
+2025-05-02 18:00:52,670 - INFO - Processing directory at depth 2: https://www.ub.bw (Visited: 30)
+2025-05-02 18:00:52,677 - INFO - Processing directory at depth 2: https://www.ub.bw/experience (Visited: 31)
+2025-05-02 18:00:52,878 - INFO - Stopping at https://www.ub.bw: Depth 1, Visited 32, Time elapsed 11s
+2025-05-02 18:00:52,883 - INFO - Stopping at https://www.ub.bw/experience: Depth 1, Visited 32, Time elapsed 11s
+2025-05-02 18:00:53,031 - INFO - Prioritized 2 sublinks at depth 1 for https://www.ub.bw/connect/get-in-touch
+2025-05-02 18:00:53,034 - INFO - Stopping at https://www.ub.bw: Depth 2, Visited 32, Time elapsed 12s
+2025-05-02 18:00:53,038 - INFO - Stopping at https://www.ub.bw/experience: Depth 2, Visited 32, Time elapsed 12s
+2025-05-02 18:00:57,780 - INFO - Prioritized 5 sublinks at depth 1 for https://www.ub.bw/discover
+2025-05-02 18:00:57,790 - INFO - Stopping at https://www.ub.bw: Depth 2, Visited 32, Time elapsed 16s
+2025-05-02 18:00:57,791 - INFO - Processing directory at depth 2: https://www.ub.bw/discover/faculties (Visited: 32)
+2025-05-02 18:00:57,799 - INFO - Processing directory at depth 2: https://www.ub.bw/user/1 (Visited: 33)
+2025-05-02 18:00:57,802 - INFO - Processing directory at depth 2: https://www.ub.bw/discover/history (Visited: 33)
+2025-05-02 18:00:57,808 - INFO - Stopping at https://www.ub.bw/experience: Depth 2, Visited 34, Time elapsed 16s
+2025-05-02 18:01:00,700 - INFO - Prioritized 2 sublinks at depth 2 for https://www.ub.bw/experience
+2025-05-02 18:01:00,703 - INFO - Processing directory at depth 3: https://www.ub.bw/experience/campus-life (Visited: 35)
+2025-05-02 18:01:00,716 - INFO - Processing directory at depth 3: https://www.ub.bw/experience/culture-sports-and-recreation (Visited: 36)
+2025-05-02 18:01:01,127 - INFO - Prioritized 9 sublinks at depth 1 for https://www.ub.bw/connect
+2025-05-02 18:01:01,135 - INFO - Processing directory at depth 2: https://www.ub.bw/connect/job-opportunities (Visited: 37)
+2025-05-02 18:01:01,142 - INFO - Processing directory at depth 2: https://www.ub.bw/discover/administration-and-support/university-botswana-foundation (Visited: 38)
+2025-05-02 18:01:01,153 - INFO - Stopping at https://www.ub.bw: Depth 2, Visited 39, Time elapsed 20s
+2025-05-02 18:01:01,157 - INFO - Processing directory at depth 2: https://www.ub.bw/connect/cv-database (Visited: 39)
+2025-05-02 18:01:01,166 - INFO - Stopping at https://www.ub.bw/user/1: Depth 2, Visited 40, Time elapsed 20s
+2025-05-02 18:01:01,168 - INFO - Processing directory at depth 2: https://www.ub.bw/connect/tenders (Visited: 40)
+2025-05-02 18:01:01,174 - INFO - Processing directory at depth 2: https://www.ub.bw/connect/graduation-certificates-and-transcripts (Visited: 41)
+2025-05-02 18:01:01,181 - INFO - Processing directory at depth 2: https://www.ub.bw/connect/staff (Visited: 42)
+2025-05-02 18:01:01,195 - INFO - Stopping at https://www.ub.bw/experience: Depth 2, Visited 43, Time elapsed 20s
+2025-05-02 18:01:04,412 - INFO - Prioritized 3 sublinks at depth 2 for https://directory.ucc.edu.gh/p/michael-miyittah-kporgbe
+2025-05-02 18:01:04,431 - INFO - Processing directory at depth 3: https://directory.ucc.edu.gh/category/senior-member (Visited: 43)
+2025-05-02 18:01:04,445 - INFO - Processing directory at depth 3: https://my.ucc.edu.gh (Visited: 44)
+2025-05-02 18:01:04,457 - INFO - Processing directory at depth 3: https://directory.ucc.edu.gh (Visited: 45)
+2025-05-02 18:01:04,723 - WARNING - URL not found (404): https://directory.ucc.edu.gh/category/senior-member
+2025-05-02 18:01:07,269 - INFO - Prioritized 13 sublinks at depth 1 for https://directory.ucc.edu.gh/d/department-of-environmental-science
+2025-05-02 18:01:07,274 - INFO - Processing directory at depth 2: https://directory.ucc.edu.gh/p/stephen-kissi (Visited: 46)
+2025-05-02 18:01:07,284 - INFO - Processing directory at depth 2: https://directory.ucc.edu.gh/p/isaac-mbir-bryant (Visited: 47)
+2025-05-02 18:01:07,293 - INFO - Processing directory at depth 2: https://directory.ucc.edu.gh/p/paul-kwame-essandoh (Visited: 48)
+2025-05-02 18:01:07,301 - INFO - Processing directory at depth 2: https://directory.ucc.edu.gh/p/kingsley-agbenyah (Visited: 49)
+2025-05-02 18:01:07,310 - INFO - Processing directory at depth 2: https://directory.ucc.edu.gh/p/mohammed-augustine-takase (Visited: 50)
+2025-05-02 18:01:07,315 - INFO - Processing directory at depth 2: https://directory.ucc.edu.gh/p/emmanuel-essoun (Visited: 51)
+2025-05-02 18:01:07,330 - INFO - Processing directory at depth 2: https://directory.ucc.edu.gh/p/christiana-odumah-anderson (Visited: 52)
+2025-05-02 18:01:07,337 - INFO - Processing directory at depth 2: https://directory.ucc.edu.gh/p/frederick-ato-armah (Visited: 53)
+2025-05-02 18:01:07,341 - INFO - Processing directory at depth 2: https://directory.ucc.edu.gh/p/ernest-kofi-amankwa-afrifa (Visited: 53)
+2025-05-02 18:01:07,345 - INFO - Processing directory at depth 2: https://directory.ucc.edu.gh/p/gertrude-lucky-aku-dali (Visited: 53)
+2025-05-02 18:01:07,686 - INFO - Prioritized 1 sublinks at depth 3 for https://www.ub.bw/experience/culture-sports-and-recreation
+2025-05-02 18:01:07,692 - INFO - Processing directory at depth 4: https://www.ub.bw/experience/culture-sports-and-recreation/facilities (Visited: 56)
+2025-05-02 18:01:08,129 - INFO - Prioritized 1 sublinks at depth 3 for https://my.ucc.edu.gh
+2025-05-02 18:01:08,135 - INFO - Processing directory at depth 4: https://my.ucc.edu.gh/password-reset/request (Visited: 57)
+2025-05-02 18:01:08,656 - INFO - Prioritized 4 sublinks at depth 3 for https://www.ub.bw/experience/campus-life
+2025-05-02 18:01:08,663 - INFO - Processing directory at depth 4: https://www.ub.bw/discover/administration-and-support/health-and-wellness-centre (Visited: 58)
+2025-05-02 18:01:08,685 - INFO - Processing directory at depth 4: https://www.ub.bw/experience/campus-life/counselling (Visited: 59)
+2025-05-02 18:01:08,712 - INFO - Stopping at https://www.ub.bw/experience/campus-life/disability-support: Depth 4, Visited 60, Time elapsed 27s
+2025-05-02 18:01:15,406 - INFO - Prioritized 21 sublinks at depth 1 for https://www.ub.bw/study
+2025-05-02 18:01:16,133 - INFO - Prioritized 23 sublinks at depth 1 for https://converis.ub.bw/converis
+2025-05-02 18:01:16,704 - INFO - Prioritized 1 sublinks at depth 4 for https://www.ub.bw/experience/campus-life/counselling
+2025-05-02 18:01:17,524 - INFO - Stopping at https://directory.ucc.edu.gh/p/augustina-fynn: Depth 2, Visited 60, Time elapsed 36s
+2025-05-02 18:01:17,525 - INFO - Stopping at https://my.ucc.edu.gh: Depth 2, Visited 60, Time elapsed 36s
+2025-05-02 18:01:17,526 - INFO - Stopping at https://directory.ucc.edu.gh: Depth 2, Visited 60, Time elapsed 36s
+2025-05-02 18:01:18,041 - INFO - Prioritized 1 sublinks at depth 2 for https://directory.ucc.edu.gh/p/stephen-kissi
+2025-05-02 18:01:18,170 - INFO - Prioritized 1 sublinks at depth 2 for https://directory.ucc.edu.gh/p/kingsley-agbenyah
+2025-05-02 18:01:19,652 - INFO - Prioritized 3 sublinks at depth 2 for https://directory.ucc.edu.gh/p/frederick-ato-armah
+2025-05-02 18:01:20,624 - INFO - Prioritized 4 sublinks at depth 2 for https://directory.ucc.edu.gh/p/emmanuel-essoun
+2025-05-02 18:01:21,316 - INFO - Prioritized 27 sublinks at depth 1 for https://www.ub.bw/discover/administration-and-support
+2025-05-02 18:01:21,509 - INFO - Prioritized 22 sublinks at depth 2 for https://www.ub.bw
+2025-05-02 18:01:22,365 - INFO - Prioritized 7 sublinks at depth 2 for https://directory.ucc.edu.gh/p/christiana-odumah-anderson
+2025-05-02 18:01:23,859 - INFO - Prioritized 15 sublinks at depth 1 for https://www.ub.bw/research
+2025-05-02 18:01:24,127 - INFO - Prioritized 21 sublinks at depth 2 for https://www.ub.bw/connect/staff
+2025-05-02 18:01:25,050 - INFO - Prioritized 12 sublinks at depth 2 for https://directory.ucc.edu.gh/p/gertrude-lucky-aku-dali
+2025-05-02 18:01:25,434 - INFO - Prioritized 13 sublinks at depth 2 for https://directory.ucc.edu.gh/p/mohammed-augustine-takase
+2025-05-02 18:01:25,907 - INFO - Prioritized 13 sublinks at depth 2 for https://directory.ucc.edu.gh/p/isaac-mbir-bryant
+2025-05-02 18:01:26,120 - INFO - Prioritized 23 sublinks at depth 2 for https://www.ub.bw/connect/job-opportunities
+2025-05-02 18:01:29,574 - INFO - Prioritized 37 sublinks at depth 3 for https://directory.ucc.edu.gh
+2025-05-02 18:01:34,033 - INFO - Prioritized 61 sublinks at depth 1 for https://www.ub.bw/discover/faculties-and-departments/departments-a-z
+2025-05-02 18:01:34,162 - INFO - Prioritized 73 sublinks at depth 2 for https://www.ucc.edu.gh/admission-notices/distance-undergraduate-admissions
+2025-05-02 18:01:34,189 - INFO - Prioritized 74 sublinks at depth 2 for https://www.ucc.edu.gh/admission-notices/undergraduate-sandwich-admissions-2021-sandwich-semester
+2025-05-02 18:01:34,197 - INFO - Prioritized 73 sublinks at depth 2 for https://www.ucc.edu.gh/admission-notices/undergraduate-admissions-regular
+2025-05-02 18:01:37,149 - INFO - Prioritized 106 sublinks at depth 2 for https://www.ucc.edu.gh
+2025-05-02 18:01:37,152 - INFO - Discovered 21 unique URLs
+2025-05-02 18:01:37,166 - INFO - URL generation completed successfully
+2025-05-02 18:01:37,167 - INFO - Calling create_db...
+2025-05-02 18:01:37,172 - INFO - Initializing workflow state...
+2025-05-02 18:01:37,175 - INFO - Invoking LangGraph workflow...
+2025-05-02 18:01:37,182 - INFO - Initializing workflow...
+2025-05-02 18:01:37,184 - INFO - Loaded 18 validated URLs from data/urls.txt
+2025-05-02 18:01:37,185 - INFO - Loaded 18 seed URLs
+2025-05-02 18:01:37,185 - INFO - Workflow initialized with 18 URLs
+2025-05-02 18:01:37,188 - INFO - Checking URLs (index 0/18)
+2025-05-02 18:01:37,194 - INFO - Selected URL: https://directory.ucc.edu.gh/d/department-of-environmental-science (prob: 0.00)
+2025-05-02 18:01:37,197 - INFO - Detecting type for URL: https://directory.ucc.edu.gh/d/department-of-environmental-science
+2025-05-02 18:01:40,108 - INFO - Scraping URL: https://directory.ucc.edu.gh/d/department-of-environmental-science, is_static: False
+2025-05-02 18:01:40,108 - INFO - Scraping dynamic website: https://directory.ucc.edu.gh/d/department-of-environmental-science
+2025-05-02 18:02:44,718 - INFO - Searching EduRank for university: Department of Environmental Science
+2025-05-02 18:02:44,719 - INFO - Trying direct EduRank URL: https://edurank.org/uni/department-of-environmental-science/
+2025-05-02 18:02:45,120 - WARNING - Direct EduRank URL failed (Status 404): https://edurank.org/uni/department-of-environmental-science/
+2025-05-02 18:02:45,122 - INFO - Falling back to Google search: https://www.google.com/search?q=site%3Aedurank.org%20Department%20of%20Environmental%20Science
+2025-05-02 18:02:46,118 - INFO - No EduRank results found for Department of Environmental Science
+2025-05-02 18:02:46,131 - INFO - Searching Google Scholar for university: Department of Environmental Science, focus: 
+2025-05-02 18:02:48,486 - INFO - Google Scholar found paper: http://www.iaees.org/publications/journals/piaees/articles/2013-3(4)/SWOT-analysis-for-sustainable-ecotourism.pdf
+2025-05-02 18:02:48,539 - INFO - Added Google Scholar paper: http://www.iaees.org/publications/journals/piaees/articles/2013-3(4)/SWOT-analysis-for-sustainable-ecotourism.pdf
+2025-05-02 18:02:48,841 - INFO - OCR disabled in configuration
+2025-05-02 18:02:48,851 - INFO - OCR disabled in configuration
+2025-05-02 18:02:48,853 - INFO - OCR disabled in configuration
+2025-05-02 18:02:48,856 - INFO - OCR disabled in configuration
+2025-05-02 18:02:48,857 - INFO - OCR disabled in configuration
+2025-05-02 18:02:48,863 - INFO - OCR disabled in configuration
+2025-05-02 18:02:48,868 - INFO - OCR disabled in configuration
+2025-05-02 18:02:48,872 - INFO - OCR disabled in configuration
+2025-05-02 18:02:48,874 - INFO - OCR disabled in configuration
+2025-05-02 18:02:48,885 - INFO - OCR disabled in configuration
+2025-05-02 18:02:48,907 - INFO - OCR disabled in configuration
+2025-05-02 18:02:48,913 - INFO - OCR disabled in configuration
+2025-05-02 18:02:48,914 - INFO - Successfully scraped https://directory.ucc.edu.gh/d/department-of-environmental-science (Fields extracted: 13, Raw content length: 700, OCR items: 0)
+2025-05-02 18:02:54,513 - INFO - Extracting data for URL: https://directory.ucc.edu.gh/d/department-of-environmental-science
+2025-05-02 18:02:54,516 - INFO - Pre-extracted content: - university: Department of Environmental Science
+- location: 
+- website: https://directory.ucc.edu.gh/d/department-of-environmental-science
+- edurank: 
+- department: name: Department of Environmental Science, teams: {'urls': [], 'members': []}
+- publications: other_url: http://www.iaees.org/publications/journals/piaees/articles/2013-3(4)/SWOT-analysis-for-sustainable-ecotourism.pdf, contents: ['Research paper from Department of Environmental Science related to ']
+- related: 
+- point_of_contact: name: Dr. (Mrs.) Christiana Odumah Anderson, first_name: (Mrs.), last_name: Anderson, phone_number: 2015 - 2025
+- scopes: 
+- research_abstract: 
+- lab_equipment: 
+- ocr_content: 
+
+2025-05-02 18:02:54,520 - INFO - Raw content: Prof. Michael Miyittah-Kporgbe
+Dr. Isaac Mbir Bryant
+
+### Teaching Staff
+[Context: Teaching Staff]
+Prof. Frederick Ato Armah
+[Context: Teaching Staff]
+Prof. Ernest Kofi Amankwa Afrifa
+[Context: Teaching Staff]
+Prof. Mohammed Augustine Takase
+[Context: Teaching Staff]
+Dr. Paul Kwame Essandoh
+[Context: Teaching Staff]
+Dr. Gertrude Lucky Aku Dali
+[Context: Teaching Staff]
+Dr. (Mrs.) Christiana Odumah Anderson
+
+### Non-Teaching Staff
+[Context: Teaching Staff > Non-Teaching Staff]
+Mr. Stephen Kissi
+[Context: Teaching Staff > Non-Teaching Staff]
+Ms. Augustina Fynn
+[Context: Teaching Staff > Non-Teaching Staff]
+Mr. Emmanuel Essoun
+[Context: Teaching Staff > Non-Teaching Staff]
+Mr. Kingsley Agbenyah
+2025-05-02 18:02:54,521 - INFO - OCR content: []
+2025-05-02 18:03:00,172 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-02 18:03:00,238 - INFO - Attempting to store data for URL: https://directory.ucc.edu.gh/d/department-of-environmental-science
+2025-05-02 18:03:00,251 - INFO - Calling store_data with URL: https://directory.ucc.edu.gh/d/department-of-environmental-science, session: Session object (208)
+2025-05-02 18:03:00,600 - INFO - Successfully stored data for https://directory.ucc.edu.gh/d/department-of-environmental-science
+2025-05-02 18:03:00,615 - INFO - Updating model for URL: https://directory.ucc.edu.gh/d/department-of-environmental-science
+2025-05-02 18:03:00,968 - INFO - Updated model for https://directory.ucc.edu.gh/d/department-of-environmental-science: label=1, populated_fields=3
+2025-05-02 18:03:00,977 - INFO - Incrementing index to 1 for URL: https://directory.ucc.edu.gh/d/department-of-environmental-science
+2025-05-02 18:03:00,983 - INFO - Checking URLs (index 1/18)
+2025-05-02 18:03:01,219 - INFO - Selected URL: https://directory.ucc.edu.gh/edu/field-study/environmental-science (prob: 0.00)
+2025-05-02 18:03:01,417 - INFO - Detecting type for URL: https://directory.ucc.edu.gh/edu/field-study/environmental-science
+2025-05-02 18:03:04,865 - INFO - Scraping URL: https://directory.ucc.edu.gh/edu/field-study/environmental-science, is_static: False
+2025-05-02 18:03:04,879 - INFO - Scraping dynamic website: https://directory.ucc.edu.gh/edu/field-study/environmental-science
+2025-05-02 18:03:24,178 - INFO - Searching EduRank for university: Individuals with Environmental Science qualification
+2025-05-02 18:03:24,206 - INFO - Trying direct EduRank URL: https://edurank.org/uni/individuals-with-environmental-science-qualification/
+2025-05-02 18:03:24,598 - WARNING - Direct EduRank URL failed (Status 404): https://edurank.org/uni/individuals-with-environmental-science-qualification/
+2025-05-02 18:03:24,615 - INFO - Falling back to Google search: https://www.google.com/search?q=site%3Aedurank.org%20Individuals%20with%20Environmental%20Science%20qualification
+2025-05-02 18:03:26,124 - INFO - No EduRank results found for Individuals with Environmental Science qualification
+2025-05-02 18:03:26,147 - INFO - Searching Google Scholar for university: Individuals with Environmental Science qualification, focus: 
+2025-05-02 18:03:27,387 - INFO - Google Scholar found paper: https://papers.ssrn.com/sol3/Delivery.cfm?abstractid=2214115
+2025-05-02 18:03:27,476 - INFO - Added Google Scholar paper: https://papers.ssrn.com/sol3/Delivery.cfm?abstractid=2214115
+2025-05-02 18:03:27,737 - INFO - OCR disabled in configuration
+2025-05-02 18:03:27,973 - INFO - OCR disabled in configuration
+2025-05-02 18:03:28,164 - INFO - OCR disabled in configuration
+2025-05-02 18:03:28,276 - INFO - OCR disabled in configuration
+2025-05-02 18:03:28,280 - INFO - OCR disabled in configuration
+2025-05-02 18:03:28,295 - INFO - OCR disabled in configuration
+2025-05-02 18:03:28,311 - INFO - OCR disabled in configuration
+2025-05-02 18:03:28,328 - INFO - Successfully scraped https://directory.ucc.edu.gh/edu/field-study/environmental-science (Fields extracted: 13, Raw content length: 175, OCR items: 0)
+2025-05-02 18:03:36,971 - INFO - Extracting data for URL: https://directory.ucc.edu.gh/edu/field-study/environmental-science
+2025-05-02 18:03:36,974 - INFO - Pre-extracted content: - university: Individuals with Environmental Science qualification
+- location: 
+- website: https://directory.ucc.edu.gh/edu/field-study/environmental-science
+- edurank: 
+- department: name: Clean Energy Research Centre, teams: {'urls': [], 'members': []}
+- publications: other_url: https://papers.ssrn.com/sol3/Delivery.cfm?abstractid=2214115, contents: ['Research paper from Individuals with Environmental Science qualification related to ']
+- related: 
+- point_of_contact: name: Dr. Isaac Mbir Bryant, first_name: Isaac, last_name: Bryant, phone_number: 2015 - 2025
+- scopes: 
+- research_abstract: 
+- lab_equipment: 
+- ocr_content: 
+
+2025-05-02 18:03:36,978 - INFO - Raw content: Prof. Denis Worlanyo Aheto
+Prof. Edward Kweku Nunoo
+Dr. Precious Agbeko D Mattah
+Dr. Isaac Mbir Bryant
+Mr. Philip Macclaire Young
+Mr. Isaac Mensah-Essilfie
+Mr. Prosper Dordunu
+2025-05-02 18:03:36,979 - INFO - OCR content: []
+2025-05-02 18:03:41,143 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-02 18:03:46,937 - INFO - AFC is enabled with max remote calls: 10.
+2025-05-02 18:03:49,288 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-05-02 18:03:49,323 - INFO - AFC remote call 1 is done.
+2025-05-02 18:03:49,337 - INFO - Attempting to store data for URL: https://directory.ucc.edu.gh/edu/field-study/environmental-science
+2025-05-02 18:03:49,340 - INFO - Skipping storage for https://directory.ucc.edu.gh/edu/field-study/environmental-science: All fields are empty
+2025-05-02 18:03:49,343 - INFO - Updating model for URL: https://directory.ucc.edu.gh/edu/field-study/environmental-science
+2025-05-02 18:03:49,425 - INFO - Updated model for https://directory.ucc.edu.gh/edu/field-study/environmental-science: label=0, populated_fields=0
+2025-05-02 18:03:49,437 - INFO - Incrementing index to 2 for URL: https://directory.ucc.edu.gh/edu/field-study/environmental-science
+2025-05-02 18:03:49,439 - INFO - Checking URLs (index 2/18)
+2025-05-02 18:03:49,442 - INFO - Selected URL: https://directory.ucc.edu.gh/edu/field-study/environmental-science-and-engineering (prob: 1.00)
+2025-05-02 18:03:49,451 - INFO - Detecting type for URL: https://directory.ucc.edu.gh/edu/field-study/environmental-science-and-engineering
+2025-05-02 18:03:52,923 - INFO - Scraping URL: https://directory.ucc.edu.gh/edu/field-study/environmental-science-and-engineering, is_static: False
+2025-05-02 18:03:52,923 - INFO - Scraping dynamic website: https://directory.ucc.edu.gh/edu/field-study/environmental-science-and-engineering
+2025-05-02 18:04:24,071 - INFO - Searching EduRank for university: Individuals with Environmental Science and Engineering qualification
+2025-05-02 18:04:24,077 - INFO - Trying direct EduRank URL: https://edurank.org/uni/individuals-with-environmental-science-and-engineering-qualification/
+2025-05-02 18:04:24,437 - WARNING - Direct EduRank URL failed (Status 404): https://edurank.org/uni/individuals-with-environmental-science-and-engineering-qualification/
+2025-05-02 18:04:24,439 - INFO - Falling back to Google search: https://www.google.com/search?q=site%3Aedurank.org%20Individuals%20with%20Environmental%20Science%20and%20Engineering%20qualification
+2025-05-02 18:04:26,229 - INFO - No EduRank results found for Individuals with Environmental Science and Engineering qualification
+2025-05-02 18:04:26,244 - INFO - Searching Google Scholar for university: Individuals with Environmental Science and Engineering qualification, focus: 
+2025-05-02 18:04:27,545 - INFO - Google Scholar found paper: https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0195347&type=printable
+2025-05-02 18:04:27,546 - INFO - Added Google Scholar paper: https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0195347&type=printable
+2025-05-02 18:04:27,596 - INFO - OCR disabled in configuration
+2025-05-02 18:04:27,597 - INFO - Successfully scraped https://directory.ucc.edu.gh/edu/field-study/environmental-science-and-engineering (Fields extracted: 13, Raw content length: 31, OCR items: 0)
+2025-05-02 18:04:31,616 - INFO - Extracting data for URL: https://directory.ucc.edu.gh/edu/field-study/environmental-science-and-engineering
+2025-05-02 18:04:31,677 - INFO - Pre-extracted content: - university: Individuals with Environmental Science and Engineering qualification
+- location: 
+- website: https://directory.ucc.edu.gh/edu/field-study/environmental-science-and-engineering
+- edurank: 
+- department: name: Clean Energy Research Centre, teams: {'urls': [], 'members': []}
+- publications: other_url: https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0195347&type=printable, contents: ['Research paper from Individuals with Environmental Science and Engineering qualification related to ']
+- related: 
+- point_of_contact: name: Prof. Mohammed  Augustine Takase, first_name: Mohammed, last_name: Takase, phone_number: 2015 - 2025
+- scopes: 
+- research_abstract: 
+- lab_equipment: 
+- ocr_content: 
+
+2025-05-02 18:04:31,677 - INFO - Raw content: Prof. Mohammed Augustine Takase
+2025-05-02 18:04:31,677 - INFO - OCR content: []
+2025-05-02 18:04:35,618 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-02 18:04:35,622 - INFO - Attempting to store data for URL: https://directory.ucc.edu.gh/edu/field-study/environmental-science-and-engineering
+2025-05-02 18:04:35,623 - INFO - Calling store_data with URL: https://directory.ucc.edu.gh/edu/field-study/environmental-science-and-engineering, session: Session object (208)
+2025-05-02 18:04:38,670 - INFO - Successfully stored data for https://directory.ucc.edu.gh/edu/field-study/environmental-science-and-engineering
+2025-05-02 18:04:38,674 - INFO - Updating model for URL: https://directory.ucc.edu.gh/edu/field-study/environmental-science-and-engineering
+2025-05-02 18:04:38,688 - INFO - Updated model for https://directory.ucc.edu.gh/edu/field-study/environmental-science-and-engineering: label=1, populated_fields=1
+2025-05-02 18:04:38,690 - INFO - Incrementing index to 3 for URL: https://directory.ucc.edu.gh/edu/field-study/environmental-science-and-engineering
+2025-05-02 18:04:38,692 - INFO - Checking URLs (index 3/18)
+2025-05-02 18:04:38,696 - INFO - Selected URL: https://directory.ucc.edu.gh/edu/field-study/environmental-sciences (prob: 0.00)
+2025-05-02 18:04:38,700 - INFO - Detecting type for URL: https://directory.ucc.edu.gh/edu/field-study/environmental-sciences
+2025-05-02 18:04:42,061 - INFO - Scraping URL: https://directory.ucc.edu.gh/edu/field-study/environmental-sciences, is_static: False
+2025-05-02 18:04:42,063 - INFO - Scraping dynamic website: https://directory.ucc.edu.gh/edu/field-study/environmental-sciences
+2025-05-02 18:05:04,397 - INFO - Searching EduRank for university: Individuals with Environmental Sciences qualification
+2025-05-02 18:05:04,398 - INFO - Trying direct EduRank URL: https://edurank.org/uni/individuals-with-environmental-sciences-qualification/
+2025-05-02 18:05:04,757 - WARNING - Direct EduRank URL failed (Status 404): https://edurank.org/uni/individuals-with-environmental-sciences-qualification/
+2025-05-02 18:05:04,758 - INFO - Falling back to Google search: https://www.google.com/search?q=site%3Aedurank.org%20Individuals%20with%20Environmental%20Sciences%20qualification
+2025-05-02 18:05:06,172 - INFO - No EduRank results found for Individuals with Environmental Sciences qualification
+2025-05-02 18:05:06,185 - INFO - Searching Google Scholar for university: Individuals with Environmental Sciences qualification, focus: 
+2025-05-02 18:05:07,506 - INFO - Google Scholar found paper: https://onlinelibrary.wiley.com/doi/pdf/10.1111/brv.12318
+2025-05-02 18:05:07,641 - INFO - Added Google Scholar paper: https://onlinelibrary.wiley.com/doi/pdf/10.1111/brv.12318
+2025-05-02 18:05:07,984 - INFO - OCR disabled in configuration
+2025-05-02 18:05:07,986 - INFO - Successfully scraped https://directory.ucc.edu.gh/edu/field-study/environmental-sciences (Fields extracted: 13, Raw content length: 21, OCR items: 0)
+2025-05-02 18:05:14,414 - INFO - Extracting data for URL: https://directory.ucc.edu.gh/edu/field-study/environmental-sciences
+2025-05-02 18:05:14,416 - INFO - Pre-extracted content: - university: Individuals with Environmental Sciences qualification
+- location: 
+- website: https://directory.ucc.edu.gh/edu/field-study/environmental-sciences
+- edurank: 
+- department: name: Clean Energy Research Centre, teams: {'urls': [], 'members': []}
+- publications: other_url: https://onlinelibrary.wiley.com/doi/pdf/10.1111/brv.12318, contents: ['Research paper from Individuals with Environmental Sciences qualification related to ']
+- related: 
+- point_of_contact: name: Dr. Isaac Mbir Bryant, first_name: Isaac, last_name: Bryant, phone_number: 2015 - 2025
+- scopes: 
+- research_abstract: 
+- lab_equipment: 
+- ocr_content: 
+
+2025-05-02 18:05:14,417 - INFO - Raw content: Dr. Isaac Mbir Bryant
+2025-05-02 18:05:14,417 - INFO - OCR content: []
+2025-05-02 18:05:17,863 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-02 18:05:17,886 - INFO - Attempting to store data for URL: https://directory.ucc.edu.gh/edu/field-study/environmental-sciences
+2025-05-02 18:05:17,899 - INFO - Calling store_data with URL: https://directory.ucc.edu.gh/edu/field-study/environmental-sciences, session: Session object (208)
+2025-05-02 18:05:18,215 - INFO - Successfully stored data for https://directory.ucc.edu.gh/edu/field-study/environmental-sciences
+2025-05-02 18:05:18,218 - INFO - Updating model for URL: https://directory.ucc.edu.gh/edu/field-study/environmental-sciences
+2025-05-02 18:05:18,267 - INFO - Updated model for https://directory.ucc.edu.gh/edu/field-study/environmental-sciences: label=1, populated_fields=2
+2025-05-02 18:05:18,275 - INFO - Incrementing index to 4 for URL: https://directory.ucc.edu.gh/edu/field-study/environmental-sciences
+2025-05-02 18:05:18,278 - INFO - Checking URLs (index 4/18)
+2025-05-02 18:05:18,281 - INFO - Selected URL: https://environmental.ucc.edu.gh/programmes/environmental-science (prob: 0.00)
+2025-05-02 18:05:18,284 - INFO - Detecting type for URL: https://environmental.ucc.edu.gh/programmes/environmental-science
+2025-05-02 18:05:19,735 - INFO - Scraping URL: https://environmental.ucc.edu.gh/programmes/environmental-science, is_static: True
+2025-05-02 18:05:19,743 - INFO - Scraping static website: https://environmental.ucc.edu.gh/programmes/environmental-science
+2025-05-02 18:05:21,343 - INFO - Searching EduRank for university: Environmental Science
+2025-05-02 18:05:21,350 - INFO - Trying direct EduRank URL: https://edurank.org/uni/environmental-science/
+2025-05-02 18:05:22,156 - WARNING - Direct EduRank URL failed (Status 404): https://edurank.org/uni/environmental-science/
+2025-05-02 18:05:22,235 - INFO - Falling back to Google search: https://www.google.com/search?q=site%3Aedurank.org%20Environmental%20Science
+2025-05-02 18:05:23,661 - INFO - No EduRank results found for Environmental Science
+2025-05-02 18:05:23,679 - INFO - Searching Google Scholar for university: Environmental Science, focus: 
+2025-05-02 18:05:25,855 - INFO - Google Scholar found paper: https://link.springer.com/content/pdf/10.1186/2047-2382-3-14.pdf
+2025-05-02 18:05:26,237 - INFO - Added Google Scholar paper: https://link.springer.com/content/pdf/10.1186/2047-2382-3-14.pdf
+2025-05-02 18:05:26,579 - INFO - OCR disabled in configuration
+2025-05-02 18:05:26,636 - INFO - OCR disabled in configuration
+2025-05-02 18:05:26,650 - INFO - OCR disabled in configuration
+2025-05-02 18:05:26,666 - INFO - OCR disabled in configuration
+2025-05-02 18:05:26,713 - INFO - Successfully scraped https://environmental.ucc.edu.gh/programmes/environmental-science (Fields extracted: 13, Raw content length: 406, OCR items: 0)
+2025-05-02 18:05:26,789 - INFO - Extracting data for URL: https://environmental.ucc.edu.gh/programmes/environmental-science
+2025-05-02 18:05:26,828 - INFO - Pre-extracted content: - university: Environmental Science
+- location: country: University of Cape Coast, city: Department of Environmental Science
+- website: https://environmental.ucc.edu.gh/programmes/environmental-science
+- edurank: 
+- department: name: Department of Environmental Science, teams: {'urls': [], 'members': []}
+- publications: other_url: https://link.springer.com/content/pdf/10.1186/2047-2382-3-14.pdf, contents: ['Research paper from Environmental Science related to ']
+- related: 
+- point_of_contact: 
+- scopes: Biology, Chemistry, Physics
+- research_abstract: To gain admission, candidates must have passes in Core English, Core Mathematics, Integrated Science and Social Studies (A1 – C6 i.e. A – D). In addition, candidates must have obtained passes in the following three elective subjects: Biology, Chemistry and Physics with grades not lower than C6/D at the WASSCE/SSSCE levels.
+- lab_equipment: 
+- ocr_content: 
+
+2025-05-02 18:05:26,862 - INFO - Raw content: 
+# Environmental Science
+[Context: Environmental Science]
+To gain admission, candidates must have passes in Core English, Core Mathematics, Integrated Science and Social Studies (A1 – C6 i.e. A – D). In addition, candidates must have obtained passes in the following three elective subjects: Biology, Chemistry and Physics with grades not lower than C6/D at the WASSCE/SSSCE levels.
+
+## Programme Structure
+2025-05-02 18:05:26,866 - INFO - OCR content: []
+2025-05-02 18:05:31,951 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-02 18:05:32,105 - INFO - Attempting to store data for URL: https://environmental.ucc.edu.gh/programmes/environmental-science
+2025-05-02 18:05:32,110 - INFO - Calling store_data with URL: https://environmental.ucc.edu.gh/programmes/environmental-science, session: Session object (208)
+2025-05-02 18:05:32,953 - INFO - Successfully stored data for https://environmental.ucc.edu.gh/programmes/environmental-science
+2025-05-02 18:05:32,957 - INFO - Updating model for URL: https://environmental.ucc.edu.gh/programmes/environmental-science
+2025-05-02 18:05:32,972 - INFO - Updated model for https://environmental.ucc.edu.gh/programmes/environmental-science: label=1, populated_fields=3
+2025-05-02 18:05:32,976 - INFO - Incrementing index to 5 for URL: https://environmental.ucc.edu.gh/programmes/environmental-science
+2025-05-02 18:05:32,978 - INFO - Checking URLs (index 5/18)
+2025-05-02 18:05:32,982 - INFO - Selected URL: https://environmental.ucc.edu.gh/programmes/mphil-environmental-science (prob: 0.00)
+2025-05-02 18:05:32,987 - INFO - Detecting type for URL: https://environmental.ucc.edu.gh/programmes/mphil-environmental-science
+2025-05-02 18:05:34,523 - INFO - Scraping URL: https://environmental.ucc.edu.gh/programmes/mphil-environmental-science, is_static: True
+2025-05-02 18:05:34,722 - INFO - Scraping static website: https://environmental.ucc.edu.gh/programmes/mphil-environmental-science
+2025-05-02 18:05:36,984 - INFO - Searching EduRank for university: MPhil. Environmental Science
+2025-05-02 18:05:37,016 - INFO - Trying direct EduRank URL: https://edurank.org/uni/mphil.-environmental-science/
+2025-05-02 18:05:37,377 - WARNING - Direct EduRank URL failed (Status 404): https://edurank.org/uni/mphil.-environmental-science/
+2025-05-02 18:05:37,379 - INFO - Falling back to Google search: https://www.google.com/search?q=site%3Aedurank.org%20MPhil.%20Environmental%20Science
+2025-05-02 18:05:38,789 - INFO - No EduRank results found for MPhil. Environmental Science
+2025-05-02 18:05:38,808 - INFO - Searching Google Scholar for university: MPhil. Environmental Science, focus: researchers and candidates who require post-graduate training for career development and advancement
+2025-05-02 18:05:40,309 - INFO - Google Scholar found paper: https://www.ucl.ac.uk/governance-compliance/sites/governance_compliance/files/rdc-210311.pdf
+2025-05-02 18:05:40,312 - INFO - Added Google Scholar paper: https://www.ucl.ac.uk/governance-compliance/sites/governance_compliance/files/rdc-210311.pdf
+2025-05-02 18:05:40,459 - INFO - OCR disabled in configuration
+2025-05-02 18:05:40,462 - INFO - OCR disabled in configuration
+2025-05-02 18:05:40,468 - INFO - OCR disabled in configuration
+2025-05-02 18:05:40,469 - INFO - OCR disabled in configuration
+2025-05-02 18:05:40,469 - INFO - Successfully scraped https://environmental.ucc.edu.gh/programmes/mphil-environmental-science (Fields extracted: 13, Raw content length: 754, OCR items: 0)
+2025-05-02 18:05:40,472 - INFO - Extracting data for URL: https://environmental.ucc.edu.gh/programmes/mphil-environmental-science
+2025-05-02 18:05:40,476 - INFO - Pre-extracted content: - university: MPhil. Environmental Science
+- location: country: University of Cape Coast, city: Department of Environmental Science
+- website: https://environmental.ucc.edu.gh/programmes/mphil-environmental-science
+- edurank: 
+- department: name: Department of Environmental Science, teams: {'urls': [], 'members': []}, focus: researchers and candidates who require post-graduate training for career development and advancement
+- publications: other_url: https://www.ucl.ac.uk/governance-compliance/sites/governance_compliance/files/rdc-210311.pdf, contents: ['Research paper from MPhil. Environmental Science related to researchers and candidates who require post-graduate training for career development and advancement']
+- related: 
+- point_of_contact: 
+- scopes: 
+- research_abstract: To qualify for the programme candidates must possess a good first degree, at least second class (lower division) in any of the sciences and applied sciences from a recognised university and must pass a selection interview.
+- lab_equipment: 
+- ocr_content: 
+
+2025-05-02 18:05:40,477 - INFO - Raw content: 
+# MPhil. Environmental Science
+[Context: MPhil. Environmental Science]
+[Context: MPhil. Environmental Science]
+To qualify for the programme candidates must possess a good first degree, at least second class (lower division) in any of the sciences and applied sciences from a recognised university and must pass a selection interview.
+[Context: MPhil. Environmental Science]
+Target group The programme is targeted at environmental policy formulators, environmental managers and researchers and candidates who require post-graduate training for career development and advancement. For example, staff of the Environmental Protection Agency, Council for Scientific and Industrial Research, Ghana Water Company, Mining Companies, etc.
+
+## Programme Structure
+2025-05-02 18:05:40,483 - INFO - OCR content: []
+2025-05-02 18:05:44,245 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-02 18:05:44,284 - INFO - Attempting to store data for URL: https://environmental.ucc.edu.gh/programmes/mphil-environmental-science
+2025-05-02 18:05:44,335 - INFO - Skipping storage for https://environmental.ucc.edu.gh/programmes/mphil-environmental-science: All fields are empty
+2025-05-02 18:05:44,337 - INFO - Updating model for URL: https://environmental.ucc.edu.gh/programmes/mphil-environmental-science
+2025-05-02 18:05:44,360 - INFO - Updated model for https://environmental.ucc.edu.gh/programmes/mphil-environmental-science: label=0, populated_fields=0
+2025-05-02 18:05:44,381 - INFO - Incrementing index to 6 for URL: https://environmental.ucc.edu.gh/programmes/mphil-environmental-science
+2025-05-02 18:05:44,387 - INFO - Checking URLs (index 6/18)
+2025-05-02 18:05:44,443 - INFO - Skipping duplicate URL: https://www.ub.bw/connect/job-opportunities/research-coordinator
+2025-05-02 18:05:44,452 - INFO - Incrementing index to 8 for URL: None
+2025-05-02 18:05:44,454 - INFO - Checking URLs (index 8/18)
+2025-05-02 18:05:44,458 - INFO - Selected URL: https://www.ub.bw/discover/faculties/medicine/biomedical-sciences (prob: 0.00)
+2025-05-02 18:05:44,460 - INFO - Detecting type for URL: https://www.ub.bw/discover/faculties/medicine/biomedical-sciences
+2025-05-02 18:05:46,087 - INFO - Scraping URL: https://www.ub.bw/discover/faculties/medicine/biomedical-sciences, is_static: True
+2025-05-02 18:05:46,089 - INFO - Scraping static website: https://www.ub.bw/discover/faculties/medicine/biomedical-sciences
+2025-05-02 18:05:47,561 - INFO - Searching EduRank for university: Biomedical Sciences
+2025-05-02 18:05:47,563 - INFO - Trying direct EduRank URL: https://edurank.org/uni/biomedical-sciences/
+2025-05-02 18:05:47,929 - WARNING - Direct EduRank URL failed (Status 404): https://edurank.org/uni/biomedical-sciences/
+2025-05-02 18:05:47,930 - INFO - Falling back to Google search: https://www.google.com/search?q=site%3Aedurank.org%20Biomedical%20Sciences
+2025-05-02 18:05:49,340 - INFO - No EduRank results found for Biomedical Sciences
+2025-05-02 18:05:49,389 - INFO - Searching Google Scholar for university: Biomedical Sciences, focus: 
+2025-05-02 18:05:51,128 - INFO - Google Scholar found paper: https://books.google.com/books?hl=en&lr=&id=HR0ZDQAAQBAJ&oi=fnd&pg=PP1&dq=from:Biomedical+Sciences&ots=EBahyXDr-J&sig=v6xMJ4iAer6d_pG6N3I1TD2w00k
+2025-05-02 18:05:51,156 - INFO - Added Google Scholar paper: https://books.google.com/books?hl=en&lr=&id=HR0ZDQAAQBAJ&oi=fnd&pg=PP1&dq=from:Biomedical+Sciences&ots=EBahyXDr-J&sig=v6xMJ4iAer6d_pG6N3I1TD2w00k
+2025-05-02 18:05:51,260 - ERROR - Error in raw content extraction for https://www.ub.bw/discover/faculties/medicine/biomedical-sciences: list index out of range
+2025-05-02 18:05:51,265 - INFO - Successfully scraped https://www.ub.bw/discover/faculties/medicine/biomedical-sciences (Fields extracted: 13, Raw content length: 0, OCR items: 0)
+2025-05-02 18:05:51,268 - INFO - Extracting data for URL: https://www.ub.bw/discover/faculties/medicine/biomedical-sciences
+2025-05-02 18:05:51,269 - INFO - Pre-extracted content: - university: Biomedical Sciences
+- location: 
+- website: https://www.ub.bw/discover/faculties/medicine/biomedical-sciences
+- edurank: 
+- department: name: Departments, teams: {'urls': [], 'members': []}
+- publications: other_url: https://books.google.com/books?hl=en&lr=&id=HR0ZDQAAQBAJ&oi=fnd&pg=PP1&dq=from:Biomedical+Sciences&ots=EBahyXDr-J&sig=v6xMJ4iAer6d_pG6N3I1TD2w00k, contents: ['Research paper from Biomedical Sciences related to ']
+- related: 
+- point_of_contact: name: NamePositionDepartmentDr Molefhi Moirapula AbotsengLecturerBiomedical SciencesDr. Ludo  BadlanganaSenior LecturerBiomedical SciencesDr. Maikutlo  KebaetseSenior LecturerBiomedical SciencesDr. Jean-Leigh  KrugerSenior LecturerBiomedical SciencesDr. Naledi Betsi MannathokoLecturerBiomedical SciencesDr. Bokang Calvin MaswabiSenior LecturerBiomedical SciencesMr. Smart Marobela Mateng'uChief Biomedical TechnicianBiomedical SciencesDr. Keikantse  MatlhagelaSenior LecturerBiomedical SciencesMiss Keneilwe Nkgola MmopiLecturerBiomedical SciencesDr. Gaonyadiwe George MokoneSenior LecturerBiomedical Sciences, first_name: Molefhi, last_name: Sciences, phone_number: +267 355 4189
+- scopes: 
+- research_abstract: 
+- lab_equipment: 
+- ocr_content: 
+
+2025-05-02 18:05:51,270 - INFO - Raw content: 
+2025-05-02 18:05:51,270 - INFO - OCR content: []
+2025-05-02 18:05:53,010 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-05-02 18:05:53,017 - INFO - Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2025-05-02 18:05:55,906 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-02 18:05:58,278 - INFO - AFC is enabled with max remote calls: 10.
+2025-05-02 18:06:02,458 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-05-02 18:06:02,487 - INFO - AFC remote call 1 is done.
+2025-05-02 18:06:02,496 - INFO - Attempting to store data for URL: https://www.ub.bw/discover/faculties/medicine/biomedical-sciences
+2025-05-02 18:06:02,496 - INFO - Calling store_data with URL: https://www.ub.bw/discover/faculties/medicine/biomedical-sciences, session: Session object (208)
+2025-05-02 18:06:03,129 - INFO - Successfully stored data for https://www.ub.bw/discover/faculties/medicine/biomedical-sciences
+2025-05-02 18:06:03,151 - INFO - Updating model for URL: https://www.ub.bw/discover/faculties/medicine/biomedical-sciences
+2025-05-02 18:06:03,166 - INFO - Updated model for https://www.ub.bw/discover/faculties/medicine/biomedical-sciences: label=1, populated_fields=1
+2025-05-02 18:06:03,169 - INFO - Incrementing index to 9 for URL: https://www.ub.bw/discover/faculties/medicine/biomedical-sciences
+2025-05-02 18:06:03,171 - INFO - Checking URLs (index 9/18)
+2025-05-02 18:06:03,173 - INFO - Skipping duplicate URL: https://www.ub.bw/discover/faculties/science/biological-science
+2025-05-02 18:06:03,176 - INFO - Incrementing index to 11 for URL: None
+2025-05-02 18:06:03,179 - INFO - Checking URLs (index 11/18)
+2025-05-02 18:06:03,180 - INFO - Skipping duplicate URL: https://www.ub.bw/discover/faculties/science/environmental-science
+2025-05-02 18:06:03,182 - INFO - Incrementing index to 13 for URL: None
+2025-05-02 18:06:03,183 - INFO - Checking URLs (index 13/18)
+2025-05-02 18:06:03,185 - INFO - Skipping duplicate URL: https://www.ub.bw/research/innovation-and-enterprise/ip-and-innovation-management
+2025-05-02 18:06:03,188 - INFO - Incrementing index to 15 for URL: None
+2025-05-02 18:06:03,189 - INFO - Checking URLs (index 15/18)
+2025-05-02 18:06:03,190 - INFO - Skipping duplicate URL: https://www.ub.bw/research/research-centres/cesriki
+2025-05-02 18:06:03,192 - INFO - Incrementing index to 17 for URL: None
+2025-05-02 18:06:03,194 - INFO - Checking URLs (index 17/18)
+2025-05-02 18:06:03,195 - INFO - Skipping duplicate URL: https://www.ub.bw/research/research-centres/san-research-centre
+2025-05-02 18:06:03,197 - INFO - Incrementing index to 19 for URL: None
+2025-05-02 18:06:03,198 - INFO - Checking URLs (index 19/18)
+2025-05-02 18:06:03,198 - INFO - No more URLs to process, setting status to finished
+2025-05-02 18:06:03,200 - INFO - Type of final_state: <class 'langgraph.pregel.io.AddableValuesDict'>
+2025-05-02 18:06:03,200 - INFO - Content of final_state: {'urls': [('https://directory.ucc.edu.gh/d/department-of-environmental-science', 'department of environmental science'), ('https://directory.ucc.edu.gh/edu/field-study/environmental-science', 'environmental science'), ('https://directory.ucc.edu.gh/edu/field-study/environmental-science-and-engineering', 'environmental science and engineering'), ('https://directory.ucc.edu.gh/edu/field-study/environmental-sciences', 'environmental sciences'), ('https://environmental.ucc.edu.gh/programmes/environmental-science', 'programmes environmental science'), ('https://environmental.ucc.edu.gh/programmes/mphil-environmental-science', 'programmes mphil environmental science'), ('https://www.ub.bw/connect/job-opportunities/research-coordinator', 'research coordinator'), ('https://www.ub.bw/discover/administration-and-support/office-research-and-development', 'office of research and development'), ('https://www.ub.bw/discover/faculties/medicine/biomedical-sciences', 'biomedical sciences'), ('https://www.ub.bw/discover/faculties/science/biological-science', 'biological science'), ('https://www.ub.bw/discover/faculties/science/chemistry', 'chemistry'), ('https://www.ub.bw/discover/faculties/science/environmental-science', 'environmental science'), ('https://www.ub.bw/research', 'projects and outputs'), ('https://www.ub.bw/research/innovation-and-enterprise/ip-and-innovation-management', 'ip and innovation management'), ('https://www.ub.bw/research/research-centres', 'research centres'), ('https://www.ub.bw/research/research-centres/cesriki', 'centre for scientific research indigenous knowledge and innovation'), ('https://www.ub.bw/research/research-centres/clean-energy-research-centre', 'clean energy research centre'), ('https://www.ub.bw/research/research-centres/san-research-centre', 'san research centre')], 'index': 19, 'current_url': None, 'is_static': None, 'scraped_data': None, 'extracted_data': None, 'status': 'finished', 'errors': [], 'session': <Session: Session object (208)>, 'quick_scrape': False}
+2025-05-02 18:06:03,201 - INFO - Workflow completed with status: finished
+2025-05-02 18:06:03,204 - INFO - Cleaning up: Clearing crawler_running_event
+2025-05-02 18:06:03,205 - INFO - Crawler execution completed or stopped
+2025-05-02 18:06:03,205 - INFO - Full crawler session 208 completed

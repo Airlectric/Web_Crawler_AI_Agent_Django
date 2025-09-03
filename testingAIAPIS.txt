@@ -1,0 +1,17 @@
+curl https://api.groq.com/openai/v1/chat/completions -s ^
+  -H "Content-Type: application/json" ^
+  -H "Authorization: Bearer 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" ^
+  -d "{\"model\": \"llama-3.3-70b-versatile\", \"messages\": [{\"role\": \"user\", \"content\": \"Explain the importance of fast language models\"}]}"
+
+
+
+curl https://api.groq.com/openai/v1/chat/completions -s ^
+  -H "Content-Type: application/json" ^
+  -H "Authorization: Bearer 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" ^
+  -d "{\"model\": \"llama3-70b-8192\", \"messages\": [{\"role\": \"user\", \"content\": \"Explain the importance of fast language models\"}]}"
+
+
+curl https://api.groq.com/openai/v1/chat/completions -s ^
+  -H "Content-Type: application/json" ^
+  -H "Authorization: Bearer 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" ^
+  -d "{\"model\": \"deepseek-r1-distill-llama-70b\", \"messages\": [{\"role\": \"user\", \"content\": \"Explain the importance of fast language models\"}]}"

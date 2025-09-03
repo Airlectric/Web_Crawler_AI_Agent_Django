@@ -18,5 +18,7 @@ urlpatterns = [
     path('get-logs/', views.get_logs, name='get_logs'),
     path('session/<int:session_id>/', views.session_output, name='session_output'),
     path('session/<int:session_id>/delete_selected/', views.delete_session_selected, name='delete_session_selected'),
+    path('ai-prompt/', views.ai_prompt, name='ai_prompt'),
+    path('test-sse/', views.test_sse, name='test_sse'),
 ]
 

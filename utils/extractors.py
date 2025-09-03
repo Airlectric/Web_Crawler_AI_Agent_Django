@@ -1,28 +1,31 @@
-import requests
+import os
 import logging
 import json
-import os
-from dotenv import load_dotenv  
-from google import genai 
+from dotenv import load_dotenv
+from google import genai
+from groq import Groq
 
-logger = logging.getLogger(__name__)
-
+# Load environment variables
 load_dotenv()
 
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+# Set up logging
+logger = logging.getLogger(__name__)
+
+# API keys
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 def extract_info_with_llm(data: dict):
-    """Use OpenRouter API as primary and Google Gemini as backup to extract structured data."""
+    """Use Groq API as primary and Google Gemini as backup to extract structured data."""
     print("Extracting information with LLM...")
 
-    # Verify API keys
-    if not OPENROUTER_API_KEY:
-        print("Error: OPENROUTER_API_KEY is not set")
-        return {"error": "OPENROUTER_API_KEY is not set"}
+    if not GROQ_API_KEY:
+        print("Error: GROQ_API_KEY is not set")
+        return {"error": "GROQ_API_KEY is not set"}
     if not GOOGLE_API_KEY:
         print("Warning: GOOGLE_API_KEY is not set; Google Gemini backup will not work")
 
+    # Prepare pre-extracted and raw content for the prompt
     pre_extracted = ""
     for key, value in data.items():
         if key != 'raw_content':
@@ -34,11 +37,12 @@ def extract_info_with_llm(data: dict):
             else:
                 pre_extracted += f"- {key}: {value}\n"
 
-    raw_content = data.get('raw_content', '') #[:4000]
+    raw_content = data.get('raw_content', '')
     ocr_content = data.get('ocr_content', [])
-    logger.info(f"Pre-extracted content:{pre_extracted}")
-    logger.info(f"Raw content:{raw_content}")
-    logger.info(f"OCR content:{ocr_content}")
+
+    logger.info(f"Pre-extracted content: {pre_extracted}")
+    logger.info(f"Raw content: {raw_content}")
+    logger.info(f"OCR content: {ocr_content}")
     
 
     prompt = f"""
@@ -184,47 +188,35 @@ Return a valid JSON object that strictly follows the schema above.
 **REMINDER**: If the information in both the pre-extracted data and raw content is not closely related to science and engineering university research labs, research, or potential startups, you MUST return a JSON object with all fields blank or empty.
 """
 
-    # Step 1: Try OpenRouter API (Primary)
-    API_URL = 'https://openrouter.ai/api/v1/chat/completions'
-    headers = {
-        'Authorization': f'Bearer {OPENROUTER_API_KEY}',
-        'Content-Type': 'application/json'
-    }
-    request_data = {
-        "model": "deepseek/deepseek-chat:free",
-        "messages": [{"role": "user", "content": prompt}]
-    }
-
+     # Step 1: Try Groq (LLAMA-3) API
     try:
-        response = requests.post(API_URL, json=request_data, headers=headers)
-        response.raise_for_status()
-        response_json = response.json()
-        print("OpenRouter API Response:", json.dumps(response_json, indent=2))
+        client = Groq(api_key=GROQ_API_KEY)
+        chat_completion = client.chat.completions.create(
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt,
+                }
+            ],
+            model="llama3-70b-8192", #"deepseek-r1-distill-llama-70b"
+        )
+        completion_text = chat_completion.choices[0].message.content
+        print("Groq API Response:", completion_text)
 
-        if 'choices' not in response_json:
-            print("Error: 'choices' key not found in OpenRouter API response")
-            raise ValueError("Missing 'choices' key")
-        
-        completion_text = response_json['choices'][0]['message']['content']
         start, end = completion_text.find('{'), completion_text.rfind('}')
         if start == -1 or end == -1:
-            print("No JSON object found in OpenRouter completion text")
-            raise ValueError("No JSON found")
-        
+            print("No JSON object found in Groq response")
+            raise ValueError("No JSON found in Groq output")
+
         json_str = completion_text[start:end + 1]
         extracted_data = json.loads(json_str)
-        print("Successfully extracted data with OpenRouter LLM")
+        print("Successfully extracted data with Groq LLM")
         return extracted_data
 
-    except requests.exceptions.HTTPError as e:
-        print(f"HTTP Error with OpenRouter: {e}")
-        if response.status_code != 429:  
-            return {"error": f"OpenRouter HTTP Error: {str(e)}"}
-
     except Exception as e:
-        print(f"Error with OpenRouter: {e}")
+        print(f"Error with Groq API: {e}")
 
-    # Step 2: Fallback to Google Gemini if OpenRouter fails
+    # Step 2: Fallback to Google Gemini if Groq fails
     if GOOGLE_API_KEY:
         print("Falling back to Google Gemini 2.0 Flash...")
         try:
@@ -240,7 +232,7 @@ Return a valid JSON object that strictly follows the schema above.
             if start == -1 or end == -1:
                 print("No JSON object found in Google Gemini response")
                 return {"error": "No JSON object found in Google Gemini response", "response": completion_text}
-            
+
             json_str = completion_text[start:end + 1]
             extracted_data = json.loads(json_str)
             print("Successfully extracted data with Google Gemini LLM")
@@ -251,4 +243,4 @@ Return a valid JSON object that strictly follows the schema above.
             return {"error": f"Google Gemini Error: {str(e)}"}
     else:
         print("No Google API key available for fallback")
-        return {"error": "OpenRouter rate limit exceeded and no Google API key provided"}
+        return {"error": "Groq failed and no Google API key provided"}

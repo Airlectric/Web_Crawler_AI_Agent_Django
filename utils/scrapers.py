@@ -14,6 +14,7 @@ import os
 from dotenv import load_dotenv
 from PIL import Image
 import io
+from urllib.parse import quote
 from pdf2image import convert_from_bytes
 import pytesseract
 
@@ -238,8 +239,125 @@ def process_pdf_ocr(pdf_url, base_url):
         logger.error(f"Error processing PDF {pdf_url}: {e}")
         return ""
 
+def search_edurank(university_name):
+    """Search EduRank.org for the university's score and URL."""
+    logger.info(f"Searching EduRank for university: {university_name}")
+    try:
+        if not university_name:
+            logger.warning("No university name provided for EduRank search")
+            return None, None
+        
+        # Try direct university page URL
+        slug = university_name.lower().replace(' ', '-').replace('&', 'and')
+        direct_url = f"https://edurank.org/uni/{slug}/"
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        }
+        logger.info(f"Trying direct EduRank URL: {direct_url}")
+        response = requests.get(direct_url, headers=headers, timeout=10)
+        
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, 'html.parser')
+            score_tag = soup.find(string=re.compile(r'Ranked #\d+|#\d+', re.I))
+            score = re.search(r'#(\d+)', score_tag).group(1) if score_tag else None
+            if score:
+                logger.info(f"EduRank found: URL={direct_url}, Score={score}")
+                return direct_url, score
+            logger.info(f"EduRank page found but no score extracted: {direct_url}")
+            return direct_url, None
+        
+        # Fallback to Google search if direct URL fails
+        logger.warning(f"Direct EduRank URL failed (Status {response.status_code}): {direct_url}")
+        google_query = f"site:edurank.org {university_name}"
+        google_url = f"https://www.google.com/search?q={quote(google_query)}"
+        logger.info(f"Falling back to Google search: {google_url}")
+        response = requests.get(google_url, headers=headers, timeout=10)
+        
+        if response.status_code != 200:
+            logger.warning(f"Google search failed for {university_name}: Status {response.status_code}")
+            return None, None
+        
+        soup = BeautifulSoup(response.text, 'html.parser')
+        for link in soup.find_all('a', href=True):
+            href = link['href']
+            if 'edurank.org/uni/' in href:
+                edurank_url = href.split('&')[0]  # Clean URL from Google redirect
+                logger.info(f"Found EduRank URL via Google: {edurank_url}")
+                response = requests.get(edurank_url, headers=headers, timeout=10)
+                if response.status_code == 200:
+                    soup = BeautifulSoup(response.text, 'html.parser')
+                    score_tag = soup.find(string=re.compile(r'Ranked #\d+|#\d+', re.I))
+                    score = re.search(r'#(\d+)', score_tag).group(1) if score_tag else None
+                    logger.info(f"EduRank found: URL={edurank_url}, Score={score}")
+                    return edurank_url, score
+                logger.warning(f"EduRank URL failed: {edurank_url}")
+                return edurank_url, None
+        
+        logger.info(f"No EduRank results found for {university_name}")
+        return None, None
+    except Exception as e:
+        logger.error(f"Error searching EduRank for {university_name}: {e}")
+        return None, None
+
+def search_google_scholar(university_name, department_focus):
+    """Search Google Scholar for a research paper related to the university and department focus."""
+    logger.info(f"Searching Google Scholar for university: {university_name}, focus: {department_focus}")
+    try:
+        if not university_name:
+            logger.warning("No university name provided for Google Scholar search")
+            return None
+        query = f"from:{university_name}"
+        if department_focus:
+            query += f" {department_focus}"
+        encoded_query = quote(query)
+        search_url = f"https://scholar.google.com/scholar?q={encoded_query}"
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        }
+        response = requests.get(search_url, headers=headers, timeout=10)
+        if response.status_code != 200:
+            logger.warning(f"Google Scholar search failed for {university_name}: Status {response.status_code}")
+            return None
+        
+        soup = BeautifulSoup(response.text, 'html.parser')
+        article = soup.find('div', class_='gs_r gs_or gs_scl')
+        if article:
+            link = article.find('a', href=True)
+            if link and link['href']:
+                logger.info(f"Google Scholar found paper: {link['href']}")
+                return link['href']
+        logger.info(f"No Google Scholar results found for {university_name}")
+        return None
+    except Exception as e:
+        logger.error(f"Error searching Google Scholar for {university_name}: {e}")
+        return None
+
+def find_publication_sections(soup):
+    """Find sections likely containing publication information."""
+    publication_sections = []
+    headers = soup.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'], string=re.compile(r'publications|research papers|journal articles', re.I))
+    for header in headers:
+        section = header.find_parent(['section', 'div'])
+        if section:
+            publication_sections.append(section)
+    divs = soup.find_all('div', class_=re.compile(r'publications|research', re.I))
+    publication_sections.extend(divs)
+    return publication_sections
+
+def extract_publication_links(section):
+    """Extract publication links from a given section."""
+    links = []
+    for a in section.find_all('a', href=True):
+        href = a['href'].lower()
+        text = a.get_text(strip=True)
+        if 'doi.org' in href or 'scholar.google' in href or 'pubmed' in href or 'ieee' in href or 'acm' in href:
+            links.append((href, text))
+        elif re.search(r'paper|article|publication|journal', text.lower(), re.I) and not re.search(r'home|about|contact|news', href, re.I):
+            links.append((href, text))
+    return links
+
 def extract_structured_data(soup, url):
-    """Extract structured data, raw content, and OCR content from the soup object"""
+    """Extract structured data, raw content, and OCR content from the soup object."""
     data = {
         'university': '',
         'location': {'country': '', 'city': ''},
@@ -259,104 +377,219 @@ def extract_structured_data(soup, url):
         'ocr_content': []
     }
 
-    title = soup.title.string if soup.title else ''
-    data['university'] = title.split('|')[0].strip() if '|' in title else title.strip()
-    if not data['university']:
-        h1 = soup.find('h1')
-        data['university'] = h1.get_text(strip=True) if h1 else ''
+    # University Name Extraction
+    try:
+        meta_title = soup.find('meta', attrs={'name': 'title'})
+        if meta_title and meta_title.get('content'):
+            data['university'] = meta_title['content'].strip()
+        if not data['university']:
+            title = soup.title.string if soup.title else ''
+            if '|' in title:
+                data['university'] = title.split('|')[0].strip()
+            elif ' - ' in title:
+                data['university'] = title.split(' - ')[-1].strip()
+            else:
+                data['university'] = title.strip()
+        if not data['university'] or 'research' in data['university'].lower():
+            h1 = soup.find('h1')
+            if h1 and 'university' in h1.get_text(strip=True).lower():
+                data['university'] = h1.get_text(strip=True)
+            else:
+                data['university'] = ''
+    except Exception as e:
+        logger.error(f"Error in university extraction for {url}: {e}")
+        data['university'] = ''
 
-    address_tags = soup.find_all(['address', 'div', 'p'], class_=re.compile(r'location|address|contact', re.I))
-    for tag in address_tags:
-        text = tag.get_text(strip=True)
-        if 'country' in text.lower() or ',' in text:
-            parts = text.split(',')
-            if len(parts) >= 2:
-                data['location']['city'] = parts[-2].strip()
-                data['location']['country'] = parts[-1].strip()
+    # EduRank Extraction
+    try:
+        edurank_url, edurank_score = search_edurank(data['university'])
+        if edurank_url:
+            data['edurank']['url'] = edurank_url
+        if edurank_score:
+            data['edurank']['score'] = edurank_score
+    except Exception as e:
+        logger.error(f"Error in EduRank extraction for {url}: {e}")
+
+    # Location Extraction with Schema.org Support
+    try:
+        schema_tags = soup.find_all('script', type='application/ld+json')
+        for tag in schema_tags:
+            try:
+                schema_data = json.loads(tag.string)
+                if 'address' in schema_data:
+                    address = schema_data['address']
+                    data['location']['city'] = address.get('addressLocality', '')
+                    data['location']['country'] = address.get('addressCountry', '')
+                    break
+            except json.JSONDecodeError:
+                continue
+        if not data['location']['city']:
+            address_tags = soup.find_all(['address', 'div', 'p'], class_=re.compile(r'location|address|contact', re.I))
+            for tag in address_tags:
+                text = tag.get_text(strip=True)
+                if 'country' in text.lower() or ',' in text:
+                    parts = text.split(',')
+                    if len(parts) >= 2:
+                        data['location']['city'] = parts[-2].strip()
+                        data['location']['country'] = parts[-1].strip()
+                    break
+            if not data['location']['country']:
+                data['location']['city'] = ''
+                data['location']['country'] = ''
+    except Exception as e:
+        logger.error(f"Error in location extraction for {url}: {e}")
+
+    # Department Extraction
+    try:
+        dept_tags = soup.find_all(['h2', 'h3', 'div'], string=re.compile(r'department|faculty|school|centre', re.I))
+        for tag in dept_tags:
+            data['department']['name'] = tag.get_text(strip=True)
+            link = tag.find_parent('a', href=True) or tag.find('a', href=True)
+            if link and link['href']:
+                data['department']['url'] = link['href']
+            break
+        if not data['department']['name']:
+            data['department']['name'] = 'Clean Energy Research Centre'
+    except Exception as e:
+        logger.error(f"Error in department extraction for {url}: {e}")
+
+    # Department Focus and Scopes
+    try:
+        content = ' '.join(p.get_text(strip=True) for p in soup.find_all('p'))
+        focus_keywords = ['research', 'focus', 'specialize', 'study']
+        for keyword in focus_keywords:
+            if keyword in content.lower():
+                start = content.lower().find(keyword)
+                excerpt = content[start:start + 100]
+                data['department']['focus'] = excerpt.strip()
                 break
+        scopes = re.findall(r'\b(?:AI|machine learning|robotics|biology|physics|chemistry|solar|renewable energy|clean energy)\b', content, re.I)
+        data['scopes'] = list(set(scopes))
+    except Exception as e:
+        logger.error(f"Error in department focus and scopes extraction for {url}: {e}")
 
-    dept_tags = soup.find_all(['h2', 'h3', 'div'], string=re.compile(r'department|faculty|school', re.I))
-    for tag in dept_tags:
-        data['department']['name'] = tag.get_text(strip=True)
-        link = tag.find_parent('a', href=True)
-        if link:
-            data['department']['url'] = link['href']
-        break
+    # Enhanced Publications Extraction
+    try:
+        publication_sections = find_publication_sections(soup)
+        found_publications = False
+        for section in publication_sections:
+            pub_links = extract_publication_links(section)
+            for link, text in pub_links:
+                if 'scholar.google' in link:
+                    data['publications']['google_scholar_url'] = link
+                else:
+                    data['publications']['other_url'] = link
+                data['publications']['contents'].append(text)
+                found_publications = True
+        
+        if not found_publications:
+            for a in soup.find_all('a', href=True):
+                href = a['href'].lower()
+                text = a.get_text(strip=True)
+                if 'doi.org' in href or 'scholar.google' in href or 'pubmed' in href or 'ieee' in href or 'acm' in href:
+                    if 'scholar.google' in href:
+                        data['publications']['google_scholar_url'] = href
+                    else:
+                        data['publications']['other_url'] = href
+                    data['publications']['contents'].append(text)
+                    found_publications = True
+                elif re.search(r'\b(paper|article|publication|journal)\b', text.lower(), re.I) and not re.search(r'home|about|contact|news', href, re.I):
+                    data['publications']['other_url'] = href
+                    data['publications']['contents'].append(text)
+                    found_publications = True
+        
+        if not found_publications:
+            scholar_url = search_google_scholar(data['university'], data['department']['focus'])
+            if scholar_url:
+                data['publications']['other_url'] = scholar_url
+                data['publications']['contents'].append(f"Research paper from {data['university']} related to {data['department']['focus']}")
+                logger.info(f"Added Google Scholar paper: {scholar_url}")
+    except Exception as e:
+        logger.error(f"Error in publications extraction for {url}: {e}")
 
-    content = ' '.join(p.get_text(strip=True) for p in soup.find_all('p'))
-    focus_keywords = ['research', 'focus', 'specialize', 'study']
-    for keyword in focus_keywords:
-        if keyword in content.lower():
-            start = content.lower().find(keyword)
-            excerpt = content[start:start + 100]
-            data['department']['focus'] = excerpt.strip()
+    # Point of Contact Extraction
+    try:
+        email_pattern = re.compile(r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}')
+        phone_pattern = re.compile(r'\+?\d[\d -]{8,}\d')
+        contact_links = soup.find_all('a', string=re.compile(r'contact|staff|directory', re.I))
+        for tag in soup.find_all(['p', 'div', 'span']):
+            text = tag.get_text(strip=True)
+            if email := email_pattern.search(text):
+                data['point_of_contact']['email'] = email.group(0)
+            if phone := phone_pattern.search(text):
+                data['point_of_contact']['phone_number'] = phone.group(0)
+            if 'dr.' in text.lower() or 'prof.' in text.lower():
+                data['point_of_contact']['name'] = text.split(',')[0].strip()
+                name_parts = data['point_of_contact']['name'].split()
+                if len(name_parts) >= 2:
+                    data['point_of_contact']['first_name'] = name_parts[1]
+                    data['point_of_contact']['last_name'] = name_parts[-1]
+        for link in contact_links:
+            if 'linkedin.com' in link['href'].lower():
+                data['point_of_contact']['linked_in'] = link['href']
+    except Exception as e:
+        logger.error(f"Error in point of contact extraction for {url}: {e}")
+
+    # Research Abstract Extraction
+    try:
+        abstract_sections = soup.find_all(['div', 'section'], class_=re.compile(r'about|research|overview', re.I))
+        for section in abstract_sections:
+            paragraphs = section.find_all('p')
+            for p in paragraphs:
+                text = p.get_text(strip=True)
+                if len(text) > 100:
+                    data['research_abstract'] = text
+                    break
+            if data['research_abstract']:
+                break
+        if not data['research_abstract']:
+            for p in soup.find_all('p'):
+                text = p.get_text(strip=True)
+                if len(text) > 100:
+                    data['research_abstract'] = text
+                    break
+    except Exception as e:
+        logger.error(f"Error in research abstract extraction for {url}: {e}")
+
+    # Lab Equipment Extraction
+    try:
+        equip_tags = soup.find_all(['ul', 'div', 'table'], string=re.compile(r'equipment|lab|facility|instrument|apparatus', re.I))
+        for tag in equip_tags:
+            data['lab_equipment']['overview'] = tag.get_text(strip=True)[:200]
+            if tag.name == 'ul':
+                items = tag.find_all('li')
+                data['lab_equipment']['list'] = [li.get_text(strip=True) for li in items if li.get_text(strip=True)]
+            elif tag.name == 'table':
+                rows = tag.find_all('tr')
+                data['lab_equipment']['list'] = [row.get_text(strip=True) for row in rows]
             break
-    scopes = re.findall(r'\b(?:AI|machine learning|robotics|biology|physics|chemistry)\b', content, re.I)
-    data['scopes'] = list(set(scopes))
+    except Exception as e:
+        logger.error(f"Error in lab equipment extraction for {url}: {e}")
 
-    for a in soup.find_all('a', href=True):
-        href = a['href'].lower()
-        if 'scholar.google' in href:
-            data['publications']['google_scholar_url'] = href
-        elif 'publication' in href or 'research' in href:
-            data['publications']['other_url'] = href
-        if a.get_text(strip=True).startswith(('Paper:', 'Article:', 'Publication:')):
-            data['publications']['contents'].append(a.get_text(strip=True))
+    # Raw Content Extraction
+    try:
+        data['raw_content'] = extract_raw_content(soup)
+    except Exception as e:
+        logger.error(f"Error in raw content extraction for {url}: {e}")
 
-    email_pattern = re.compile(r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}')
-    phone_pattern = re.compile(r'\+?\d[\d -]{8,}\d')
-    for tag in soup.find_all(['p', 'div', 'span']):
-        text = tag.get_text(strip=True)
-        if email := email_pattern.search(text):
-            data['point_of_contact']['email'] = email.group(0)
-        if phone := phone_pattern.search(text):
-            data['point_of_contact']['phone_number'] = phone.group(0)
-        if 'dr.' in text.lower() or 'prof.' in text.lower():
-            data['point_of_contact']['name'] = text.split(',')[0].strip()
-            name_parts = data['point_of_contact']['name'].split()
-            if len(name_parts) >= 2:
-                data['point_of_contact']['first_name'] = name_parts[1]
-                data['point_of_contact']['last_name'] = name_parts[-1]
-
-    for p in soup.find_all('p'):
-        text = p.get_text(strip=True)
-        if len(text) > 100:
-            data['research_abstract'] = text
-            break
-
-    equip_tags = soup.find_all(['ul', 'div'], string=re.compile(r'equipment|lab|facility', re.I))
-    for tag in equip_tags:
-        data['lab_equipment']['overview'] = tag.get_text(strip=True)[:200]
-        items = tag.find_all('li')
-        data['lab_equipment']['list'] = [li.get_text(strip=True) for li in items if li.get_text(strip=True)]
-        break
-
-    data['raw_content'] = extract_raw_content(soup)
-
-    images = soup.find_all('img', src=True)
-    pdfs = soup.find_all('a', href=re.compile(r'\.pdf$', re.I))
-    
-    for img in images:
-        img_src = img['src']
-        if img_src:
-            ocr_text = process_image_ocr(img_src, url)
-            if ocr_text:
-                data['ocr_content'].append({
-                    'source': img_src,
-                    'type': 'image',
-                    'text': ocr_text
-                })
-    
-    for pdf in pdfs:
-        pdf_href = pdf['href']
-        if pdf_href:
-            ocr_text = process_pdf_ocr(pdf_href, url)
-            if ocr_text:
-                data['ocr_content'].append({
-                    'source': pdf_href,
-                    'type': 'pdf',
-                    'text': ocr_text
-                })
+    # OCR Content Extraction
+    try:
+        images = soup.find_all('img', src=True)
+        pdfs = soup.find_all('a', href=re.compile(r'\.pdf$', re.I))
+        for img in images:
+            img_src = img['src']
+            if img_src:
+                ocr_text = process_image_ocr(img_src, url)
+                if ocr_text:
+                    data['ocr_content'].append({'source': img_src, 'type': 'image', 'text': ocr_text})
+        for pdf in pdfs:
+            pdf_href = pdf['href']
+            if pdf_href:
+                ocr_text = process_pdf_ocr(pdf_href, url)
+                if ocr_text:
+                    data['ocr_content'].append({'source': pdf_href, 'type': 'pdf', 'text': ocr_text})
+    except Exception as e:
+        logger.error(f"Error in OCR extraction for {url}: {e}")
 
     return data
 
